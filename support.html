@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Support | UMEED Community Connect</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .support-page {
+            background: #f8f5ed;
+            color: #123b27;
+        }
+
+        .support-hero {
+            padding: 75px 7% 65px;
+            text-align: center;
+        }
+
+        .support-label {
+            display: inline-block;
+            padding: 9px 16px;
+            border-radius: 30px;
+            background: #e4eddf;
+            color: #218653;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .support-hero h1 {
+            max-width: 850px;
+            margin: 24px auto 18px;
+            font-size: clamp(38px, 5vw, 65px);
+            line-height: 1.08;
+            letter-spacing: -2px;
+        }
+
+        .support-hero h1 span {
+            color: #218653;
+        }
+
+        .support-hero p {
+            max-width: 650px;
+            margin: 0 auto;
+            color: #68756a;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .support-layout {
+            width: min(1100px, 86%);
+            margin: 0 auto 85px;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 35px;
+            align-items: start;
+        }
+
+        .support-form-card,
+        .support-info-card {
+            background: #fff;
+            border: 1px solid #e8e7dd;
+            border-radius: 24px;
+            padding: 32px;
+            min-width: 0;
+        }
+
+        .support-section-heading {
+            margin-bottom: 26px;
+        }
+
+        .support-section-heading > span {
+            color: #218653;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.7px;
+        }
+
+        .support-section-heading h2 {
+            margin: 9px 0;
+            font-size: 27px;
+            letter-spacing: -0.7px;
+        }
+
+        .support-section-heading p {
+            color: #737c72;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .support-form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .support-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .support-field label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #254832;
+        }
+
+        .support-field input,
+        .support-field select,
+        .support-field textarea {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #dedfd6;
+            border-radius: 11px;
+            background: #fcfcf9;
+            color: #123b27;
+            font: inherit;
+            font-size: 14px;
+        }
+
+        .support-field input:focus,
+        .support-field select:focus,
+        .support-field textarea:focus {
+            outline: 2px solid #b5d5bc;
+            border-color: #218653;
+        }
+
+        .support-field textarea {
+            min-height: 125px;
+            resize: vertical;
+        }
+
+        .support-submit {
+            width: 100%;
+            padding: 15px 20px;
+            margin-top: 5px;
+            border: 0;
+            border-radius: 12px;
+            background: #123b27;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .support-submit:hover {
+            background: #218653;
+        }
+
+        .support-note {
+            margin: 0;
+            color: #7a8177;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .support-feedback {
+            padding: 13px;
+            border-radius: 10px;
+            background: #e8f0e4;
+            color: #123b27;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .support-contact-list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .support-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 17px;
+            border: 1px solid #e8e7dd;
+            border-radius: 15px;
+            background: #fcfcf9;
+        }
+
+        .support-contact-icon {
+            flex-shrink: 0;
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            background: #e4eddf;
+            font-size: 20px;
+        }
+
+        .support-contact-item h3 {
+            margin: 0 0 5px;
+            font-size: 15px;
+        }
+
+        .support-contact-item p {
+            color: #737c72;
+            font-size: 13px;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        .support-info-note {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 12px;
+            background: #e8f0e4;
+            color: #254832;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .support-faq {
+            width: min(1100px, 86%);
+            margin: 0 auto 85px;
+        }
+
+        .support-faq-heading {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .support-faq-heading > span {
+            color: #218653;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.7px;
+        }
+
+        .support-faq-heading h2 {
+            margin: 12px 0;
+            font-size: clamp(28px, 4vw, 38px);
+            letter-spacing: -1px;
+        }
+
+        .support-faq-heading p {
+            color: #737c72;
+            font-size: 14px;
+        }
+
+        .support-faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .support-faq-item {
+            padding: 22px;
+            background: #fff;
+            border: 1px solid #e8e7dd;
+            border-radius: 17px;
+        }
+
+        .support-faq-item summary {
+            color: #254832;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .support-faq-item p {
+            margin-top: 13px;
+            color: #737c72;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .support-bottom-banner {
+            padding: 48px 7%;
+            text-align: center;
+            background: #123b27;
+            color: #fff;
+        }
+
+        .support-bottom-banner h2 {
+            margin: 0 0 12px;
+            font-size: clamp(27px, 4vw, 38px);
+        }
+
+        .support-bottom-banner p {
+            max-width: 600px;
+            margin: 0 auto 22px;
+            color: #d7e3d8;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .support-bottom-link {
+            display: inline-block;
+            padding: 13px 22px;
+            border-radius: 12px;
+            background: #fff;
+            color: #123b27;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .support-bottom-link:hover {
+            background: #e4eddf;
+        }
+
+        @media (max-width: 800px) {
+            .support-layout {
+                grid-template-columns: 1fr;
+                width: 90%;
+            }
+
+            .support-hero {
+                padding: 55px 6% 45px;
+            }
+
+            .support-faq {
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .support-form-card,
+            .support-info-card {
+                padding: 22px 18px;
+            }
+
+            .support-faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body class="support-page">
+
+<header class="navbar">
+
+    <a href="index.html" class="brand">
+        <span class="brand-mark">U</span>
+        <span>
+            <strong>UMEED</strong>
+            <small>Community Connect</small>
+        </span>
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="needs.html">Community Needs</a>
+        <a href="volunteer.html">Volunteer</a>
+        <a href="post-need.html">Post a Need</a>
+        <a href="support.html" class="active">Support</a>
+        <a href="birthday.html">Birthday Celebrations</a>
+    </nav>
+
+    <a href="volunteer.html" class="nav-button">Join UMEED</a>
+
+</header>
+
+<main>
+
+    <section class="support-hero">
+
+        <span class="support-label">WE'RE HERE FOR YOU</span>
+
+        <h1>Every Question Deserves <span>an Answer.</span></h1>
+
+        <p>
+            Need help using UMEED, have a suggestion, or facing a website
+            problem? Tell us about it. We're here to make your community
+            support journey easier.
+        </p>
+
+    </section>
+
+    <section class="support-layout">
+
+        <div class="support-form-card">
+
+            <div class="support-section-heading">
+                <span>LET'S TALK</span>
+
+                <h2>How Can We Help?</h2>
+
+                <p>
+                    Complete the form below with your question, feedback,
+                    or concern.
+                </p>
+            </div>
+
+            <form class="support-form" id="supportForm">
+
+                <div class="support-field">
+                    <label for="supportName">Your Name *</label>
+
+                    <input
+                        type="text"
+                        id="supportName"
+                        name="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+                </div>
+
+                <div class="support-field">
+                    <label for="supportEmail">Email Address *</label>
+
+                    <input
+                        type="email"
+                        id="supportEmail"
+                        name="email"
+                        placeholder="you@example.com"
+                        required
+                    >
+                </div>
+
+                <div class="support-field">
+                    <label for="supportTopic">Reason for Contact *</label>
+
+                    <select id="supportTopic" name="topic" required>
+                        <option value="">Choose a topic</option>
+                        <option>General Question</option>
+                        <option>Website Problem</option>
+                        <option>Volunteer Support</option>
+                        <option>Organization Enquiry</option>
+                        <option>Contribution Help</option>
+                        <option>Feedback or Suggestion</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="support-field">
+                    <label for="supportMessage">Your Message *</label>
+
+                    <textarea
+                        id="supportMessage"
+                        name="message"
+                        placeholder="Describe your question or problem..."
+                        required
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="support-submit">
+                    Send Your Message →
+                </button>
+
+                <p class="support-note">
+                    This is a frontend demonstration. Your message will not
+                    be permanently sent or stored until a backend is connected.
+                </p>
+
+                <div
+                    id="supportFeedback"
+                    class="support-feedback"
+                    hidden
+                    aria-live="polite"
+                ></div>
+
+            </form>
+
+        </div>
+
+        <aside class="support-info-card">
+
+            <div class="support-section-heading">
+                <span>GET IN TOUCH</span>
+
+                <h2>We're Listening.</h2>
+
+                <p>
+                    Find help with using the platform and connecting
+                    with your community.
+                </p>
+            </div>
+
+            <div class="support-contact-list">
+
+                <div class="support-contact-item">
+                    <div class="support-contact-icon">💬</div>
+
+                    <div>
+                        <h3>General Enquiries</h3>
+                        <p>
+                            Questions about Project UMEED and how it works.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="support-contact-item">
+                    <div class="support-contact-icon">🛠️</div>
+
+                    <div>
+                        <h3>Website Assistance</h3>
+                        <p>
+                            Report a broken button, page issue, or other
+                            website problem using the form.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="support-contact-item">
+                    <div class="support-contact-icon">🤝</div>
+
+                    <div>
+                        <h3>Community Support</h3>
+                        <p>
+                            Questions about volunteers, organizations,
+                            and community needs.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="support-contact-item">
+                    <div class="support-contact-icon">📍</div>
+
+                    <div>
+                        <h3>Project Location</h3>
+                        <p>Nashik, Maharashtra, India</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="support-info-note">
+                <strong>A quick note:</strong> Project UMEED is an academic
+                community engagement project. Verified contact details can
+                be added here when the project team establishes an official
+                support channel.
+            </div>
+
+        </aside>
+
+    </section>
+
+    <section class="support-faq">
+
+        <div class="support-faq-heading">
+            <span>NEED A QUICK ANSWER?</span>
+
+            <h2>Frequently Asked Questions</h2>
+
+            <p>Here are a few things you might want to know.</p>
+        </div>
+
+        <div class="support-faq-grid">
+
+            <details class="support-faq-item">
+                <summary>What is Project UMEED?</summary>
+
+                <p>
+                    UMEED is a community support platform concept that aims
+                    to connect genuine community needs with people willing
+                    to contribute their time, resources, or skills.
+                </p>
+            </details>
+
+            <details class="support-faq-item">
+                <summary>How can I volunteer?</summary>
+
+                <p>
+                    Visit the Volunteer page to learn about volunteering
+                    and explore the registration options available.
+                </p>
+            </details>
+
+            <details class="support-faq-item">
+                <summary>How do I find organizations?</summary>
+
+                <p>
+                    Visit the Community Needs page or use the organization
+                    discovery section when it is available on your website.
+                </p>
+            </details>
+
+            <details class="support-faq-item">
+                <summary>Can I report a technical problem?</summary>
+
+                <p>
+                    Yes. Choose Website Problem in the contact form and
+                    describe what happened so the project team can review it.
+                </p>
+            </details>
+
+        </div>
+
+    </section>
+
+    <section class="support-bottom-banner">
+
+        <h2>No Help Should Go Unnoticed.</h2>
+
+        <p>
+            Every question matters. Together, we can make it easier
+            for people to find the support they need.
+        </p>
+
+        <a href="needs.html" class="support-bottom-link">
+            Explore Community Needs →
+        </a>
+
+    </section>
+
+</main>
+
+<footer class="modern-footer">
+
+    <div class="footer-main">
+
+        <div class="footer-brand">
+
+            <div class="brand footer-brand-logo">
+                <span class="brand-mark">U</span>
+
+                <span>
+                    <strong>UMEED</strong>
+                    <small>Community Connect</small>
+                </span>
+            </div>
+
+            <p>No Help Should Go Unnoticed.</p>
+
+        </div>
+
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="needs.html">Community Needs</a>
+            <a href="volunteer.html">Volunteer</a>
+            <a href="post-need.html">Post a Need</a>
+            <a href="support.html">Support</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>© 2026 Project UMEED</span>
+        <span>Community Engagement Field Project</span>
+    </div>
+
+</footer>
+
+<script>
+    const supportForm = document.getElementById("supportForm");
+    const supportFeedback = document.getElementById("supportFeedback");
+
+    supportForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("supportName").value.trim();
+
+        supportFeedback.hidden = false;
+        supportFeedback.textContent =
+            "Thank you, " + name + "! Your form passed validation. " +
+            "This is a frontend demo, so your message has not actually " +
+            "been sent or saved. Backend integration is needed for real submissions.";
+
+        supportFeedback.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | UMEED</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .admin-login-page {
+            min-height: 100vh;
+            background: #f8f5ed;
+            color: #123b27;
+        }
+
+        .admin-hero {
+            text-align: center;
+            padding: 65px 20px 35px;
+        }
+
+        .admin-label {
+            display: inline-block;
+            padding: 9px 17px;
+            border-radius: 30px;
+            background: #e4eddf;
+            color: #218653;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+
+        .admin-hero h1 {
+            margin: 0 auto 16px;
+            max-width: 750px;
+            font-size: clamp(36px, 5vw, 60px);
+            line-height: 1.15;
+            letter-spacing: -1.8px;
+        }
+
+        .admin-hero h1 span {
+            color: #218653;
+        }
+
+        .admin-hero p {
+            max-width: 570px;
+            margin: 0 auto;
+            color: #667469;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .admin-wrapper {
+            width: min(470px, 90%);
+            margin: 0 auto 80px;
+        }
+
+        .admin-card {
+            padding: 35px;
+            background: #ffffff;
+            border: 1px solid #e8e7dd;
+            border-radius: 25px;
+            box-shadow: 0 12px 35px rgba(18, 59, 39, 0.05);
+        }
+
+        .admin-icon {
+            width: 62px;
+            height: 62px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 22px;
+            border-radius: 18px;
+            background: #e4eddf;
+            font-size: 29px;
+        }
+
+        .admin-card h2 {
+            margin: 0 0 10px;
+            font-size: 27px;
+        }
+
+        .admin-description {
+            margin: 0 0 25px;
+            color: #748075;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .admin-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .admin-field label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .admin-field input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 14px 15px;
+            border: 1px solid #dedfd5;
+            border-radius: 12px;
+            background: #ffffff;
+            color: #123b27;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .admin-field input:focus {
+            border-color: #218653;
+            box-shadow: 0 0 0 3px rgba(33, 134, 83, 0.09);
+        }
+
+        .admin-field input::placeholder {
+            color: #a1aaa1;
+        }
+
+        .admin-password-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .admin-password-row label {
+            margin: 0;
+        }
+
+        .admin-password-row button {
+            border: none;
+            background: none;
+            color: #218653;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .admin-submit {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 13px;
+            background: #123b27;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .admin-submit:hover {
+            background: #218653;
+            transform: translateY(-1px);
+        }
+
+        .admin-message {
+            display: none;
+            padding: 13px 15px;
+            border-radius: 12px;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .admin-message.error {
+            display: block;
+            background: #fff0ee;
+            border: 1px solid #f3d0cb;
+            color: #a52a20;
+        }
+
+        .admin-message.info {
+            display: block;
+            background: #e9f5e9;
+            border: 1px solid #c9e6cf;
+            color: #17643a;
+        }
+
+        .admin-security-note {
+            margin-top: 23px;
+            padding: 14px 15px;
+            border-radius: 12px;
+            background: #f5f7f1;
+            color: #6b776c;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .admin-back-link {
+            display: block;
+            text-align: center;
+            margin-top: 23px;
+            color: #218653;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .admin-back-link:hover {
+            text-decoration: underline;
+        }
+
+        .admin-bottom-banner {
+            background: #123b27;
+            color: #ffffff;
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        .admin-bottom-banner h2 {
+            margin: 0 0 12px;
+            font-size: clamp(24px, 3vw, 34px);
+        }
+
+        .admin-bottom-banner p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: #dce9df;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 600px) {
+            .admin-hero {
+                padding-top: 40px;
+            }
+
+            .admin-card {
+                padding: 25px 20px;
+                border-radius: 20px;
+            }
+
+            .admin-card h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body class="admin-login-page">
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="index.html" class="brand">
+            <span class="brand-mark">U</span>
+            <span>
+                <strong>UMEED</strong>
+                <small>Community Connect</small>
+            </span>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="needs.html">Community Needs</a>
+            <a href="volunteer.html">Volunteer</a>
+            <a href="post-need.html">Post a Need</a>
+            <a href="support.html">Support</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+
+
+    <!-- Hero -->
+    <section class="admin-hero">
+        <div class="admin-label">AUTHORIZED ACCESS ONLY</div>
+
+        <h1>
+            Admin <span>Portal.</span>
+        </h1>
+
+        <p>
+            Manage community activities, review submissions, and help
+            ensure that genuine needs reach the right people.
+        </p>
+    </section>
+
+
+    <!-- Admin Login Form -->
+    <main class="admin-wrapper">
+        <section class="admin-card">
+
+            <div class="admin-icon">🔐</div>
+
+            <h2>Administrator Login</h2>
+
+            <p class="admin-description">
+                This area is intended for authorized UMEED administrators.
+                Enter your credentials to continue.
+            </p>
+
+            <div
+                id="adminMessage"
+                class="admin-message"
+                role="status"
+                aria-live="polite">
+            </div>
+
+            <form id="adminLoginForm" class="admin-form">
+
+                <div class="admin-field">
+                    <label for="adminEmail">Admin Email Address *</label>
+
+                    <input
+                        type="email"
+                        id="adminEmail"
+                        name="email"
+                        placeholder="Enter your admin email"
+                        autocomplete="username"
+                        required>
+                </div>
+
+                <div class="admin-field">
+
+                    <div class="admin-password-row">
+                        <label for="adminPassword">Password *</label>
+
+                        <button
+                            type="button"
+                            id="toggleAdminPassword">
+                            Show password
+                        </button>
+                    </div>
+
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        name="password"
+                        placeholder="Enter your admin password"
+                        autocomplete="current-password"
+                        required>
+                </div>
+
+                <button type="submit" class="admin-submit">
+                    Access Admin Portal →
+                </button>
+
+            </form>
+
+            <div class="admin-security-note">
+                <strong>Security notice:</strong> This is currently a
+                frontend prototype. Real administrator authentication
+                must be implemented on a secure backend. Do not enter
+                real passwords into a demo login page.
+            </div>
+
+            <a href="index.html" class="admin-back-link">
+                ← Back to UMEED Home
+            </a>
+
+        </section>
+    </main>
+
+
+    <!-- Bottom Banner -->
+    <section class="admin-bottom-banner">
+        <h2>Responsible Actions. Stronger Communities. 💚</h2>
+
+        <p>
+            Every verified need and every helping hand can create
+            a meaningful difference.
+        </p>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="modern-footer">
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+                <a href="index.html" class="brand">
+                    <span class="brand-mark">U</span>
+                    <span>
+                        <strong>UMEED</strong>
+                        <small>Community Connect</small>
+                    </span>
+                </a>
+
+                <p>No Help Should Go Unnoticed.</p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Explore</h3>
+                <a href="index.html">Home</a>
+                <a href="needs.html">Community Needs</a>
+                <a href="organizations.html">Organizations</a>
+                <a href="volunteer.html">Volunteer</a>
+            </div>
+
+            <div class="footer-links">
+                <h3>Get Involved</h3>
+                <a href="post-need.html">Post a Need</a>
+                <a href="birthday.html">Birthday Celebrations</a>
+                <a href="feedback.html">Feedback</a>
+                <a href="support.html">Support</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                © 2026 Project UMEED | Community Engagement Field Project
+            </p>
+        </div>
+
+    </footer>
+
+
+    <!-- Frontend Demo Behaviour -->
+    <script>
+        const adminLoginForm = document.getElementById("adminLoginForm");
+        const adminMessage = document.getElementById("adminMessage");
+        const adminPassword = document.getElementById("adminPassword");
+        const toggleAdminPassword =
+            document.getElementById("toggleAdminPassword");
+
+        toggleAdminPassword.addEventListener("click", function () {
+            const showPassword = adminPassword.type === "password";
+
+            adminPassword.type = showPassword ? "text" : "password";
+
+            toggleAdminPassword.textContent = showPassword
+                ? "Hide password"
+                : "Show password";
+        });
+
+        adminLoginForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            adminMessage.textContent =
+                "Admin authentication is not connected yet. A secure backend is required before administrator access can be enabled.";
+
+            adminMessage.className = "admin-message error";
+        });
+    </script>
+
+</body>
+</html>

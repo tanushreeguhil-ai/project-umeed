@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Organization Details | UMEED Community Connect</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .org-page {
+            background: #f8f5ed;
+            color: #123b27;
+        }
+
+        .org-container {
+            width: min(1100px, 86%);
+            margin: 0 auto;
+        }
+
+        .org-breadcrumb {
+            padding: 25px 0 0;
+            color: #68756a;
+            font-size: 14px;
+        }
+
+        .org-breadcrumb a {
+            color: #218653;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .org-hero {
+            padding: 65px 7% 60px;
+            text-align: center;
+        }
+
+        .org-label {
+            display: inline-block;
+            padding: 9px 16px;
+            border-radius: 30px;
+            background: #e4eddf;
+            color: #218653;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .org-hero-emoji {
+            width: 76px;
+            height: 76px;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 22px;
+            border-radius: 22px;
+            background: #e4eddf;
+            font-size: 40px;
+        }
+
+        .org-hero h1 {
+            max-width: 850px;
+            margin: 24px auto 18px;
+            font-size: clamp(38px, 5vw, 65px);
+            line-height: 1.08;
+            letter-spacing: -2px;
+            overflow-wrap: anywhere;
+        }
+
+        .org-hero h1 span {
+            color: #218653;
+        }
+
+        .org-hero p {
+            max-width: 650px;
+            margin: 0 auto 25px;
+            color: #68756a;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .org-button {
+            display: inline-block;
+            padding: 13px 23px;
+            border: none;
+            border-radius: 25px;
+            background: #218653;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .org-button:hover {
+            background: #123b27;
+        }
+
+        /* Main two-column layout */
+
+        .org-layout {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 35px;
+            align-items: start;
+            margin: 0 auto 85px;
+        }
+
+        .org-main-column,
+        .org-side-column {
+            min-width: 0;
+        }
+
+        /* White cards matching Post a Need */
+
+        .org-card {
+            background: #fff;
+            border: 1px solid #e8e7dd;
+            border-radius: 24px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .org-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .org-section-heading {
+            margin-bottom: 24px;
+        }
+
+        .org-section-heading span {
+            color: #218653;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.7px;
+        }
+
+        .org-section-heading h2 {
+            margin: 9px 0;
+            font-size: 27px;
+            letter-spacing: -0.7px;
+        }
+
+        .org-section-heading p {
+            color: #737c72;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .org-about-text {
+            color: #58675b;
+            line-height: 1.9;
+            font-size: 15px;
+            overflow-wrap: anywhere;
+        }
+
+        /* Needs grid */
+
+        .org-needs-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 13px;
+            margin-top: 22px;
+        }
+
+        .org-need-item {
+            min-width: 0;
+            min-height: 125px;
+            padding: 18px 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #e3ecdf;
+            border-radius: 17px;
+            background: #f1f6ed;
+            color: #254832;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            overflow-wrap: anywhere;
+            transition: transform 0.2s ease;
+        }
+
+        .org-need-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .org-need-emoji {
+            display: block;
+            font-size: 29px;
+            line-height: 1.2;
+        }
+
+        /* Contact details */
+
+        .org-info-row {
+            padding: 15px 0;
+            border-bottom: 1px solid #e8e7dd;
+        }
+
+        .org-info-row:first-of-type {
+            padding-top: 0;
+        }
+
+        .org-info-row:last-of-type {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .org-info-row strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #254832;
+            font-size: 13px;
+        }
+
+        .org-info-row p {
+            color: #58675b;
+            font-size: 14px;
+            overflow-wrap: anywhere;
+        }
+
+        .org-notice {
+            margin-top: 18px;
+            padding: 14px;
+            border: 1px solid #f0e4c8;
+            border-radius: 14px;
+            background: #fff8e9;
+            color: #725d32;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* Bottom banner matching Post a Need */
+
+        .org-bottom-banner {
+            padding: 48px 7%;
+            margin-bottom: 0;
+            text-align: center;
+            background: #123b27;
+            color: #fff;
+        }
+
+        .org-bottom-banner h2 {
+            margin: 0 0 12px;
+            font-size: clamp(27px, 4vw, 38px);
+        }
+
+        .org-bottom-banner p {
+            max-width: 600px;
+            margin: 0 auto 22px;
+            color: #d7e3d8;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .org-bottom-banner .org-button {
+            background: #fff;
+            color: #123b27;
+        }
+
+        .org-bottom-banner .org-button:hover {
+            background: #e4eddf;
+        }
+
+        @media (max-width: 800px) {
+            .org-container {
+                width: 90%;
+            }
+
+            .org-layout {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                margin-bottom: 55px;
+            }
+
+            .org-hero {
+                padding: 50px 6% 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .org-card {
+                padding: 22px 18px;
+            }
+
+            .org-section-heading h2 {
+                font-size: 24px;
+            }
+
+            .org-needs-list {
+                grid-template-columns: 1fr;
+            }
+
+            .org-need-item {
+                min-height: 100px;
+            }
+
+            .org-bottom-banner {
+                padding: 38px 6%;
+            }
+        }
+    </style>
+</head>
+
+<body class="org-page">
+
+<header class="navbar">
+    <a href="index.html" class="brand">
+        <span class="brand-mark">U</span>
+        <span>
+            <strong>UMEED</strong>
+            <small>Community Connect</small>
+        </span>
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="needs.html">Community Needs</a>
+        <a href="volunteer.html">Volunteer</a>
+        <a href="post-need.html">Post a Need</a>
+        <a href="support.html">Support</a>
+        <a href="birthday.html">Birthday Celebrations</a>
+    </nav>
+
+    <a href="volunteer.html" class="nav-button">Join UMEED</a>
+</header>
+
+<main>
+
+    <div class="org-container">
+        <div class="org-breadcrumb">
+            <a href="organizations.html">Organizations</a>
+            / Organization Details
+        </div>
+    </div>
+
+    <!-- Organization Hero -->
+    <section class="org-hero">
+
+        <div class="org-hero-emoji" id="orgEmoji">🤝</div>
+
+        <span class="org-label">COMMUNITY PARTNER · DEMO PROFILE</span>
+
+        <h1 id="orgName">Community <span>Organization</span></h1>
+
+        <p id="orgIntro">
+            Discover the community, understand its needs, and explore
+            meaningful ways to contribute.
+        </p>
+
+        <a href="#needs" class="org-button">Explore Their Needs →</a>
+
+    </section>
+
+    <!-- Organization Content -->
+    <section class="org-container org-layout">
+
+        <div class="org-main-column">
+
+            <!-- About -->
+            <section class="org-card">
+
+                <div class="org-section-heading">
+                    <span>GET TO KNOW THEM</span>
+                    <h2>About the Organization</h2>
+                    <p>
+                        Understand the organization and the community
+                        it aims to support.
+                    </p>
+                </div>
+
+                <p class="org-about-text" id="orgAbout">
+                    This sample profile demonstrates how community
+                    organizations can share their mission and requirements
+                    through Project UMEED.
+                </p>
+
+            </section>
+
+            <!-- Needs -->
+            <section class="org-card" id="needs">
+
+                <div class="org-section-heading">
+                    <span>WAYS TO MAKE A DIFFERENCE</span>
+                    <h2>What They Need</h2>
+                    <p>
+                        Here are some example requirements for this demo profile.
+                    </p>
+                </div>
+
+                <div class="org-needs-list" id="needsList">
+
+                    <div class="org-need-item">
+                        <span class="org-need-emoji">📚</span>
+                        <span>Books and learning materials</span>
+                    </div>
+
+                    <div class="org-need-item">
+                        <span class="org-need-emoji">💻</span>
+                        <span>Computers and digital resources</span>
+                    </div>
+
+                    <div class="org-need-item">
+                        <span class="org-need-emoji">🙋</span>
+                        <span>Volunteers</span>
+                    </div>
+
+                    <div class="org-need-item">
+                        <span class="org-need-emoji">🎒</span>
+                        <span>Educational supplies</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+        <!-- Contact Information -->
+        <aside class="org-side-column">
+
+            <section class="org-card">
+
+                <div class="org-section-heading">
+                    <span>CONNECT WITH THEM</span>
+                    <h2>Contact Information</h2>
+                    <p>
+                        Organization information currently available
+                        in this demonstration profile.
+                    </p>
+                </div>
+
+                <div class="org-info-row">
+                    <strong>📍 Location</strong>
+                    <p id="orgLocation">Nashik, Maharashtra</p>
+                </div>
+
+                <div class="org-info-row">
+                    <strong>🏷️ Category</strong>
+                    <p id="orgCategory">Community Support</p>
+                </div>
+
+                <div class="org-info-row">
+                    <strong>✉️ Email</strong>
+                    <p id="orgEmail">Contact information not provided</p>
+                </div>
+
+                <div class="org-info-row">
+                    <strong>📞 Phone</strong>
+                    <p id="orgPhone">Contact information not provided</p>
+                </div>
+
+                <div class="org-notice">
+                    This is a demonstration profile. Contact details and
+                    requirements must be verified before real contributions.
+                </div>
+
+            </section>
+
+        </aside>
+
+    </section>
+
+    <!-- Bottom Banner -->
+    <section class="org-bottom-banner">
+
+        <h2>Small Contributions. Meaningful Change. 💚</h2>
+
+        <p>
+            Explore how you can support a community through Project UMEED.
+        </p>
+
+        <a href="support.html" class="org-button">How Can I Help? →</a>
+
+    </section>
+
+</main>
+
+<footer class="modern-footer">
+
+    <div class="footer-main">
+
+        <div class="footer-brand">
+
+            <div class="brand footer-brand-logo">
+                <span class="brand-mark">U</span>
+                <span>
+                    <strong>UMEED</strong>
+                    <small>Community Connect</small>
+                </span>
+            </div>
+
+            <p>No Help Should Go Unnoticed.</p>
+
+        </div>
+
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="needs.html">Community Needs</a>
+            <a href="volunteer.html">Volunteer</a>
+            <a href="post-need.html">Post a Need</a>
+            <a href="support.html">Support</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>© 2026 Project UMEED</span>
+        <span>Community Engagement Field Project</span>
+    </div>
+
+</footer>
+
+<script>
+    /* All six organization profiles and their original information */
+
+    const organizations = {
+
+        education: {
+            name: "Education Support Center",
+            emoji: "📚",
+            intro: "Helping learners access educational resources and opportunities.",
+            about: "This demonstration profile represents a community initiative focused on learning materials, educational support, and opportunities for students.",
+            category: "Education",
+            location: "Nashik, Maharashtra",
+            needs: [
+                ["📚", "Books and textbooks"],
+                ["💻", "Computers and digital learning"],
+                ["🙋", "Volunteer tutors"],
+                ["🎒", "School supplies"]
+            ]
+        },
+
+        school: {
+            name: "Community School",
+            emoji: "🏫",
+            intro: "Supporting students with resources for a better learning experience.",
+            about: "This demonstration profile represents a school seeking educational materials, learning equipment, and volunteer support for students.",
+            category: "Education",
+            location: "Nashik district, Maharashtra",
+            needs: [
+                ["📖", "Books and notebooks"],
+                ["✏️", "Stationery"],
+                ["💻", "Digital learning equipment"],
+                ["🙋", "Volunteer educators"]
+            ]
+        },
+
+        "child-care": {
+            name: "Child Welfare Center",
+            emoji: "🧸",
+            intro: "Helping children access essential supplies and learning opportunities.",
+            about: "This demonstration profile represents a child-focused community initiative that may need educational resources, clothing, and essential supplies.",
+            category: "Child Welfare",
+            location: "Nashik, Maharashtra",
+            needs: [
+                ["👕", "Clothes"],
+                ["🧸", "Toys and activity materials"],
+                ["📚", "Books"],
+                ["🎒", "School supplies"]
+            ]
+        },
+
+        "senior-care": {
+            name: "Senior Citizen Support Center",
+            emoji: "💚",
+            intro: "Promoting care, companionship, and dignity for older adults.",
+            about: "This demonstration profile represents a senior-care initiative that may benefit from companionship, essential supplies, and community activities.",
+            category: "Senior Care",
+            location: "Nashik, Maharashtra",
+            needs: [
+                ["🙋", "Volunteer companionship"],
+                ["🧣", "Clothing and blankets"],
+                ["🎨", "Recreational activities"],
+                ["🩺", "Health camp support"]
+            ]
+        },
+
+        health: {
+            name: "Community Health Initiative",
+            emoji: "🩺",
+            intro: "Encouraging access to community health awareness and support.",
+            about: "This demonstration profile represents a community health initiative that may need volunteers, awareness materials, and support for health camps.",
+            category: "Healthcare",
+            location: "Nashik, Maharashtra",
+            needs: [
+                ["🙋", "Event volunteers"],
+                ["🩹", "First-aid supplies"],
+                ["📢", "Health awareness materials"],
+                ["🩺", "Health camp support"]
+            ]
+        },
+
+        community: {
+            name: "Community Support Group",
+            emoji: "🤝",
+            intro: "Bringing people together to respond to local community needs.",
+            about: "This demonstration profile represents a community support group connecting people who can help with people and organizations seeking assistance.",
+            category: "Community Support",
+            location: "Nashik, Maharashtra",
+            needs: [
+                ["👕", "Clothes"],
+                ["🍚", "Essential supplies"],
+                ["🙋", "Volunteers"],
+                ["📦", "Donation collection support"]
+            ]
+        }
+
+    };
+
+    /* Get the selected organization from the URL */
+
+    const params = new URLSearchParams(window.location.search);
+    const orgId = params.get("id") || "education";
+    const org = organizations[orgId] || organizations.education;
+
+    /* Display organization information */
+
+    document.getElementById("orgName").textContent = org.name;
+    document.getElementById("orgEmoji").textContent = org.emoji;
+    document.getElementById("orgIntro").textContent = org.intro;
+    document.getElementById("orgAbout").textContent = org.about;
+    document.getElementById("orgCategory").textContent = org.category;
+    document.getElementById("orgLocation").textContent = org.location;
+
+    /* Display the selected organization's needs */
+
+    const needsList = document.getElementById("needsList");
+
+    needsList.innerHTML = "";
+
+    org.needs.forEach(function (need) {
+
+        const item = document.createElement("div");
+        item.className = "org-need-item";
+
+        const emoji = document.createElement("span");
+        emoji.className = "org-need-emoji";
+        emoji.textContent = need[0];
+
+        const description = document.createElement("span");
+        description.textContent = need[1];
+
+        item.appendChild(emoji);
+        item.appendChild(description);
+
+        needsList.appendChild(item);
+
+    });
+</script>
+
+</body>
+</html>

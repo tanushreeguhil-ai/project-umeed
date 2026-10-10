@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Join UMEED | Community Connect</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Registration Page */
+
+        .register-page {
+            background: #f8f5ed;
+            color: #123b27;
+            min-height: 100vh;
+        }
+
+        .register-hero {
+            text-align: center;
+            padding: 55px 20px 35px;
+        }
+
+        .register-label {
+            display: inline-block;
+            background: #e4eddf;
+            color: #218653;
+            padding: 9px 17px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+
+        .register-hero h1 {
+            font-size: clamp(36px, 5vw, 58px);
+            letter-spacing: -1.5px;
+            line-height: 1.15;
+            margin: 0 auto 16px;
+            max-width: 750px;
+        }
+
+        .register-hero h1 span {
+            color: #218653;
+        }
+
+        .register-hero p {
+            max-width: 580px;
+            margin: 0 auto;
+            color: #667469;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .register-wrapper {
+            width: min(540px, 90%);
+            margin: 0 auto 75px;
+        }
+
+        .register-card {
+            background: #ffffff;
+            border: 1px solid #e8e7dd;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 12px 35px rgba(18, 59, 39, 0.05);
+        }
+
+        .register-card h2 {
+            font-size: 27px;
+            margin: 0 0 8px;
+        }
+
+        .register-description {
+            color: #748075;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 27px;
+        }
+
+        .register-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .register-field label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .register-field input,
+        .register-field select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px 15px;
+            border: 1px solid #dedfd5;
+            border-radius: 12px;
+            background: #fff;
+            color: #123b27;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .register-field input:focus,
+        .register-field select:focus {
+            border-color: #218653;
+            box-shadow: 0 0 0 3px rgba(33, 134, 83, 0.10);
+        }
+
+        .register-field input::placeholder {
+            color: #a1aaa1;
+        }
+
+        .register-field small {
+            display: block;
+            color: #7a857b;
+            font-size: 12px;
+            margin-top: 7px;
+            line-height: 1.5;
+        }
+
+        .register-terms {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            line-height: 1.7;
+            color: #657268;
+        }
+
+        .register-terms input {
+            margin-top: 5px;
+            accent-color: #218653;
+        }
+
+        .register-terms a,
+        .register-login a {
+            color: #218653;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .register-terms a:hover,
+        .register-login a:hover {
+            text-decoration: underline;
+        }
+
+        .register-submit {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 13px;
+            background: #123b27;
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .register-submit:hover {
+            background: #218653;
+            transform: translateY(-1px);
+        }
+
+        .register-login {
+            text-align: center;
+            margin: 23px 0 0;
+            color: #748075;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .register-message {
+            display: none;
+            padding: 13px 15px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .register-message.error {
+            display: block;
+            background: #fff0ee;
+            color: #a52a20;
+            border: 1px solid #f3d0cb;
+        }
+
+        .register-message.success {
+            display: block;
+            background: #e9f5e9;
+            color: #17643a;
+            border: 1px solid #c9e6cf;
+        }
+
+        .register-note {
+            margin-top: 20px;
+            padding: 13px 15px;
+            border-radius: 12px;
+            background: #f5f7f1;
+            color: #6b776c;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .register-bottom-banner {
+            background: #123b27;
+            color: white;
+            text-align: center;
+            padding: 43px 20px;
+        }
+
+        .register-bottom-banner h2 {
+            font-size: clamp(24px, 3vw, 34px);
+            margin: 0 0 12px;
+        }
+
+        .register-bottom-banner p {
+            color: #dce9df;
+            line-height: 1.8;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        @media (max-width: 600px) {
+            .register-hero {
+                padding-top: 40px;
+            }
+
+            .register-card {
+                padding: 24px 20px;
+                border-radius: 20px;
+            }
+
+            .register-card h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body class="register-page">
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="index.html" class="brand">
+            <span class="brand-mark">U</span>
+            <span>
+                <strong>UMEED</strong>
+                <small>Community Connect</small>
+            </span>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="needs.html">Community Needs</a>
+            <a href="volunteer.html">Volunteer</a>
+            <a href="post-need.html">Post a Need</a>
+            <a href="support.html">Support</a>
+            <a href="birthday.html">Birthday Celebrations</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="register-hero">
+
+        <div class="register-label">
+            BECOME A PART OF UMEED
+        </div>
+
+        <h1>
+            Together, We Can Make a
+            <span>Difference.</span>
+        </h1>
+
+        <p>
+            Join our community of caring people. Create your account
+            and help connect genuine needs with people who can make
+            a difference.
+        </p>
+
+    </section>
+
+
+    <!-- Registration Form -->
+    <main class="register-wrapper">
+
+        <div class="register-card">
+
+            <h2>Create Your Account 🌱</h2>
+
+            <p class="register-description">
+                Fill in your details to become a member of the UMEED community.
+            </p>
+
+            <div
+                id="registerMessage"
+                class="register-message"
+                role="status"
+                aria-live="polite">
+            </div>
+
+            <form id="registerForm" class="register-form">
+
+                <div class="register-field">
+                    <label for="fullName">Full Name *</label>
+                    <input
+                        type="text"
+                        id="fullName"
+                        name="fullName"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required>
+                </div>
+
+                <div class="register-field">
+                    <label for="email">Email Address *</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required>
+                </div>
+
+                <div class="register-field">
+                    <label for="phone">Phone Number *</label>
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="Enter your 10-digit phone number"
+                        inputmode="numeric"
+                        autocomplete="tel"
+                        pattern="[0-9]{10}"
+                        maxlength="10"
+                        required>
+
+                    <small>Enter a valid 10-digit Indian mobile number.</small>
+                </div>
+
+                <div class="register-field">
+                    <label for="accountType">I want to join as *</label>
+
+                    <select id="accountType" name="accountType" required>
+                        <option value="">Select your role</option>
+                        <option value="Volunteer">Volunteer</option>
+                        <option value="Donor">Donor</option>
+                        <option value="Community Member">Community Member</option>
+                    </select>
+                </div>
+
+                <div class="register-field">
+                    <label for="password">Create Password *</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        minlength="8"
+                        required>
+
+                    <small>Use at least 8 characters for this demonstration.</small>
+                </div>
+
+                <div class="register-field">
+                    <label for="confirmPassword">Confirm Password *</label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Enter your password again"
+                        autocomplete="new-password"
+                        minlength="8"
+                        required>
+                </div>
+
+                <label class="register-terms">
+                    <input type="checkbox" id="terms" required>
+
+                    <span>
+                        I agree to use UMEED responsibly and provide
+                        accurate information when participating in
+                        community activities.
+                    </span>
+                </label>
+
+                <button type="submit" class="register-submit">
+                    Create My Account →
+                </button>
+
+            </form>
+
+            <p class="register-login">
+                Already have an account?
+                <a href="login.html">Log in here</a>
+            </p>
+
+            <div class="register-note">
+                <strong>Prototype notice:</strong> This page currently
+                demonstrates the registration interface using your
+                browser's local storage. It is not a secure account
+                creation system. A backend and secure password handling
+                will be needed for real users.
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- Bottom Banner -->
+    <section class="register-bottom-banner">
+
+        <h2>No Help Should Go Unnoticed. 💚</h2>
+
+        <p>
+            Every person who joins brings us one step closer to a
+            more connected, caring, and supportive community.
+        </p>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="modern-footer">
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+                <a href="index.html" class="brand">
+                    <span class="brand-mark">U</span>
+                    <span>
+                        <strong>UMEED</strong>
+                        <small>Community Connect</small>
+                    </span>
+                </a>
+
+                <p>No Help Should Go Unnoticed.</p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Explore</h3>
+                <a href="index.html">Home</a>
+                <a href="needs.html">Community Needs</a>
+                <a href="organizations.html">Organizations</a>
+                <a href="volunteer.html">Volunteer</a>
+            </div>
+
+            <div class="footer-links">
+                <h3>Get Involved</h3>
+                <a href="post-need.html">Post a Need</a>
+                <a href="birthday.html">Birthday Celebrations</a>
+                <a href="feedback.html">Feedback</a>
+                <a href="support.html">Support</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Project UMEED | Community Engagement Field Project</p>
+        </div>
+
+    </footer>
+
+
+    <!-- Registration Demo Logic -->
+    <script>
+        const registerForm = document.getElementById("registerForm");
+        const registerMessage = document.getElementById("registerMessage");
+
+        function showRegisterMessage(message, type) {
+            registerMessage.textContent = message;
+            registerMessage.className = "register-message " + type;
+        }
+
+        registerForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const fullName = document.getElementById("fullName").value.trim();
+            const email = document.getElementById("email").value.trim().toLowerCase();
+            const phone = document.getElementById("phone").value.trim();
+            const accountType = document.getElementById("accountType").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const termsAccepted = document.getElementById("terms").checked;
+
+            if (!fullName || !email || !phone || !accountType || !password) {
+                showRegisterMessage("Please complete all required fields.", "error");
+                return;
+            }
+
+            if (!/^[6-9][0-9]{9}$/.test(phone)) {
+                showRegisterMessage(
+                    "Please enter a valid 10-digit Indian mobile number.",
+                    "error"
+                );
+                return;
+            }
+
+            if (password.length < 8) {
+                showRegisterMessage(
+                    "Your password must contain at least 8 characters.",
+                    "error"
+                );
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showRegisterMessage(
+                    "The passwords do not match. Please try again.",
+                    "error"
+                );
+                return;
+            }
+
+            if (!termsAccepted) {
+                showRegisterMessage(
+                    "Please accept the community participation statement.",
+                    "error"
+                );
+                return;
+            }
+
+            let users = [];
+
+            try {
+                users = JSON.parse(localStorage.getItem("umeedUsers") || "[]");
+
+                if (!Array.isArray(users)) {
+                    users = [];
+                }
+            } catch (error) {
+                showRegisterMessage(
+                    "Unable to read the demo account data in this browser.",
+                    "error"
+                );
+                return;
+            }
+
+            const alreadyRegistered = users.some(function (user) {
+                return user.email === email;
+            });
+
+            if (alreadyRegistered) {
+                showRegisterMessage(
+                    "An account with this email already exists in this browser. Please log in instead.",
+                    "error"
+                );
+                return;
+            }
+
+            /*
+              DEMO ONLY:
+              Do not store real passwords in localStorage.
+              This prototype keeps account details without saving
+              the password. Secure authentication will require a backend.
+            */
+
+            const newUser = {
+                id: "user-" + Date.now(),
+                fullName: fullName,
+                email: email,
+                phone: phone,
+                accountType: accountType,
+                createdAt: new Date().toISOString()
+            };
+
+            users.push(newUser);
+
+            try {
+                localStorage.setItem("umeedUsers", JSON.stringify(users));
+                sessionStorage.setItem("umeedPendingLogin", email);
+            } catch (error) {
+                showRegisterMessage(
+                    "Your browser could not save the demo account. Check its storage settings.",
+                    "error"
+                );
+                return;
+            }
+
+            showRegisterMessage(
+                "Registration successful! Opening the login page...",
+                "success"
+            );
+
+            registerForm.reset();
+
+            setTimeout(function () {
+                window.location.href = "login.html";
+            }, 1600);
+        });
+    </script>
+
+</body>
+</html>

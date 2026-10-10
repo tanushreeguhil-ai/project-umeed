@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Community Needs | Project UMEED</title>
+
+    <link rel="stylesheet" href="style.css">
+
+
+    <style>
+
+        /* =====================================================
+           PROJECT UMEED
+           COMMUNITY NEEDS PAGE
+           ===================================================== */
+
+        .needs-page {
+            background: #f8f5ed;
+            color: #123b27;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .needs-new-hero {
+            padding: 90px 6% 75px;
+            text-align: center;
+            background: #f8f5ed;
+        }
+
+        .needs-new-tag {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #218653;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .needs-new-hero h1 {
+            max-width: 850px;
+            margin: 0 auto;
+            color: #123b27;
+            font-size: clamp(48px, 7vw, 76px);
+            line-height: 0.98;
+            letter-spacing: -4px;
+        }
+
+        .needs-new-hero h1 em {
+            color: #218653;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .needs-new-hero p {
+            max-width: 650px;
+            margin: 25px auto 0;
+            color: #68776e;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+
+        /* ================= INTRO STRIP ================= */
+
+        .needs-intro-strip {
+            width: min(100%, 1050px);
+            margin: 0 auto 80px;
+            padding: 28px 35px;
+            border-radius: 24px;
+            background: #dcefe0;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+
+            text-align: center;
+        }
+
+        .needs-intro-item {
+            padding: 8px 20px;
+        }
+
+        .needs-intro-item:not(:last-child) {
+            border-right: 1px solid rgba(18, 59, 39, 0.12);
+        }
+
+        .needs-intro-item strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #123b27;
+            font-size: 23px;
+        }
+
+        .needs-intro-item span {
+            color: #587064;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.3px;
+        }
+
+
+        /* ================= NEEDS SECTION ================= */
+
+        .needs-new-section {
+            padding: 95px 6% 105px;
+            background: white;
+            text-align: center;
+        }
+
+        .needs-new-label {
+            display: block;
+            margin-bottom: 12px;
+            color: #218653;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .needs-new-section h2 {
+            margin: 0;
+            color: #123b27;
+            font-size: clamp(36px, 5vw, 52px);
+            line-height: 1.05;
+            letter-spacing: -2.5px;
+        }
+
+        .needs-new-section h2 em {
+            color: #218653;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .needs-section-description {
+            max-width: 600px;
+            margin: 18px auto 50px;
+            color: #68776e;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+
+        /* ================= NEED CARDS ================= */
+
+        .needs-new-grid {
+            width: min(100%, 1080px);
+            margin: 0 auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .needs-new-card {
+            min-height: 340px;
+            padding: 30px;
+            border-radius: 26px;
+
+            text-align: left;
+
+            border: 1px solid rgba(18, 59, 39, 0.06);
+
+            display: flex;
+            flex-direction: column;
+
+            transition: 0.25s ease;
+        }
+
+        .needs-new-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 20px 42px rgba(18, 59, 39, 0.09);
+        }
+
+
+        /* ================= CARD COLORS ================= */
+
+        .needs-card-education {
+            background: #e8f4e8;
+        }
+
+        .needs-card-digital {
+            background: #edf3f4;
+        }
+
+        .needs-card-volunteer {
+            background: #f5eee2;
+        }
+
+        .needs-card-medical {
+            background: #f3e8e6;
+        }
+
+        .needs-card-clothing {
+            background: #eee9f2;
+        }
+
+        .needs-card-community {
+            background: #e8f0e4;
+        }
+
+
+        /* ================= CARD CONTENT ================= */
+
+        .needs-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .needs-card-number {
+            color: #789082;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .needs-card-icon {
+            width: 57px;
+            height: 57px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 17px;
+            background: rgba(255, 255, 255, 0.85);
+
+            font-size: 25px;
+        }
+
+        .needs-card-label {
+            margin: 25px 0 8px;
+
+            color: #218653;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+        }
+
+        .needs-new-card h3 {
+            margin: 0 0 12px;
+
+            color: #123b27;
+            font-size: 23px;
+            line-height: 1.15;
+        }
+
+        .needs-new-card p {
+            margin: 0;
+
+            color: #647269;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .needs-card-link {
+            margin-top: auto;
+            padding-top: 25px;
+
+            color: #123b27;
+            font-size: 11px;
+            font-weight: 800;
+
+            text-decoration: none;
+        }
+
+        .needs-card-link:hover {
+            color: #218653;
+        }
+
+
+        /* ================= HOW IT WORKS ================= */
+
+        .needs-process {
+            padding: 100px 6%;
+            background: #f8f5ed;
+            text-align: center;
+        }
+
+        .needs-process h2 {
+            margin: 0;
+
+            color: #123b27;
+            font-size: clamp(36px, 5vw, 50px);
+            line-height: 1.05;
+            letter-spacing: -2px;
+        }
+
+        .needs-process h2 em {
+            color: #218653;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .needs-process-description {
+            max-width: 580px;
+            margin: 18px auto 55px;
+
+            color: #68776e;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+
+        .needs-process-grid {
+            width: min(100%, 1050px);
+            margin: 0 auto;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .needs-process-item {
+            padding: 28px 20px;
+
+            background: white;
+            border-radius: 20px;
+
+            text-align: center;
+        }
+
+        .needs-process-number {
+            width: 42px;
+            height: 42px;
+
+            margin: 0 auto 17px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #dcefe0;
+            color: #218653;
+
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .needs-process-item h3 {
+            margin: 0 0 8px;
+
+            color: #123b27;
+            font-size: 16px;
+        }
+
+        .needs-process-item p {
+            margin: 0;
+
+            color: #68776e;
+            font-size: 11px;
+            line-height: 1.65;
+        }
+
+
+        /* ================= POST NEED CTA ================= */
+
+        .needs-new-cta {
+            width: 100%;
+            margin: 0;
+            padding: 100px 20px;
+            background: #123b27;
+            text-align: center;
+        }
+
+        .needs-new-cta .needs-new-label {
+            color: #9ed1ae;
+        }
+
+        .needs-new-cta h2 {
+            max-width: 800px;
+            margin: 0 auto 17px;
+
+            color: white;
+
+            font-size: clamp(38px, 5vw, 58px);
+            line-height: 1.05;
+            letter-spacing: -2px;
+        }
+
+        .needs-new-cta h2 em {
+            color: #a8d8b4;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .needs-new-cta p {
+            max-width: 540px;
+            margin: 0 auto 27px;
+
+            color: #cbd9cf;
+
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .needs-post-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 14px 24px;
+
+            border-radius: 30px;
+
+            background: white;
+            color: #123b27;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            text-decoration: none;
+
+            transition: 0.25s ease;
+        }
+
+        .needs-post-button:hover {
+            background: #dcefe0;
+            transform: translateY(-2px);
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 900px) {
+
+            .needs-new-grid {
+                grid-template-columns: 1fr;
+                max-width: 560px;
+            }
+
+            .needs-process-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 700px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .needs-intro-strip {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .needs-intro-item:not(:last-child) {
+                border-right: none;
+                border-bottom: 1px solid rgba(18, 59, 39, 0.12);
+                padding-bottom: 18px;
+            }
+
+            .needs-process-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .needs-new-hero {
+                padding: 65px 6% 60px;
+            }
+
+            .needs-new-hero h1 {
+                font-size: 46px;
+                letter-spacing: -2.5px;
+            }
+
+            .needs-new-section,
+            .needs-process {
+                padding: 70px 6%;
+            }
+
+            .needs-new-card {
+                min-height: 300px;
+                padding: 26px;
+            }
+
+            .needs-new-cta {
+                padding: 75px 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="needs-page">
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="brand">
+
+            <span class="brand-mark">
+                U
+            </span>
+
+            <span>
+                <strong>UMEED</strong>
+                <small>Community Connect</small>
+            </span>
+
+        </a>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="needs.html" class="active">
+                Community Needs
+            </a>
+
+            <a href="volunteer.html">
+                Volunteer
+            </a>
+
+            <a href="post-need.html">
+                Post a Need
+            </a>
+
+            <a href="support.html">
+                Support
+            </a>
+
+        </nav>
+
+
+        <a href="volunteer.html" class="nav-button">
+            Join UMEED
+        </a>
+
+    </header>
+
+
+
+    <main>
+
+
+        <!-- ================= HERO ================= -->
+
+        <section class="needs-new-hero">
+
+            <span class="needs-new-tag">
+                COMMUNITY NEEDS
+            </span>
+
+            <h1>
+                Find where your<br>
+                <em>help matters.</em>
+            </h1>
+
+            <p>
+                Explore genuine needs identified by communities,
+                schools and local organizations. Find an opportunity
+                where your support can create meaningful impact.
+            </p>
+
+        </section>
+
+
+
+        <!-- ================= INTRO STRIP ================= -->
+
+        <section class="needs-intro-strip">
+
+            <div class="needs-intro-item">
+
+                <strong>06</strong>
+
+                <span>
+                    COMMUNITY NEEDS
+                </span>
+
+            </div>
+
+
+            <div class="needs-intro-item">
+
+                <strong>05</strong>
+
+                <span>
+                    SUPPORT TYPES
+                </span>
+
+            </div>
+
+
+            <div class="needs-intro-item">
+
+                <strong>01</strong>
+
+                <span>
+                    PURPOSE — REAL IMPACT
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= NEED CATEGORIES ================= -->
+
+        <section class="needs-new-section">
+
+            <span class="needs-new-label">
+                EXPLORE OPPORTUNITIES
+            </span>
+
+            <h2>
+                Where can you<br>
+                <em>make a difference?</em>
+            </h2>
+
+            <p class="needs-section-description">
+                Discover different types of support communities may need.
+                Choose an opportunity that matches what you can contribute.
+            </p>
+
+
+            <div class="needs-new-grid">
+
+
+                <!-- ================= 01 EDUCATION ================= -->
+
+                <div class="needs-new-card needs-card-education">
+
+                    <div class="needs-card-top">
+
+                        <span class="needs-card-number">
+                            01
+                        </span>
+
+                        <div class="needs-card-icon">
+                            📚
+                        </div>
+
+                    </div>
+
+                    <div class="needs-card-label">
+                        EDUCATION
+                    </div>
+
+                    <h3>
+                        Educational Books
+                    </h3>
+
+                    <p>
+                        Support students by providing textbooks,
+                        reference books, notebooks and useful learning
+                        materials for their education.
+                    </p>
+
+                    <a
+                        href="need-details.html?need=education"
+                        class="needs-card-link"
+                    >
+                        View Need →
+                    </a>
+
+                </div>
+
+
+
+                <!-- ================= 02 DIGITAL ================= -->
+
+                <div class="needs-new-card needs-card-digital">
+
+                    <div class="needs-card-top">
+
+                        <span class="needs-card-number">
+                            02
+                        </span>
+
+                        <div class="needs-card-icon">
+                            💻
+                        </div>
+
+                    </div>
+
+                    <div class="needs-card-label">
+                        DIGITAL SUPPORT
+                    </div>
+
+                    <h3>
+                        Computer & Digital Support
+                    </h3>
+
+                    <p>
+                        Help students and communities access computers,
+                        laptops and basic digital learning resources.
+                    </p>
+
+                    <a
+                        href="need-details.html?need=digital"
+                        class="needs-card-link"
+                    >
+                        View Need →
+                    </a>
+
+                </div>
+
+
+
+                <!-- ================= 03 VOLUNTEER ================= -->
+
+                <div class="needs-new-card needs-card-volunteer">
+
+                    <div class="needs-card-top">
+
+                        <span class="needs-card-number">
+                            03
+                        </span>
+
+                        <div class="needs-card-icon">
+                            🤝
+                        </div>
+
+                    </div>
+
+                    <div class="needs-card-label">
+                        VOLUNTEERING
+                    </div>
+
+                    <h3>
+                        Volunteers Needed
+                    </h3>
+
+                    <p>
+                        Share your time, skills and knowledge through
+                        meaningful community activities, education
+                        programs and mentoring.
+                    </p>
+
+                    <a
+                        href="need-details.html?need=volunteer"
+                        class="needs-card-link"
+                    >
+                        Become a Volunteer →
+                    </a>
+
+                </div>
+
+
+
+                <!-- ================= 04 MEDICAL ================= -->
+
+                <div class="needs-new-card needs-card-medical">
+
+                    <div class="needs-card-top">
+
+                        <span class="needs-card-number">
+                            04
+                        </span>
+
+                        <div class="needs-card-icon">
+                            🩺
+                        </div>
+
+                    </div>
+
+                    <div class="needs-card-label">
+                        HEALTHCARE
+                    </div>
+
+                    <h3>
+                        Community Medical Camp
+                    </h3>
+
+                    <p>
+                        Support basic health check-ups, awareness
+                        programs and medical camps for communities
+                        with limited access to healthcare.
+                    </p>
+
+                    <a
+                        href="need-details.html?need=medical"
+                        class="needs-card-link"
+                    >
+                        View Need →
+                    </a>
+
+                </div>
+
+
+
+                <!-- ================= 05 CLOTHING ================= -->
+
+                <div class="needs-new-card needs-card-clothing">
+
+                    <div class="needs-card-top">
+
+                        <span class="needs-card-number">
+                            05
+                        </span>
+
+                        <div class="needs-card-icon">
+                            👕
+                        </div>
+
+                    </div>
+
+                    <div class="needs-card-label">
+                        ESSENTIALS
+                    </div>
+
+                    <h3>
+                        Clothing & Essential Supplies
+                    </h3>
+
+                    <p>
+                        Provide new or gently used clothing and
+                        essential everyday supplies to families
+                        and community members who need them.
+                    </p>
+
+                    <a
+                        href="need-details.html?need=clothing"
+                        class="needs-card-link"
+                    >
+                        View Need →
+                    </a>
+
+                </div>
+
+
+
+                <!-- ================= 06 COMMUNITY ================= -->
+
+                <div class="needs-new-card needs-card-community">
+
+                    <div class="needs-card-top">
+
+                        <span class="needs-card-number">
+                            06
+                        </span>
+
+                        <div class="needs-card-icon">
+                            🌱
+                        </div>
+
+                    </div>
+
+                    <div class="needs-card-label">
+                        COMMUNITY DEVELOPMENT
+                    </div>
+
+                    <h3>
+                        Community Development Support
+                    </h3>
+
+                    <p>
+                        Support local improvement activities through
+                        volunteers, materials, awareness programs
+                        and practical community assistance.
+                    </p>
+
+                    <a
+                        href="need-details.html?need=community"
+                        class="needs-card-link"
+                    >
+                        View Need →
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= HOW IT WORKS ================= -->
+
+        <section class="needs-process">
+
+            <span class="needs-new-label">
+                HOW UMEED WORKS
+            </span>
+
+            <h2>
+                From a need to<br>
+                <em>meaningful support.</em>
+            </h2>
+
+            <p class="needs-process-description">
+                UMEED helps bring genuine community requirements
+                to people who are willing and able to support them.
+            </p>
+
+
+            <div class="needs-process-grid">
+
+
+                <div class="needs-process-item">
+
+                    <div class="needs-process-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Need Identified
+                    </h3>
+
+                    <p>
+                        A genuine requirement is identified
+                        within a community.
+                    </p>
+
+                </div>
+
+
+                <div class="needs-process-item">
+
+                    <div class="needs-process-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Need Shared
+                    </h3>
+
+                    <p>
+                        The requirement is reviewed and shared
+                        through the UMEED platform.
+                    </p>
+
+                </div>
+
+
+                <div class="needs-process-item">
+
+                    <div class="needs-process-number">
+                        03
+                    </div>
+
+                    <h3>
+                        People Respond
+                    </h3>
+
+                    <p>
+                        Volunteers, donors and supporters
+                        discover the opportunity.
+                    </p>
+
+                </div>
+
+
+                <div class="needs-process-item">
+
+                    <div class="needs-process-number">
+                        04
+                    </div>
+
+                    <h3>
+                        Impact Created
+                    </h3>
+
+                    <p>
+                        Support reaches the community
+                        and creates positive change.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= POST NEED CTA ================= -->
+
+        <section class="needs-new-cta">
+
+            <span class="needs-new-label">
+                HAVE A COMMUNITY NEED?
+            </span>
+
+            <h2>
+                Someone might be<br>
+                <em>ready to help.</em>
+            </h2>
+
+            <p>
+                Share a genuine requirement from your school,
+                organization or community with UMEED and help
+                connect it with people who can contribute.
+            </p>
+
+            <a
+                href="post-need.html"
+                class="needs-post-button"
+            >
+                Post a Community Need →
+            </a>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="modern-footer">
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+
+                <div class="brand footer-brand-logo">
+
+                    <span class="brand-mark">
+                        U
+                    </span>
+
+                    <span>
+                        <strong>UMEED</strong>
+                        <small>Community Connect</small>
+                    </span>
+
+                </div>
+
+                <p>
+                    No Help Should Go Unnoticed.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="needs.html">
+                    Community Needs
+                </a>
+
+                <a href="volunteer.html">
+                    Volunteer
+                </a>
+
+                <a href="post-need.html">
+                    Post a Need
+                </a>
+
+                <a href="support.html">
+                    Support
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 Project UMEED
+            </span>
+
+            <span>
+                Community Engagement Field Project
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

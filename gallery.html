@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Gallery | UMEED Community Connect</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .gallery-page {
+            background: #f8f5ed;
+            color: #123b27;
+        }
+
+        .gallery-hero {
+            padding: 75px 7% 50px;
+            text-align: center;
+        }
+
+        .gallery-label {
+            display: inline-block;
+            padding: 9px 16px;
+            border-radius: 30px;
+            background: #e4eddf;
+            color: #218653;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .gallery-hero h1 {
+            max-width: 850px;
+            margin: 24px auto 18px;
+            font-size: clamp(38px, 5vw, 65px);
+            line-height: 1.08;
+            letter-spacing: -2px;
+        }
+
+        .gallery-hero h1 span {
+            color: #218653;
+        }
+
+        .gallery-hero p {
+            max-width: 650px;
+            margin: 0 auto;
+            color: #68756a;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .gallery-container {
+            width: min(1100px, 86%);
+            margin: 0 auto 85px;
+        }
+
+        .gallery-card {
+            background: #fff;
+            border: 1px solid #e8e7dd;
+            border-radius: 24px;
+            padding: 32px;
+            margin-bottom: 30px;
+        }
+
+        .gallery-heading {
+            margin-bottom: 25px;
+        }
+
+        .gallery-heading > span {
+            color: #218653;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.7px;
+        }
+
+        .gallery-heading h2 {
+            margin: 9px 0;
+            font-size: 27px;
+            letter-spacing: -0.7px;
+        }
+
+        .gallery-heading p {
+            color: #737c72;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .gallery-upload-form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .gallery-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .gallery-field label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #254832;
+        }
+
+        .gallery-field input,
+        .gallery-field select,
+        .gallery-field textarea {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #dedfd6;
+            border-radius: 11px;
+            background: #fcfcf9;
+            color: #123b27;
+            font: inherit;
+            font-size: 14px;
+        }
+
+        .gallery-field input:focus,
+        .gallery-field select:focus,
+        .gallery-field textarea:focus {
+            outline: 2px solid #b5d5bc;
+            border-color: #218653;
+        }
+
+        .gallery-field textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .gallery-note {
+            margin: 0;
+            color: #7a8177;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .gallery-preview {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .gallery-preview-item {
+            position: relative;
+            min-width: 0;
+        }
+
+        .gallery-preview-item img {
+            width: 100%;
+            height: 145px;
+            object-fit: cover;
+            display: block;
+            border-radius: 13px;
+        }
+
+        .gallery-remove {
+            position: absolute;
+            top: 7px;
+            right: 7px;
+            padding: 7px 10px;
+            border: 0;
+            border-radius: 8px;
+            background: #123b27;
+            color: white;
+            cursor: pointer;
+        }
+
+        .gallery-submit {
+            padding: 15px 20px;
+            border: 0;
+            border-radius: 12px;
+            background: #123b27;
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background .2s ease;
+        }
+
+        .gallery-submit:hover {
+            background: #218653;
+        }
+
+        .gallery-message {
+            padding: 13px;
+            border-radius: 10px;
+            background: #e8f0e4;
+            color: #123b27;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .gallery-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .gallery-filter {
+            padding: 10px 17px;
+            border: 1px solid #dce4d8;
+            border-radius: 25px;
+            background: #fff;
+            color: #254832;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .gallery-filter.active,
+        .gallery-filter:hover {
+            background: #123b27;
+            border-color: #123b27;
+            color: #fff;
+        }
+
+        .community-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .community-photo {
+            overflow: hidden;
+            border: 1px solid #e8e7dd;
+            border-radius: 19px;
+            background: #fff;
+            transition: transform .2s ease;
+        }
+
+        .community-photo:hover {
+            transform: translateY(-4px);
+        }
+
+        .community-photo[hidden] {
+            display: none;
+        }
+
+        .community-photo img {
+            display: block;
+            width: 100%;
+            height: 205px;
+            object-fit: cover;
+        }
+
+        .community-photo-info {
+            padding: 17px;
+        }
+
+        .community-photo-info small {
+            color: #218653;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        .community-photo-info h3 {
+            margin: 9px 0 6px;
+            font-size: 17px;
+        }
+
+        .community-photo-info p {
+            margin: 0;
+            color: #737c72;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .photo-status {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 6px 10px;
+            border-radius: 20px;
+            background: #e4eddf;
+            color: #218653;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .gallery-bottom-banner {
+            padding: 48px 7%;
+            text-align: center;
+            background: #123b27;
+            color: #fff;
+        }
+
+        .gallery-bottom-banner h2 {
+            margin: 0 0 12px;
+            font-size: clamp(27px, 4vw, 38px);
+        }
+
+        .gallery-bottom-banner p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: #d7e3d8;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        @media (max-width: 800px) {
+            .gallery-container {
+                width: 90%;
+            }
+
+            .community-gallery-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .gallery-hero {
+                padding: 55px 6% 40px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .gallery-card {
+                padding: 22px 18px;
+            }
+
+            .community-gallery-grid,
+            .gallery-preview {
+                grid-template-columns: 1fr;
+            }
+
+            .community-photo img {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+
+<body class="gallery-page">
+
+<header class="navbar">
+    <a href="index.html" class="brand">
+        <span class="brand-mark">U</span>
+        <span>
+            <strong>UMEED</strong>
+            <small>Community Connect</small>
+        </span>
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="needs.html">Community Needs</a>
+        <a href="gallery.html" class="active">Gallery</a>
+        <a href="organizations.html">Organizations</a>
+        <a href="volunteer.html">Volunteer</a>
+        <a href="post-need.html">Post a Need</a>
+        <a href="support.html">Support</a>
+    </nav>
+
+    <a href="volunteer.html" class="nav-button">Join UMEED</a>
+</header>
+
+<main>
+    <section class="gallery-hero">
+        <span class="gallery-label">EVERY PICTURE TELLS A STORY</span>
+
+        <h1>Moments of <span>Kindness.</span></h1>
+
+        <p>
+            Explore the spirit of community, generosity and togetherness.
+            Share pictures of your contributions and inspire more people
+            to make a difference.
+        </p>
+    </section>
+
+    <section class="gallery-container">
+
+        <div class="gallery-card">
+            <div class="gallery-heading">
+                <span>SHARE YOUR MOMENTS</span>
+                <h2>Add Your Community Photos</h2>
+                <p>
+                    Upload pictures of donation drives, educational activities,
+                    volunteering and other community initiatives.
+                </p>
+            </div>
+
+            <form class="gallery-upload-form" id="galleryForm">
+
+                <div class="gallery-field">
+                    <label for="photoTitle">Photo Title *</label>
+                    <input
+                        type="text"
+                        id="photoTitle"
+                        placeholder="e.g. Books donated to students"
+                        required
+                    >
+                </div>
+
+                <div class="gallery-field">
+                    <label for="photoCategory">Category *</label>
+                    <select id="photoCategory" required>
+                        <option value="">Select a category</option>
+                        <option value="education">Education</option>
+                        <option value="donation">Donations</option>
+                        <option value="volunteering">Volunteering</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="community">Community Activities</option>
+                    </select>
+                </div>
+
+                <div class="gallery-field">
+                    <label for="photoDescription">Description</label>
+                    <textarea
+                        id="photoDescription"
+                        placeholder="Tell us about this moment..."
+                    ></textarea>
+                </div>
+
+                <div class="gallery-field">
+                    <label for="communityImages">Choose Your Images *</label>
+                    <input
+                        type="file"
+                        id="communityImages"
+                        accept="image/*"
+                        multiple
+                        required
+                    >
+                    <p class="gallery-note">
+                        Select up to 6 images. Only share photos you have
+                        permission to publish. Avoid posting private information
+                        or identifiable pictures of children without appropriate
+                        consent.
+                    </p>
+                </div>
+
+                <div class="gallery-preview" id="galleryPreview"></div>
+
+                <button type="submit" class="gallery-submit">
+                    Add Photos to Gallery →
+                </button>
+
+                <p class="gallery-note">
+                    Demo version: your photos are displayed only in this
+                    browser session. Permanent public uploads will require
+                    secure server-side storage and moderation.
+                </p>
+
+                <div class="gallery-message" id="galleryMessage" hidden
+                     role="status" aria-live="polite"></div>
+            </form>
+        </div>
+
+        <div class="gallery-card">
+            <div class="gallery-heading">
+                <span>COMMUNITY IN ACTION</span>
+                <h2>A Gallery of Goodness</h2>
+                <p>
+                    These sample photographs illustrate the types of activities
+                    the UMEED community gallery can showcase.
+                </p>
+            </div>
+
+            <div class="gallery-toolbar">
+                <button type="button" class="gallery-filter active" data-filter="all">
+                    All Photos
+                </button>
+                <button type="button" class="gallery-filter" data-filter="education">
+                    Education
+                </button>
+                <button type="button" class="gallery-filter" data-filter="donation">
+                    Donations
+                </button>
+                <button type="button" class="gallery-filter" data-filter="volunteering">
+                    Volunteering
+                </button>
+                <button type="button" class="gallery-filter" data-filter="healthcare">
+                    Healthcare
+                </button>
+            </div>
+
+            <div class="community-gallery-grid" id="communityGallery">
+
+                <article class="community-photo" data-category="education">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=700&q=80"
+                         alt="Learning and education" loading="lazy">
+                    <div class="community-photo-info">
+                        <small>Education</small>
+                        <h3>Learning for Everyone</h3>
+                        <p>Every child deserves an opportunity to learn and grow.</p>
+                        <span class="photo-status">Illustrative sample</span>
+                    </div>
+                </article>
+
+                <article class="community-photo" data-category="donation">
+                    <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=700&q=80"
+                         alt="People working together" loading="lazy">
+                    <div class="community-photo-info">
+                        <small>Donations</small>
+                        <h3>The Joy of Giving</h3>
+                        <p>Small contributions can make a meaningful difference.</p>
+                        <span class="photo-status">Illustrative sample</span>
+                    </div>
+                </article>
+
+                <article class="community-photo" data-category="volunteering">
+                    <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=700&q=80"
+                         alt="Volunteers supporting a cause" loading="lazy">
+                    <div class="community-photo-info">
+                        <small>Volunteering</small>
+                        <h3>Hands That Help</h3>
+                        <p>Working together to support people in our communities.</p>
+                        <span class="photo-status">Illustrative sample</span>
+                    </div>
+                </article>
+
+                <article class="community-photo" data-category="education">
+                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=700&q=80"
+                         alt="Children and educational support" loading="lazy">
+                    <div class="community-photo-info">
+                        <small>Education</small>
+                        <h3>Hope Through Education</h3>
+                        <p>Sharing resources to help create brighter futures.</p>
+                        <span class="photo-status">Illustrative sample</span>
+                    </div>
+                </article>
+
+                <article class="community-photo" data-category="healthcare">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=700&q=80"
+                         alt="Healthcare professionals" loading="lazy">
+                    <div class="community-photo-info">
+                        <small>Healthcare</small>
+                        <h3>Care for Every Community</h3>
+                        <p>Access to care is an important part of community wellbeing.</p>
+                        <span class="photo-status">Illustrative sample</span>
+                    </div>
+                </article>
+
+                <article class="community-photo" data-category="donation">
+                    <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=700&q=80"
+                         alt="Supporting charitable initiatives" loading="lazy">
+                    <div class="community-photo-info">
+                        <small>Donations</small>
+                        <h3>Giving with Heart</h3>
+                        <p>Every thoughtful act can inspire another.</p>
+                        <span class="photo-status">Illustrative sample</span>
+                    </div>
+                </article>
+
+            </div>
+
+            <p class="gallery-note" style="margin-top:22px;">
+                Sample images are illustrative and do not represent verified
+                UMEED activities or confirmed beneficiaries.
+            </p>
+        </div>
+    </section>
+
+    <section class="gallery-bottom-banner">
+        <h2>Kindness Deserves to Be Shared.</h2>
+        <p>
+            Your community story may inspire someone else to take the first
+            step towards helping another person.
+        </p>
+    </section>
+</main>
+
+<footer class="modern-footer">
+    <div class="footer-main">
+        <div class="footer-brand">
+            <div class="brand footer-brand-logo">
+                <span class="brand-mark">U</span>
+                <span>
+                    <strong>UMEED</strong>
+                    <small>Community Connect</small>
+                </span>
+            </div>
+            <p>No Help Should Go Unnoticed.</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="needs.html">Community Needs</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="organizations.html">Organizations</a>
+            <a href="volunteer.html">Volunteer</a>
+            <a href="post-need.html">Post a Need</a>
+            <a href="support.html">Support</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <span>© 2026 Project UMEED</span>
+        <span>Community Engagement Field Project</span>
+    </div>
+</footer>
+
+<script>
+    const imageInput = document.getElementById("communityImages");
+    const preview = document.getElementById("galleryPreview");
+    const galleryForm = document.getElementById("galleryForm");
+    const galleryMessage = document.getElementById("galleryMessage");
+    const communityGallery = document.getElementById("communityGallery");
+
+    let selectedFiles = [];
+    let activeFilter = "all";
+
+    imageInput.addEventListener("change", function () {
+        const files = Array.from(this.files);
+        const combined = [...selectedFiles, ...files];
+
+        selectedFiles = combined
+            .filter(file => file.type.startsWith("image/"))
+            .slice(0, 6);
+
+        if (files.length + selectedFiles.length > 6) {
+            showMessage("You can preview up to 6 images at a time.");
+        }
+
+        renderPreviews();
+
+        const transfer = new DataTransfer();
+        selectedFiles.forEach(file => transfer.items.add(file));
+        imageInput.files = transfer.files;
+    });
+
+    function renderPreviews() {
+        preview.innerHTML = "";
+
+        selectedFiles.forEach((file, index) => {
+            const wrapper = document.createElement("div");
+            wrapper.className = "gallery-preview-item";
+
+            const img = document.createElement("img");
+            const url = URL.createObjectURL(file);
+            img.src = url;
+            img.alt = "Selected photo preview";
+            img.onload = () => URL.revokeObjectURL(url);
+
+            const remove = document.createElement("button");
+            remove.type = "button";
+            remove.className = "gallery-remove";
+            remove.textContent = "Remove";
+            remove.setAttribute("aria-label", "Remove selected photo");
+
+            remove.addEventListener("click", () => {
+                selectedFiles.splice(index, 1);
+                syncInput();
+                renderPreviews();
+            });
+
+            wrapper.append(img, remove);
+            preview.appendChild(wrapper);
+        });
+    }
+
+    function syncInput() {
+        const transfer = new DataTransfer();
+        selectedFiles.forEach(file => transfer.items.add(file));
+        imageInput.files = transfer.files;
+    }
+
+    function showMessage(message) {
+        galleryMessage.hidden = false;
+        galleryMessage.textContent = message;
+    }
+
+    galleryForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        if (selectedFiles.length === 0) {
+            showMessage("Please choose at least one image.");
+            return;
+        }
+
+        const title = document.getElementById("photoTitle").value.trim();
+        const category = document.getElementById("photoCategory").value;
+        const description = document.getElementById("photoDescription").value.trim();
+
+        selectedFiles.forEach(file => {
+            const card = document.createElement("article");
+            card.className = "community-photo";
+            card.dataset.category = category;
+
+            const img = document.createElement("img");
+            img.src = URL.createObjectURL(file);
+            img.alt = title;
+
+            const info = document.createElement("div");
+            info.className = "community-photo-info";
+
+            const label = document.createElement("small");
+            label.textContent = category;
+
+            const heading = document.createElement("h3");
+            heading.textContent = title;
+
+            const text = document.createElement("p");
+            text.textContent = description || "Shared by a community member.";
+
+            const status = document.createElement("span");
+            status.className = "photo-status";
+            status.textContent = "Added in this session";
+
+            info.append(label, heading, text, status);
+            card.append(img, info);
+            communityGallery.prepend(card);
+
+            card.hidden = !(activeFilter === "all" || activeFilter === category);
+        });
+
+        showMessage(
+            "Your photos have been added to this browser session. " +
+            "They are not publicly uploaded or permanently stored. " +
+            "Backend storage and moderation are needed to share them with everyone."
+        );
+
+        galleryForm.reset();
+        selectedFiles = [];
+        preview.innerHTML = "";
+    });
+
+    document.querySelectorAll(".gallery-filter").forEach(button => {
+        button.addEventListener("click", function () {
+            activeFilter = this.dataset.filter;
+
+            document.querySelectorAll(".gallery-filter").forEach(item => {
+                item.classList.remove("active");
+            });
+
+            this.classList.add("active");
+
+            document.querySelectorAll(".community-photo").forEach(card => {
+                card.hidden = !(
+                    activeFilter === "all" ||
+                    card.dataset.category === activeFilter
+                );
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

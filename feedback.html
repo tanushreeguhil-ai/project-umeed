@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Feedback | UMEED Community Connect</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .feedback-page {
+            background: #f8f5ed;
+            color: #123b27;
+            min-height: 100vh;
+        }
+
+        .feedback-hero {
+            text-align: center;
+            padding: 65px 20px 40px;
+        }
+
+        .feedback-label {
+            display: inline-block;
+            background: #e4eddf;
+            color: #218653;
+            padding: 9px 17px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+
+        .feedback-hero h1 {
+            max-width: 800px;
+            margin: 0 auto 16px;
+            font-size: clamp(38px, 5vw, 62px);
+            letter-spacing: -1.8px;
+            line-height: 1.15;
+        }
+
+        .feedback-hero h1 span {
+            color: #218653;
+        }
+
+        .feedback-hero p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: #667469;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .feedback-wrapper {
+            width: min(760px, 90%);
+            margin: 0 auto 80px;
+        }
+
+        .feedback-card {
+            background: #ffffff;
+            border: 1px solid #e8e7dd;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 12px 35px rgba(18, 59, 39, 0.05);
+        }
+
+        .feedback-card h2 {
+            margin: 0 0 10px;
+            font-size: 27px;
+        }
+
+        .feedback-intro {
+            color: #748075;
+            font-size: 14px;
+            line-height: 1.8;
+            margin: 0 0 28px;
+        }
+
+        .feedback-form {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .feedback-field label,
+        .feedback-question {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 9px;
+        }
+
+        .feedback-field input,
+        .feedback-field select,
+        .feedback-field textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 14px 15px;
+            border: 1px solid #dedfd5;
+            border-radius: 12px;
+            background: #ffffff;
+            color: #123b27;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .feedback-field input:focus,
+        .feedback-field select:focus,
+        .feedback-field textarea:focus {
+            border-color: #218653;
+            box-shadow: 0 0 0 3px rgba(33, 134, 83, 0.09);
+        }
+
+        .feedback-field textarea {
+            min-height: 135px;
+            resize: vertical;
+        }
+
+        .feedback-field input::placeholder,
+        .feedback-field textarea::placeholder {
+            color: #a1aaa1;
+        }
+
+        .rating-stars {
+            display: flex;
+            gap: 8px;
+            margin: 8px 0;
+        }
+
+        .rating-stars button {
+            border: none;
+            background: none;
+            color: #d5d9d0;
+            font-size: 38px;
+            padding: 0;
+            cursor: pointer;
+            transition: transform 0.15s, color 0.15s;
+        }
+
+        .rating-stars button:hover {
+            transform: scale(1.12);
+        }
+
+        .rating-stars button.active {
+            color: #f4b942;
+        }
+
+        .rating-description {
+            font-size: 13px;
+            color: #748075;
+            min-height: 20px;
+        }
+
+        .recommend-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .recommend-option {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 15px;
+            border: 1px solid #e1e5dc;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #536354;
+        }
+
+        .recommend-option input {
+            accent-color: #218653;
+        }
+
+        .feedback-submit {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 13px;
+            background: #123b27;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .feedback-submit:hover {
+            background: #218653;
+            transform: translateY(-1px);
+        }
+
+        .feedback-message {
+            display: none;
+            padding: 14px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .feedback-message.success {
+            display: block;
+            background: #e9f5e9;
+            color: #17643a;
+            border: 1px solid #c9e6cf;
+        }
+
+        .feedback-message.error {
+            display: block;
+            background: #fff0ee;
+            color: #a52a20;
+            border: 1px solid #f3d0cb;
+        }
+
+        .feedback-note {
+            background: #f5f7f1;
+            padding: 13px 15px;
+            border-radius: 12px;
+            color: #6b776c;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .feedback-bottom-banner {
+            background: #123b27;
+            color: #ffffff;
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        .feedback-bottom-banner h2 {
+            font-size: clamp(24px, 3vw, 34px);
+            margin: 0 0 12px;
+        }
+
+        .feedback-bottom-banner p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: #dce9df;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 600px) {
+            .feedback-hero {
+                padding-top: 40px;
+            }
+
+            .feedback-card {
+                padding: 25px 20px;
+                border-radius: 20px;
+            }
+
+            .feedback-card h2 {
+                font-size: 24px;
+            }
+
+            .rating-stars button {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body class="feedback-page">
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="index.html" class="brand">
+            <span class="brand-mark">U</span>
+            <span>
+                <strong>UMEED</strong>
+                <small>Community Connect</small>
+            </span>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="needs.html">Community Needs</a>
+            <a href="volunteer.html">Volunteer</a>
+            <a href="post-need.html">Post a Need</a>
+            <a href="my-requests.html">My Requests</a>
+            <a href="support.html">Support</a>
+            <a href="birthday.html">Birthday Celebrations</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+
+
+    <!-- Hero -->
+    <section class="feedback-hero">
+        <div class="feedback-label">HELP US GROW</div>
+
+        <h1>
+            Your Voice <span>Matters!</span>
+        </h1>
+
+        <p>
+            Every suggestion helps us improve. Tell us about your experience
+            with UMEED and help us build a more connected, caring community.
+        </p>
+    </section>
+
+
+    <!-- Feedback Form -->
+    <main class="feedback-wrapper">
+        <section class="feedback-card">
+
+            <h2>Share Your Feedback 💚</h2>
+
+            <p class="feedback-intro">
+                We appreciate your time. Please share your honest thoughts
+                so we can make UMEED better for everyone.
+            </p>
+
+            <div
+                id="feedbackMessage"
+                class="feedback-message"
+                role="status"
+                aria-live="polite">
+            </div>
+
+            <form id="feedbackForm" class="feedback-form">
+
+                <div class="feedback-field">
+                    <label for="feedbackName">Your Name *</label>
+                    <input
+                        type="text"
+                        id="feedbackName"
+                        name="name"
+                        placeholder="Enter your full name"
+                        maxlength="100"
+                        required>
+                </div>
+
+                <div class="feedback-field">
+                    <label for="feedbackEmail">Email Address *</label>
+                    <input
+                        type="email"
+                        id="feedbackEmail"
+                        name="email"
+                        placeholder="you@example.com"
+                        maxlength="254"
+                        required>
+                </div>
+
+                <div class="feedback-field">
+                    <label for="feedbackCategory">Feedback Category *</label>
+                    <select id="feedbackCategory" name="category" required>
+                        <option value="">Choose a category</option>
+                        <option value="Website Experience">Website Experience</option>
+                        <option value="Community Needs">Community Needs</option>
+                        <option value="Volunteering">Volunteering</option>
+                        <option value="Organizations">Organizations</option>
+                        <option value="Suggestion">Suggestion</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div>
+                    <span class="feedback-question">
+                        How would you rate your experience? *
+                    </span>
+
+                    <div class="rating-stars" id="ratingStars">
+                        <button type="button" data-rating="1"
+                            aria-label="1 star">★</button>
+                        <button type="button" data-rating="2"
+                            aria-label="2 stars">★</button>
+                        <button type="button" data-rating="3"
+                            aria-label="3 stars">★</button>
+                        <button type="button" data-rating="4"
+                            aria-label="4 stars">★</button>
+                        <button type="button" data-rating="5"
+                            aria-label="5 stars">★</button>
+                    </div>
+
+                    <div class="rating-description" id="ratingDescription">
+                        Select a rating from 1 to 5 stars.
+                    </div>
+
+                    <input
+                        type="hidden"
+                        id="ratingValue"
+                        name="rating"
+                        value="">
+                </div>
+
+                <div class="feedback-field">
+                    <label for="feedbackText">Your Feedback *</label>
+                    <textarea
+                        id="feedbackText"
+                        name="message"
+                        placeholder="Tell us what you liked or what we can improve..."
+                        minlength="5"
+                        maxlength="2000"
+                        required></textarea>
+                </div>
+
+                <div>
+                    <span class="feedback-question">
+                        Would you recommend UMEED to others? *
+                    </span>
+
+                    <div class="recommend-options">
+                        <label class="recommend-option">
+                            <input
+                                type="radio"
+                                name="recommend"
+                                value="Yes"
+                                required>
+                            Yes, definitely!
+                        </label>
+
+                        <label class="recommend-option">
+                            <input
+                                type="radio"
+                                name="recommend"
+                                value="Maybe">
+                            Maybe
+                        </label>
+
+                        <label class="recommend-option">
+                            <input
+                                type="radio"
+                                name="recommend"
+                                value="No">
+                            Not yet
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="feedback-submit">
+                    Submit Feedback →
+                </button>
+
+                <div class="feedback-note">
+                    <strong>Prototype notice:</strong> This version saves
+                    feedback in the current browser for demonstration.
+                    Backend integration will be needed to collect feedback
+                    centrally and let administrators review submissions.
+                </div>
+
+            </form>
+        </section>
+    </main>
+
+
+    <!-- Bottom Banner -->
+    <section class="feedback-bottom-banner">
+        <h2>Together, We Can Do Better. 🌱</h2>
+        <p>
+            Thank you for helping UMEED create stronger connections
+            and brighter possibilities for our communities.
+        </p>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="modern-footer">
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+                <a href="index.html" class="brand">
+                    <span class="brand-mark">U</span>
+                    <span>
+                        <strong>UMEED</strong>
+                        <small>Community Connect</small>
+                    </span>
+                </a>
+
+                <p>No Help Should Go Unnoticed.</p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Explore</h3>
+                <a href="index.html">Home</a>
+                <a href="needs.html">Community Needs</a>
+                <a href="organizations.html">Organizations</a>
+                <a href="volunteer.html">Volunteer</a>
+            </div>
+
+            <div class="footer-links">
+                <h3>Get Involved</h3>
+                <a href="post-need.html">Post a Need</a>
+                <a href="birthday.html">Birthday Celebrations</a>
+                <a href="my-requests.html">My Requests</a>
+                <a href="support.html">Support</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                © 2026 Project UMEED | Community Engagement Field Project
+            </p>
+        </div>
+
+    </footer>
+
+
+    <!-- Feedback Functionality -->
+    <script>
+        const feedbackForm = document.getElementById("feedbackForm");
+        const feedbackMessage = document.getElementById("feedbackMessage");
+        const ratingButtons = document.querySelectorAll("#ratingStars button");
+        const ratingValue = document.getElementById("ratingValue");
+        const ratingDescription = document.getElementById("ratingDescription");
+
+        const ratingLabels = {
+            1: "Poor — we'll work to improve.",
+            2: "Fair — thank you for your honesty.",
+            3: "Good — thanks for sharing.",
+            4: "Very good — we're glad to hear that!",
+            5: "Excellent — thank you for your support!"
+        };
+
+        let selectedRating = 0;
+
+        ratingButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                selectedRating = Number(button.dataset.rating);
+                ratingValue.value = selectedRating;
+
+                ratingButtons.forEach(function (star) {
+                    const isActive =
+                        Number(star.dataset.rating) <= selectedRating;
+
+                    star.classList.toggle("active", isActive);
+                    star.setAttribute(
+                        "aria-pressed",
+                        String(Number(star.dataset.rating) === selectedRating)
+                    );
+                });
+
+                ratingDescription.textContent =
+                    ratingLabels[selectedRating];
+            });
+        });
+
+        feedbackForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            if (selectedRating === 0) {
+                feedbackMessage.textContent =
+                    "Please select a star rating before submitting.";
+                feedbackMessage.className = "feedback-message error";
+                return;
+            }
+
+            const feedback = {
+                name: document.getElementById("feedbackName").value.trim(),
+                email: document.getElementById("feedbackEmail").value.trim(),
+                category: document.getElementById("feedbackCategory").value,
+                rating: selectedRating,
+                message: document.getElementById("feedbackText").value.trim(),
+                recommend: feedbackForm.querySelector(
+                    'input[name="recommend"]:checked'
+                ).value,
+                submittedAt: new Date().toISOString()
+            };
+
+            if (feedback.message.length < 5) {
+                feedbackMessage.textContent =
+                    "Please enter at least 5 characters in your feedback.";
+                feedbackMessage.className = "feedback-message error";
+                return;
+            }
+
+            try {
+                const savedFeedback = JSON.parse(
+                    localStorage.getItem("umeedFeedback") || "[]"
+                );
+
+                if (!Array.isArray(savedFeedback)) {
+                    throw new Error("Invalid feedback data");
+                }
+
+                savedFeedback.push(feedback);
+
+                localStorage.setItem(
+                    "umeedFeedback",
+                    JSON.stringify(savedFeedback)
+                );
+
+                feedbackMessage.textContent =
+                    "Thank you, " + feedback.name +
+                    "! Your feedback has been saved in this browser for the demo.";
+                feedbackMessage.className = "feedback-message success";
+
+                feedbackForm.reset();
+
+                selectedRating = 0;
+                ratingValue.value = "";
+
+                ratingButtons.forEach(function (star) {
+                    star.classList.remove("active");
+                    star.setAttribute("aria-pressed", "false");
+                });
+
+                ratingDescription.textContent =
+                    "Select a rating from 1 to 5 stars.";
+
+                feedbackMessage.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+            } catch (error) {
+                feedbackMessage.textContent =
+                    "We couldn't save your feedback in this browser. Please try again.";
+                feedbackMessage.className = "feedback-message error";
+            }
+        });
+    </script>
+
+</body>
+</html>

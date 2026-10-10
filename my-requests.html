@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Requests | UMEED Community Connect</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .requests-page {
+            background: #f8f5ed;
+            color: #123b27;
+            min-height: 100vh;
+        }
+
+        .requests-hero {
+            text-align: center;
+            padding: 65px 20px 45px;
+        }
+
+        .requests-label {
+            display: inline-block;
+            background: #e4eddf;
+            color: #218653;
+            padding: 9px 17px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+
+        .requests-hero h1 {
+            max-width: 850px;
+            margin: 0 auto 16px;
+            font-size: clamp(38px, 5vw, 62px);
+            letter-spacing: -1.8px;
+            line-height: 1.15;
+        }
+
+        .requests-hero h1 span {
+            color: #218653;
+        }
+
+        .requests-hero p {
+            max-width: 620px;
+            margin: 0 auto;
+            color: #667469;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .requests-container {
+            width: min(1120px, 90%);
+            margin: 0 auto 85px;
+        }
+
+        .requests-summary {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 35px;
+        }
+
+        .summary-card {
+            background: #ffffff;
+            border: 1px solid #e8e7dd;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 8px 25px rgba(18, 59, 39, 0.035);
+        }
+
+        .summary-icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e4eddf;
+            border-radius: 14px;
+            font-size: 21px;
+            margin-bottom: 18px;
+        }
+
+        .summary-card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #748075;
+            margin: 0 0 10px;
+        }
+
+        .summary-number {
+            font-size: 34px;
+            font-weight: 800;
+            color: #123b27;
+        }
+
+        .requests-panel {
+            background: #ffffff;
+            border: 1px solid #e8e7dd;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(18, 59, 39, 0.035);
+        }
+
+        .requests-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .requests-panel-header h2 {
+            font-size: 26px;
+            margin: 0 0 8px;
+        }
+
+        .requests-panel-header p {
+            color: #748075;
+            font-size: 14px;
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        .new-request-btn {
+            display: inline-block;
+            padding: 13px 20px;
+            background: #123b27;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .new-request-btn:hover {
+            background: #218653;
+            transform: translateY(-1px);
+        }
+
+        .requests-filters {
+            display: grid;
+            grid-template-columns: 1fr 200px;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .requests-filters input,
+        .requests-filters select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px 15px;
+            border: 1px solid #dedfd5;
+            border-radius: 12px;
+            background: #ffffff;
+            color: #123b27;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .requests-filters input:focus,
+        .requests-filters select:focus {
+            border-color: #218653;
+            box-shadow: 0 0 0 3px rgba(33, 134, 83, 0.08);
+        }
+
+        .requests-list {
+            display: grid;
+            gap: 17px;
+        }
+
+        .request-card {
+            display: grid;
+            grid-template-columns: 65px 1fr auto;
+            align-items: center;
+            gap: 20px;
+            padding: 23px;
+            border: 1px solid #e8e7dd;
+            border-radius: 18px;
+            background: #fffefa;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .request-card:hover {
+            border-color: #b7d4bd;
+            transform: translateY(-2px);
+        }
+
+        .request-icon {
+            width: 62px;
+            height: 62px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #eaf1e4;
+            border-radius: 17px;
+            font-size: 29px;
+        }
+
+        .request-info h3 {
+            font-size: 18px;
+            margin: 0 0 9px;
+        }
+
+        .request-info p {
+            font-size: 13px;
+            color: #748075;
+            line-height: 1.7;
+            margin: 4px 0;
+        }
+
+        .request-meta {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .request-category {
+            display: inline-block;
+            background: #f0f1e9;
+            color: #5e6c5e;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .status-pending {
+            background: #fff0d2;
+            color: #976300;
+        }
+
+        .status-approved {
+            background: #e1f2e5;
+            color: #217344;
+        }
+
+        .status-completed {
+            background: #e5eafa;
+            color: #4057a5;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 50px 20px;
+            background: #fffefa;
+            border: 1px dashed #d8dfd3;
+            border-radius: 18px;
+        }
+
+        .empty-state .empty-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .empty-state h3 {
+            margin: 0 0 10px;
+            font-size: 22px;
+        }
+
+        .empty-state p {
+            max-width: 430px;
+            margin: 0 auto 22px;
+            color: #748075;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .no-results {
+            display: none;
+            padding: 30px 15px;
+            text-align: center;
+            color: #748075;
+            line-height: 1.7;
+        }
+
+        .requests-bottom-banner {
+            background: #123b27;
+            color: #ffffff;
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        .requests-bottom-banner h2 {
+            font-size: clamp(24px, 3vw, 34px);
+            margin: 0 0 12px;
+        }
+
+        .requests-bottom-banner p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: #dce9df;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 900px) {
+            .requests-summary {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .request-card {
+                grid-template-columns: 55px 1fr;
+            }
+
+            .request-status {
+                grid-column: 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .requests-hero {
+                padding: 40px 20px 35px;
+            }
+
+            .requests-summary {
+                gap: 12px;
+            }
+
+            .summary-card {
+                padding: 18px;
+            }
+
+            .summary-number {
+                font-size: 29px;
+            }
+
+            .requests-panel {
+                padding: 20px 15px;
+                border-radius: 19px;
+            }
+
+            .requests-panel-header h2 {
+                font-size: 23px;
+            }
+
+            .requests-filters {
+                grid-template-columns: 1fr;
+            }
+
+            .request-card {
+                grid-template-columns: 48px 1fr;
+                gap: 13px;
+                padding: 16px;
+            }
+
+            .request-icon {
+                width: 46px;
+                height: 46px;
+                font-size: 23px;
+                border-radius: 13px;
+            }
+
+            .request-info h3 {
+                font-size: 16px;
+            }
+
+            .request-status {
+                grid-column: 1 / -1;
+            }
+        }
+    </style>
+</head>
+
+<body class="requests-page">
+
+    <!-- Navigation -->
+    <header class="navbar">
+
+        <a href="index.html" class="brand">
+            <span class="brand-mark">U</span>
+            <span>
+                <strong>UMEED</strong>
+                <small>Community Connect</small>
+            </span>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="needs.html">Community Needs</a>
+            <a href="volunteer.html">Volunteer</a>
+            <a href="post-need.html">Post a Need</a>
+            <a href="support.html">Support</a>
+            <a href="birthday.html">Birthday Celebrations</a>
+            <a href="register.html">Register</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Hero -->
+    <section class="requests-hero">
+
+        <div class="requests-label">YOUR UMEED ACTIVITY</div>
+
+        <h1>
+            Track Your <span>Requests.</span>
+        </h1>
+
+        <p>
+            Every request represents a chance to make a difference.
+            Keep track of your submitted needs and follow their progress
+            in one place.
+        </p>
+
+    </section>
+
+
+    <!-- Main Content -->
+    <main class="requests-container">
+
+        <!-- Summary Cards -->
+        <section class="requests-summary" aria-label="Request summary">
+
+            <article class="summary-card">
+                <div class="summary-icon">📋</div>
+                <h3>Total Requests</h3>
+                <div class="summary-number" id="totalCount">3</div>
+            </article>
+
+            <article class="summary-card">
+                <div class="summary-icon">⏳</div>
+                <h3>Pending</h3>
+                <div class="summary-number" id="pendingCount">1</div>
+            </article>
+
+            <article class="summary-card">
+                <div class="summary-icon">✅</div>
+                <h3>Approved</h3>
+                <div class="summary-number" id="approvedCount">1</div>
+            </article>
+
+            <article class="summary-card">
+                <div class="summary-icon">🌟</div>
+                <h3>Completed</h3>
+                <div class="summary-number" id="completedCount">1</div>
+            </article>
+
+        </section>
+
+
+        <!-- Requests Panel -->
+        <section class="requests-panel">
+
+            <div class="requests-panel-header">
+
+                <div>
+                    <h2>My Submitted Requests</h2>
+                    <p>View and filter the requests displayed below.</p>
+                </div>
+
+                <a href="post-need.html" class="new-request-btn">
+                    + Post a New Need
+                </a>
+
+            </div>
+
+
+            <!-- Search and Filter -->
+            <div class="requests-filters">
+
+                <input
+                    type="search"
+                    id="requestSearch"
+                    placeholder="Search requests..."
+                    aria-label="Search requests">
+
+                <select id="statusFilter" aria-label="Filter by status">
+                    <option value="all">All Statuses</option>
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="completed">Completed</option>
+                </select>
+
+            </div>
+
+
+            <!-- Demo Request Cards -->
+            <div class="requests-list" id="requestsList">
+
+                <article class="request-card" data-status="pending">
+
+                    <div class="request-icon">📚</div>
+
+                    <div class="request-info">
+                        <h3>Books for School Students</h3>
+                        <p>Request ID: UM-1001</p>
+                        <p>Submitted: 5 October 2026</p>
+
+                        <div class="request-meta">
+                            <span class="request-category">Education</span>
+                            <span class="request-category">Books</span>
+                        </div>
+                    </div>
+
+                    <div class="request-status">
+                        <span class="status-badge status-pending">
+                            ⏳ Pending
+                        </span>
+                    </div>
+
+                </article>
+
+
+                <article class="request-card" data-status="approved">
+
+                    <div class="request-icon">💻</div>
+
+                    <div class="request-info">
+                        <h3>Computer Support for Students</h3>
+                        <p>Request ID: UM-1002</p>
+                        <p>Submitted: 2 October 2026</p>
+
+                        <div class="request-meta">
+                            <span class="request-category">Technology</span>
+                            <span class="request-category">Computers</span>
+                        </div>
+                    </div>
+
+                    <div class="request-status">
+                        <span class="status-badge status-approved">
+                            ✓ Approved
+                        </span>
+                    </div>
+
+                </article>
+
+
+                <article class="request-card" data-status="completed">
+
+                    <div class="request-icon">👕</div>
+
+                    <div class="request-info">
+                        <h3>Clothes for Families</h3>
+                        <p>Request ID: UM-1003</p>
+                        <p>Submitted: 25 September 2026</p>
+
+                        <div class="request-meta">
+                            <span class="request-category">Community Support</span>
+                            <span class="request-category">Clothing</span>
+                        </div>
+                    </div>
+
+                    <div class="request-status">
+                        <span class="status-badge status-completed">
+                            ✓ Completed
+                        </span>
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <div class="no-results" id="noResults">
+                No requests match your search. Try another keyword or status.
+            </div>
+
+            <div class="empty-state" id="emptyState" hidden>
+                <div class="empty-icon">🌱</div>
+                <h3>No Requests Yet</h3>
+                <p>
+                    You haven't submitted a request yet. Post a need to
+                    connect your community with people who can help.
+                </p>
+                <a href="post-need.html" class="new-request-btn">
+                    Post Your First Need →
+                </a>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Bottom Banner -->
+    <section class="requests-bottom-banner">
+
+        <h2>Every Small Step Creates Hope. 💚</h2>
+
+        <p>
+            UMEED brings communities and helping hands closer together.
+            Thank you for being part of the change.
+        </p>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="modern-footer">
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+
+                <a href="index.html" class="brand">
+                    <span class="brand-mark">U</span>
+                    <span>
+                        <strong>UMEED</strong>
+                        <small>Community Connect</small>
+                    </span>
+                </a>
+
+                <p>No Help Should Go Unnoticed.</p>
+
+            </div>
+
+            <div class="footer-links">
+                <h3>Explore</h3>
+                <a href="index.html">Home</a>
+                <a href="needs.html">Community Needs</a>
+                <a href="organizations.html">Organizations</a>
+                <a href="volunteer.html">Volunteer</a>
+            </div>
+
+            <div class="footer-links">
+                <h3>Get Involved</h3>
+                <a href="post-need.html">Post a Need</a>
+                <a href="birthday.html">Birthday Celebrations</a>
+                <a href="feedback.html">Feedback</a>
+                <a href="support.html">Support</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                © 2026 Project UMEED | Community Engagement Field Project
+            </p>
+        </div>
+
+    </footer>
+
+
+    <!-- Search and Filter Functionality -->
+    <script>
+        const searchInput = document.getElementById("requestSearch");
+        const statusFilter = document.getElementById("statusFilter");
+        const requestCards = Array.from(
+            document.querySelectorAll(".request-card")
+        );
+
+        const noResults = document.getElementById("noResults");
+        const emptyState = document.getElementById("emptyState");
+        const requestsList = document.getElementById("requestsList");
+
+        function filterRequests() {
+            const searchText = searchInput.value.trim().toLowerCase();
+            const selectedStatus = statusFilter.value;
+
+            let visibleCount = 0;
+
+            requestCards.forEach(function (card) {
+                const cardText = card.textContent.toLowerCase();
+                const cardStatus = card.dataset.status;
+
+                const matchesSearch = cardText.includes(searchText);
+                const matchesStatus =
+                    selectedStatus === "all" ||
+                    cardStatus === selectedStatus;
+
+                const shouldShow = matchesSearch && matchesStatus;
+
+                card.style.display = shouldShow ? "grid" : "none";
+
+                if (shouldShow) {
+                    visibleCount++;
+                }
+            });
+
+            noResults.style.display =
+                requestCards.length > 0 && visibleCount === 0
+                    ? "block"
+                    : "none";
+
+            emptyState.hidden = requestCards.length !== 0;
+            requestsList.style.display =
+                requestCards.length === 0 ? "none" : "grid";
+        }
+
+        searchInput.addEventListener("input", filterRequests);
+        statusFilter.addEventListener("change", filterRequests);
+
+        function updateSummary() {
+            document.getElementById("totalCount").textContent =
+                requestCards.length;
+
+            document.getElementById("pendingCount").textContent =
+                requestCards.filter(card =>
+                    card.dataset.status === "pending"
+                ).length;
+
+            document.getElementById("approvedCount").textContent =
+                requestCards.filter(card =>
+                    card.dataset.status === "approved"
+                ).length;
+
+            document.getElementById("completedCount").textContent =
+                requestCards.filter(card =>
+                    card.dataset.status === "completed"
+                ).length;
+        }
+
+        updateSummary();
+        filterRequests();
+    </script>
+
+</body>
+</html>

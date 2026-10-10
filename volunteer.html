@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Volunteer | Project UMEED</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =====================================================
+           UMEED VOLUNTEER PAGE
+           Page-specific styling
+           ===================================================== */
+
+        .vol-page {
+            background: #f8f5ed;
+            color: #123b27;
+        }
+
+        .vol-new-hero {
+            padding: 90px 6% 80px;
+            text-align: center;
+            background: #f8f5ed;
+        }
+
+        .vol-new-tag {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #218653;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .vol-new-hero h1 {
+            max-width: 850px;
+            margin: 0 auto;
+            color: #123b27;
+            font-size: clamp(48px, 7vw, 78px);
+            line-height: 0.98;
+            letter-spacing: -4px;
+        }
+
+        .vol-new-hero h1 em {
+            color: #218653;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .vol-new-hero p {
+            max-width: 650px;
+            margin: 28px auto 32px;
+            color: #68776e;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .vol-new-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .vol-new-primary,
+        .vol-new-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 800;
+            transition: 0.25s ease;
+        }
+
+        .vol-new-primary {
+            background: #218653;
+            color: white;
+        }
+
+        .vol-new-primary:hover {
+            background: #123b27;
+            transform: translateY(-2px);
+        }
+
+        .vol-new-secondary {
+            color: #123b27;
+            border: 1px solid #cbd5cd;
+            background: white;
+        }
+
+        .vol-new-secondary:hover {
+            border-color: #218653;
+            color: #218653;
+        }
+
+        /* ================= IMPACT BOX ================= */
+
+        .vol-new-highlight {
+            width: min(100%, 1000px);
+            margin: 20px auto 0;
+            padding: 30px;
+            border-radius: 28px;
+            background: #dcefe0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .vol-highlight-item {
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .vol-highlight-item:not(:last-child) {
+            border-right: 1px solid rgba(18, 59, 39, 0.12);
+        }
+
+        .vol-highlight-item strong {
+            display: block;
+            color: #123b27;
+            font-size: 27px;
+            margin-bottom: 5px;
+        }
+
+        .vol-highlight-item span {
+            color: #587064;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        /* ================= WAYS ================= */
+
+        .vol-new-ways {
+            padding: 100px 6%;
+            background: white;
+            text-align: center;
+        }
+
+        .vol-new-label {
+            display: block;
+            margin-bottom: 12px;
+            color: #218653;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .vol-new-ways h2,
+        .vol-new-why h2,
+        .vol-new-form-intro h2 {
+            margin: 0;
+            color: #123b27;
+            font-size: clamp(36px, 5vw, 52px);
+            line-height: 1.05;
+            letter-spacing: -2.5px;
+        }
+
+        .vol-new-ways h2 em,
+        .vol-new-why h2 em,
+        .vol-new-form-intro h2 em {
+            color: #218653;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .vol-new-description {
+            max-width: 600px;
+            margin: 18px auto 50px;
+            color: #68776e;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .vol-new-cards {
+            width: min(100%, 1080px);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .vol-new-card {
+            padding: 32px;
+            min-height: 300px;
+            border-radius: 25px;
+            text-align: left;
+            transition: 0.25s ease;
+            border: 1px solid rgba(18, 59, 39, 0.06);
+        }
+        .vol-new-card:nth-child(1) {
+    background: #e8f0e4;
+}
+
+.vol-new-card:nth-child(2) {
+    background: #e4edf2;
+}
+
+.vol-new-card:nth-child(3) {
+    background: #f3e8e6;
+}
+
+.vol-new-card:nth-child(4) {
+    background: #eee9f2;
+}
+
+.vol-new-card:nth-child(5) {
+    background: #e8f0e4;
+}
+
+.vol-new-card:nth-child(6) {
+    background: #f3eee2;
+}
+
+.vol-new-card:nth-child(7) {
+    background: #eee9f2;
+}
+
+.vol-new-card:nth-child(8) {
+    background: #e4edf2;
+}
+
+        .vol-new-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(18, 59, 39, 0.09);
+        }
+
+        .vol-new-card:nth-child(1) {
+            background: #e8f4e8;
+        }
+
+        .vol-new-card:nth-child(2) {
+            background: #edf3f4;
+        }
+
+        .vol-new-card:nth-child(3) {
+            background: #f5eee2;
+        }
+
+        .vol-card-number {
+            color: #7b8d81;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .vol-card-icon-new {
+            width: 58px;
+            height: 58px;
+            margin: 18px 0 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 17px;
+            background: white;
+            font-size: 25px;
+        }
+
+        .vol-new-card h3 {
+            margin: 0 0 12px;
+            color: #123b27;
+            font-size: 22px;
+        }
+
+        .vol-new-card p {
+            margin: 0;
+            color: #65736a;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* ================= WHY ================= */
+
+        .vol-new-why {
+            padding: 100px 6%;
+            background: #f8f5ed;
+            text-align: center;
+        }
+
+        .vol-why-grid {
+            width: min(100%, 1000px);
+            margin: 55px auto 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .vol-why-item {
+            padding: 28px 25px;
+            background: white;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .vol-why-icon {
+            width: 52px;
+            height: 52px;
+            margin: 0 auto 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #dcefe0;
+            font-size: 22px;
+        }
+
+        .vol-why-item h3 {
+            margin: 0 0 9px;
+            color: #123b27;
+            font-size: 18px;
+        }
+
+        .vol-why-item p {
+            margin: 0;
+            color: #68776e;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        /* ================= FORM ================= */
+
+        .vol-new-form-section {
+            padding: 100px 6%;
+            background: white;
+            text-align: center;
+        }
+
+        .vol-new-form-intro {
+            max-width: 700px;
+            margin: 0 auto 45px;
+        }
+
+        .vol-new-form-intro p {
+            max-width: 550px;
+            margin: 18px auto 0;
+            color: #68776e;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .vol-new-form {
+            width: min(100%, 780px);
+            margin: 0 auto;
+            padding: 42px;
+            background: #f8f5ed;
+            border-radius: 28px;
+            text-align: left;
+            box-shadow: 0 18px 45px rgba(18, 59, 39, 0.07);
+        }
+
+        .vol-form-row-new {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .vol-field-new {
+            margin-bottom: 20px;
+        }
+
+        .vol-field-new label {
+            display: block;
+            margin-bottom: 7px;
+            color: #123b27;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .vol-field-new input,
+        .vol-field-new select,
+        .vol-field-new textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 14px 15px;
+            border: 1px solid #d8e0d8;
+            border-radius: 11px;
+            background: white;
+            color: #123b27;
+            font-family: inherit;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .vol-field-new textarea {
+            min-height: 125px;
+            resize: vertical;
+        }
+
+        .vol-field-new input:focus,
+        .vol-field-new select:focus,
+        .vol-field-new textarea:focus {
+            border-color: #218653;
+            box-shadow: 0 0 0 3px rgba(33, 134, 83, 0.08);
+        }
+
+        .vol-new-submit {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 30px;
+            background: #218653;
+            color: white;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .vol-new-submit:hover {
+            background: #123b27;
+            transform: translateY(-2px);
+        }
+
+        /* ================= FINAL CTA ================= */
+
+        .vol-new-final {
+            padding: 100px 20px;
+            background: #123b27;
+            color: white;
+            text-align: center;
+        }
+
+        .vol-new-final .vol-new-label {
+            color: #9ed1ae;
+        }
+
+        .vol-new-final h2 {
+            max-width: 800px;
+            margin: 0 auto 16px;
+            font-size: clamp(38px, 5vw, 58px);
+            line-height: 1.05;
+            letter-spacing: -2px;
+        }
+
+        .vol-new-final h2 em {
+            color: #a8d8b4;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .vol-new-final p {
+            margin: 0;
+            color: #cbd9cf;
+            font-size: 13px;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 850px) {
+
+            .vol-new-cards,
+            .vol-why-grid {
+                grid-template-columns: 1fr;
+                max-width: 550px;
+            }
+
+            .vol-new-highlight {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .vol-highlight-item:not(:last-child) {
+                border-right: none;
+                border-bottom: 1px solid rgba(18, 59, 39, 0.12);
+                padding-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .vol-new-hero {
+                padding: 65px 6% 60px;
+            }
+
+            .vol-new-hero h1 {
+                font-size: 46px;
+                letter-spacing: -2.5px;
+            }
+
+            .vol-new-buttons {
+                flex-direction: column;
+            }
+
+            .vol-new-primary,
+            .vol-new-secondary {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .vol-new-ways,
+            .vol-new-why,
+            .vol-new-form-section {
+                padding: 70px 6%;
+            }
+
+            .vol-form-row-new {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .vol-new-form {
+                padding: 25px;
+            }
+
+            .vol-new-final {
+                padding: 75px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body class="vol-page">
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="brand">
+
+            <span class="brand-mark">U</span>
+
+            <span>
+                <strong>UMEED</strong>
+                <small>Community Connect</small>
+            </span>
+
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="needs.html">Community Needs</a>
+            <a href="volunteer.html" class="active">Volunteer</a>
+            <a href="post-need.html">Post a Need</a>
+            <a href="support.html">Support</a>
+        </nav>
+
+        <a href="#volunteer-form" class="nav-button">
+            Join UMEED
+        </a>
+
+    </header>
+
+
+    <main>
+
+        <!-- ================= HERO ================= -->
+
+        <section class="vol-new-hero">
+
+            <span class="vol-new-tag">
+                BECOME A VOLUNTEER
+            </span>
+
+            <h1>
+                Your time can<br>
+                <em>create an impact.</em>
+            </h1>
+
+            <p>
+                Share your skills, knowledge and time with communities
+                that need support. Every contribution, big or small,
+                can help create meaningful change.
+            </p>
+
+            <div class="vol-new-buttons">
+
+                <a href="#volunteer-form" class="vol-new-primary">
+                    Become a Volunteer →
+                </a>
+
+                <a href="#ways-to-help" class="vol-new-secondary">
+                    Explore Ways to Help
+                </a>
+
+            </div>
+
+            <div class="vol-new-highlight">
+
+                <div class="vol-highlight-item">
+                    <strong>01</strong>
+                    <span>YOUR TIME</span>
+                </div>
+
+                <div class="vol-highlight-item">
+                    <strong>02</strong>
+                    <span>YOUR SKILLS</span>
+                </div>
+
+                <div class="vol-highlight-item">
+                    <strong>03</strong>
+                    <span>YOUR CARE</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= WAYS TO HELP ================= -->
+
+        <section class="vol-new-ways" id="ways-to-help">
+
+            <span class="vol-new-label">
+                WAYS TO CONTRIBUTE
+            </span>
+
+            <h2>
+                How would you<br>
+                <em>like to help?</em>
+            </h2>
+
+            <p class="vol-new-description">
+                Choose a way to contribute that matches your interests,
+                skills and availability.
+            </p>
+
+<div class="vol-new-cards">
+
+<div class="vol-new-card" style="background:#e8f0e4;">
+    <span class="vol-card-number">01</span>
+
+    <div class="vol-card-icon-new">
+        📚
+    </div>
+
+    <h3>
+        Education Support
+    </h3>
+
+    <p>
+        Help students with reading, learning activities,
+        basic subjects and educational guidance.
+    </p>
+</div>
+
+
+<div class="vol-new-card" style="background:#e4edf2;">
+    <span class="vol-card-number">02</span>
+
+    <div class="vol-card-icon-new">
+        💻
+    </div>
+
+    <h3>
+        Digital Skills
+    </h3>
+
+    <p>
+        Help community members learn computers,
+        internet use and useful digital skills.
+    </p>
+</div>
+
+
+<div class="vol-new-card" style="background:#f3e8e6;">
+    <span class="vol-card-number">03</span>
+
+    <div class="vol-card-icon-new">
+        🩺
+    </div>
+
+    <h3>
+        Healthcare Support
+    </h3>
+
+    <p>
+        Support medical camps, health-awareness
+        programs and basic healthcare activities.
+    </p>
+</div>
+
+
+<div class="vol-new-card" style="background:#eee9f2;">    
+    <span class="vol-card-number">04</span>
+
+    <div class="vol-card-icon-new">
+        🤝
+    </div>
+
+    <h3>
+        Community Outreach
+    </h3>
+
+    <p>
+        Connect with communities, understand their
+        needs and support UMEED activities.
+    </p>
+</div>
+
+
+<div class="vol-new-card" style="background:#e7f0e8;">    
+    <span class="vol-card-number">05</span>
+
+    <div class="vol-card-icon-new">
+        🌱
+    </div>
+
+    <h3>
+        Environment Activities
+    </h3>
+
+    <p>
+        Participate in cleanliness drives, tree
+        plantation and environmental awareness.
+    </p>
+</div>
+
+
+<div class="vol-new-card" style="background:#f3eee2;">
+    <span class="vol-card-number">06</span>
+
+    <div class="vol-card-icon-new">
+        📢
+    </div>
+
+    <h3>
+        Events & Campaigns
+    </h3>
+
+    <p>
+        Help organize donation drives, workshops,
+        awareness campaigns and community events.
+    </p>
+</div>
+
+
+<div class="vol-new-card" style="background:#e9edf4;">
+    <span class="vol-card-number">07</span>
+
+    <div class="vol-card-icon-new">
+        🎨
+    </div>
+
+    <h3>
+        Creative & Content
+    </h3>
+
+    <p>
+        Help create posters, photographs, videos,
+        social media posts and awareness content.
+    </p>
+</div>
+
+
+<div class="vol-new-card" style="background:#edf0e6;">    
+    <span class="vol-card-number">08</span>
+
+    <div class="vol-card-icon-new">
+        🧑‍💻
+    </div>
+
+    <h3>
+        Technical Support
+    </h3>
+
+    <p>
+        Help with website updates, data management,
+        testing and other technical activities.
+    </p>
+</div>
+
+</div>
+</section>
+
+        <!-- ================= WHY VOLUNTEER ================= -->
+
+        <section class="vol-new-why">
+
+            <span class="vol-new-label">
+                WHY VOLUNTEER?
+            </span>
+
+            <h2>
+                Small contributions<br>
+                <em>can create change.</em>
+            </h2>
+
+
+            <div class="vol-why-grid">
+
+                <div class="vol-why-item">
+
+                    <div class="vol-why-icon">
+                        🤝
+                    </div>
+
+                    <h3>
+                        Help Communities
+                    </h3>
+
+                    <p>
+                        Contribute directly to genuine needs
+                        identified by communities and organizations.
+                    </p>
+
+                </div>
+
+
+                <div class="vol-why-item">
+
+                    <div class="vol-why-icon">
+                        💡
+                    </div>
+
+                    <h3>
+                        Share Your Skills
+                    </h3>
+
+                    <p>
+                        Use your knowledge, experience and abilities
+                        for meaningful social impact.
+                    </p>
+
+                </div>
+
+
+                <div class="vol-why-item">
+
+                    <div class="vol-why-icon">
+                        🌱
+                    </div>
+
+                    <h3>
+                        Create Impact
+                    </h3>
+
+                    <p>
+                        Become part of a community working together
+                        to create positive change.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= VOLUNTEER FORM ================= -->
+
+        <section class="vol-new-form-section" id="volunteer-form">
+
+            <div class="vol-new-form-intro">
+
+                <span class="vol-new-label">
+                    JOIN UMEED
+                </span>
+
+                <h2>
+                    Ready to<br>
+                    <em>make a difference?</em>
+                </h2>
+
+                <p>
+                    Tell us a little about yourself and how you
+                    would like to contribute to the community.
+                </p>
+
+            </div>
+
+
+            <div class="vol-new-form">
+
+                <form id="volunteerForm">
+
+                    <div class="vol-form-row-new">
+
+                        <div class="vol-field-new">
+
+                            <label for="volName">
+                                Your Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="volName"
+                                name="name"
+                                placeholder="Enter your name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="vol-field-new">
+
+                            <label for="volEmail">
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="volEmail"
+                                name="email"
+                                placeholder="Enter your email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="vol-field-new">
+
+                        <label for="volPhone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="volPhone"
+                            name="phone"
+                            placeholder="Enter your phone number"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="vol-field-new">
+
+                        <label for="volInterest">
+                            Area of Interest
+                        </label>
+
+                        <select
+                            id="volInterest"
+                            name="interest"
+                            required
+                        >
+
+                            <option value="">
+                                Select an area
+                            </option>
+
+                            <option value="Education Support">
+                                Education Support
+                            </option>
+
+                            <option value="Digital Skills">
+                                Digital Skills
+                            </option>
+
+                            <option value="Community Activities">
+                                Community Activities
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="vol-field-new">
+
+                        <label for="volSkills">
+                            Your Skills
+                        </label>
+
+                        <input
+                            type="text"
+                            id="volSkills"
+                            name="skills"
+                            placeholder="Example: Teaching, Coding, Designing..."
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="vol-field-new">
+
+                        <label for="volMessage">
+                            How would you like to help?
+                        </label>
+
+                        <textarea
+                            id="volMessage"
+                            name="message"
+                            placeholder="Tell us about your interests, skills or availability..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="vol-new-submit"
+                    >
+                        Register as a Volunteer →
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FINAL CTA ================= -->
+
+        <section class="vol-new-final">
+
+            <span class="vol-new-label">
+                EVERY CONTRIBUTION MATTERS
+            </span>
+
+            <h2>
+                You don't need to do<br>
+                <em>everything. Just something.</em>
+            </h2>
+
+            <p>
+                Find a way to contribute that feels right for you.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="modern-footer">
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+
+                <div class="brand footer-brand-logo">
+
+                    <span class="brand-mark">
+                        U
+                    </span>
+
+                    <span>
+                        <strong>UMEED</strong>
+                        <small>Community Connect</small>
+                    </span>
+
+                </div>
+
+                <p>
+                    No Help Should Go Unnoticed.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="index.html">Home</a>
+                <a href="needs.html">Community Needs</a>
+                <a href="volunteer.html">Volunteer</a>
+                <a href="post-need.html">Post a Need</a>
+                <a href="support.html">Support</a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 Project UMEED
+            </span>
+
+            <span>
+                Community Engagement Field Project
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

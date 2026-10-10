@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizations | UMEED Community Connect</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .organizations-page {
+            background: #f8f5ed;
+            color: #123b27;
+        }
+
+        .organizations-hero {
+            padding: 75px 7% 50px;
+            text-align: center;
+        }
+
+        .organizations-label {
+            display: inline-block;
+            padding: 9px 16px;
+            border-radius: 30px;
+            background: #e4eddf;
+            color: #218653;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .organizations-hero h1 {
+            max-width: 850px;
+            margin: 24px auto 18px;
+            font-size: clamp(38px, 5vw, 65px);
+            line-height: 1.08;
+            letter-spacing: -2px;
+        }
+
+        .organizations-hero h1 span {
+            color: #218653;
+        }
+
+        .organizations-hero p {
+            max-width: 650px;
+            margin: 0 auto;
+            color: #68756a;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .organizations-container {
+            width: min(1100px, 86%);
+            margin: 0 auto 85px;
+        }
+
+        .organizations-card {
+            padding: 32px;
+            margin-bottom: 30px;
+            background: #fff;
+            border: 1px solid #e8e7dd;
+            border-radius: 24px;
+        }
+
+        .organizations-heading {
+            margin-bottom: 25px;
+        }
+
+        .organizations-heading > span {
+            color: #218653;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.7px;
+        }
+
+        .organizations-heading h2 {
+            margin: 9px 0;
+            font-size: 27px;
+            letter-spacing: -0.7px;
+        }
+
+        .organizations-heading p {
+            color: #737c72;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .organizations-search {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr auto;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .organizations-search input,
+        .organizations-search select {
+            box-sizing: border-box;
+            width: 100%;
+            min-width: 0;
+            padding: 14px;
+            border: 1px solid #dedfd6;
+            border-radius: 11px;
+            background: #fcfcf9;
+            color: #123b27;
+            font: inherit;
+            font-size: 14px;
+        }
+
+        .organizations-search input:focus,
+        .organizations-search select:focus {
+            outline: 2px solid #b5d5bc;
+            border-color: #218653;
+        }
+
+        .organizations-search button {
+            padding: 14px 20px;
+            border: 0;
+            border-radius: 11px;
+            background: #123b27;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .organizations-search button:hover {
+            background: #218653;
+        }
+
+        .organizations-results {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin: 28px 0 20px;
+        }
+
+        .organizations-results h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .organizations-results p {
+            margin: 0;
+            color: #737c72;
+            font-size: 13px;
+        }
+
+        .organizations-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .organization-item {
+            min-width: 0;
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid #e8e7dd;
+            border-radius: 20px;
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+
+        .organization-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(18, 59, 39, .08);
+        }
+
+        .organization-item[hidden] {
+            display: none;
+        }
+
+        .organization-image {
+            position: relative;
+        }
+
+        .organization-image img {
+            display: block;
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        .organization-category {
+            position: absolute;
+            left: 14px;
+            bottom: 14px;
+            padding: 7px 11px;
+            border-radius: 20px;
+            background: #fff;
+            color: #218653;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .organization-content {
+            padding: 22px;
+        }
+
+        .organization-demo {
+            display: inline-block;
+            margin-bottom: 10px;
+            color: #218653;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .organization-content h3 {
+            margin: 0 0 10px;
+            font-size: 20px;
+            line-height: 1.4;
+        }
+
+        .organization-location {
+            margin: 0 0 13px;
+            color: #68756a;
+            font-size: 13px;
+        }
+
+        .organization-description {
+            min-height: 68px;
+            margin: 0 0 20px;
+            color: #737c72;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .organization-link {
+            display: block;
+            padding: 13px 16px;
+            border-radius: 11px;
+            background: #123b27;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            transition: background .2s ease;
+        }
+
+        .organization-link:hover {
+            background: #218653;
+        }
+
+        .organizations-empty {
+            padding: 30px;
+            border-radius: 15px;
+            background: #e8f0e4;
+            color: #123b27;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .organizations-note {
+            margin: 20px 0 0;
+            color: #737c72;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .organizations-bottom-banner {
+            padding: 48px 7%;
+            background: #123b27;
+            color: #fff;
+            text-align: center;
+        }
+
+        .organizations-bottom-banner h2 {
+            margin: 0 0 12px;
+            font-size: clamp(27px, 4vw, 38px);
+        }
+
+        .organizations-bottom-banner p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: #d7e3d8;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        @media (max-width: 950px) {
+            .organizations-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .organizations-search {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .organizations-search button {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .organizations-container {
+                width: 90%;
+            }
+
+            .organizations-hero {
+                padding: 55px 6% 40px;
+            }
+
+            .organizations-card {
+                padding: 22px 18px;
+            }
+
+            .organizations-grid,
+            .organizations-search {
+                grid-template-columns: 1fr;
+            }
+
+            .organizations-search button {
+                grid-column: auto;
+            }
+
+            .organizations-results {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body class="organizations-page">
+
+<header class="navbar">
+    <a href="index.html" class="brand">
+        <span class="brand-mark">U</span>
+        <span>
+            <strong>UMEED</strong>
+            <small>Community Connect</small>
+        </span>
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="needs.html">Community Needs</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="organizations.html" class="active">Organizations</a>
+        <a href="volunteer.html">Volunteer</a>
+        <a href="post-need.html">Post a Need</a>
+        <a href="support.html">Support</a>
+    </nav>
+
+    <a href="volunteer.html" class="nav-button">Join UMEED</a>
+</header>
+
+<main>
+    <section class="organizations-hero">
+        <span class="organizations-label">CONNECT WITH YOUR COMMUNITY</span>
+
+        <h1>Meet the People <span>Making a Difference.</span></h1>
+
+        <p>
+            Discover organizations working towards education, healthcare,
+            community welfare and social support. Find causes that matter
+            to you and explore ways to contribute.
+        </p>
+    </section>
+
+    <section class="organizations-container">
+
+        <div class="organizations-card">
+            <div class="organizations-heading">
+                <span>FIND YOUR CAUSE</span>
+                <h2>Explore Organizations</h2>
+                <p>
+                    Search by name, location or organization category to find
+                    a cause that matches your interests.
+                </p>
+            </div>
+
+            <div class="organizations-search">
+                <input
+                    type="search"
+                    id="organizationSearch"
+                    placeholder="Search name or location..."
+                    aria-label="Search organizations"
+                >
+
+                <select id="organizationCategory" aria-label="Filter by category">
+                    <option value="all">All Categories</option>
+                    <option value="education">Education</option>
+                    <option value="child-care">Child Welfare</option>
+                    <option value="senior-care">Elderly Care</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="community">Community Welfare</option>
+                </select>
+
+                <button type="button" id="searchButton">Find Organizations →</button>
+            </div>
+        </div>
+
+        <div class="organizations-results">
+            <h2>Organizations Directory</h2>
+            <p id="resultCount" aria-live="polite">Showing 6 demo profiles</p>
+        </div>
+
+        <div class="organizations-grid" id="organizationsGrid">
+
+            <article class="organization-item"
+                     data-category="education"
+                     data-search="education learning school students nashik">
+                <div class="organization-image">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=700&q=80"
+                         alt="Students learning in a classroom" loading="lazy">
+                    <span class="organization-category">Education</span>
+                </div>
+                <div class="organization-content">
+                    <span class="organization-demo">Demo profile</span>
+                    <h3>Education Support Initiative</h3>
+                    <p class="organization-location">📍 Nashik, Maharashtra</p>
+                    <p class="organization-description">
+                        An illustrative profile for an organization supporting
+                        learning resources, books and educational opportunities.
+                    </p>
+                    <a class="organization-link"
+                       href="organization-details.html?id=education">
+                        Explore Organization →
+                    </a>
+                </div>
+            </article>
+
+            <article class="organization-item"
+                     data-category="education"
+                     data-search="school rural education books digital learning">
+                <div class="organization-image">
+                    <img src="https://images.unsplash.com/photo-1497486751825-1233686d5d80?auto=format&fit=crop&w=700&q=80"
+                         alt="Educational activity" loading="lazy">
+                    <span class="organization-category">Education</span>
+                </div>
+                <div class="organization-content">
+                    <span class="organization-demo">Demo profile</span>
+                    <h3>Community Learning Centre</h3>
+                    <p class="organization-location">📍 Rural Communities</p>
+                    <p class="organization-description">
+                        An illustrative profile for a learning centre that
+                        could connect students with books and digital resources.
+                    </p>
+                    <a class="organization-link"
+                       href="organization-details.html?id=school">
+                        Explore Organization →
+                    </a>
+                </div>
+            </article>
+
+            <article class="organization-item"
+                     data-category="child-care"
+                     data-search="child welfare children orphanage care support">
+                <div class="organization-image">
+                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=700&q=80"
+                         alt="Children receiving educational support" loading="lazy">
+                    <span class="organization-category">Child Welfare</span>
+                </div>
+                <div class="organization-content">
+                    <span class="organization-demo">Demo profile</span>
+                    <h3>Child Welfare Support Centre</h3>
+                    <p class="organization-location">📍 Maharashtra</p>
+                    <p class="organization-description">
+                        An illustrative profile for a child-focused organization
+                        that may need educational supplies and volunteers.
+                    </p>
+                    <a class="organization-link"
+                       href="organization-details.html?id=child-care">
+                        Explore Organization →
+                    </a>
+                </div>
+            </article>
+
+            <article class="organization-item"
+                     data-category="senior-care"
+                     data-search="senior elderly old age home elder care">
+                <div class="organization-image">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=700&q=80"
+                         alt="People spending time together" loading="lazy">
+                    <span class="organization-category">Elderly Care</span>
+                </div>
+                <div class="organization-content">
+                    <span class="organization-demo">Demo profile</span>
+                    <h3>Senior Care Community</h3>
+                    <p class="organization-location">📍 Nashik Region</p>
+                    <p class="organization-description">
+                        An illustrative profile for an elderly care service
+                        seeking companionship and essential supplies.
+                    </p>
+                    <a class="organization-link"
+                       href="organization-details.html?id=senior-care">
+                        Explore Organization →
+                    </a>
+                </div>
+            </article>
+
+            <article class="organization-item"
+                     data-category="healthcare"
+                     data-search="healthcare medical health camps doctors community">
+                <div class="organization-image">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=700&q=80"
+                         alt="Healthcare team" loading="lazy">
+                    <span class="organization-category">Healthcare</span>
+                </div>
+                <div class="organization-content">
+                    <span class="organization-demo">Demo profile</span>
+                    <h3>Community Health Initiative</h3>
+                    <p class="organization-location">📍 Maharashtra</p>
+                    <p class="organization-description">
+                        An illustrative profile for a healthcare initiative
+                        focused on awareness and community health activities.
+                    </p>
+                    <a class="organization-link"
+                       href="organization-details.html?id=health">
+                        Explore Organization →
+                    </a>
+                </div>
+            </article>
+
+            <article class="organization-item"
+                     data-category="community"
+                     data-search="community welfare volunteering donations social support">
+                <div class="organization-image">
+                    <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=700&q=80"
+                         alt="Community members working together" loading="lazy">
+                    <span class="organization-category">Community Welfare</span>
+                </div>
+                <div class="organization-content">
+                    <span class="organization-demo">Demo profile</span>
+                    <h3>Community Action Network</h3>
+                    <p class="organization-location">📍 Nashik Region</p>
+                    <p class="organization-description">
+                        An illustrative profile for a community initiative
+                        connecting volunteers with local support activities.
+                    </p>
+                    <a class="organization-link"
+                       href="organization-details.html?id=community">
+                        Explore Organization →
+                    </a>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="organizations-empty" id="noResults" hidden>
+            <strong>No matching organizations found.</strong><br>
+            Try another name, location or category.
+        </div>
+
+        <p class="organizations-note">
+            Important: These are demonstration profiles, not verified real
+            organizations. Before publishing real listings, confirm each
+            organization's identity, contact details and permission to appear
+            on UMEED.
+        </p>
+    </section>
+
+    <section class="organizations-bottom-banner">
+        <h2>Every Organization Can Inspire Change.</h2>
+        <p>
+            When communities and organizations connect, resources can reach
+            the people who need them.
+        </p>
+    </section>
+</main>
+
+<footer class="modern-footer">
+    <div class="footer-main">
+        <div class="footer-brand">
+            <div class="brand footer-brand-logo">
+                <span class="brand-mark">U</span>
+                <span>
+                    <strong>UMEED</strong>
+                    <small>Community Connect</small>
+                </span>
+            </div>
+            <p>No Help Should Go Unnoticed.</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="needs.html">Community Needs</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="organizations.html">Organizations</a>
+            <a href="volunteer.html">Volunteer</a>
+            <a href="post-need.html">Post a Need</a>
+            <a href="support.html">Support</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <span>© 2026 Project UMEED</span>
+        <span>Community Engagement Field Project</span>
+    </div>
+</footer>
+
+<script>
+    const searchInput = document.getElementById("organizationSearch");
+    const categorySelect = document.getElementById("organizationCategory");
+    const searchButton = document.getElementById("searchButton");
+    const organizationCards = Array.from(
+        document.querySelectorAll(".organization-item")
+    );
+    const resultCount = document.getElementById("resultCount");
+    const noResults = document.getElementById("noResults");
+
+    function filterOrganizations() {
+        const query = searchInput.value.trim().toLowerCase();
+        const category = categorySelect.value;
+        let visibleCount = 0;
+
+        organizationCards.forEach(card => {
+            const searchableText = (
+                card.dataset.search + " " + card.innerText
+            ).toLowerCase();
+
+            const matchesSearch = searchableText.includes(query);
+            const matchesCategory =
+                category === "all" || card.dataset.category === category;
+
+            const visible = matchesSearch && matchesCategory;
+            card.hidden = !visible;
+
+            if (visible) {
+                visibleCount++;
+            }
+        });
+
+        resultCount.textContent =
+            "Showing " + visibleCount +
+            (visibleCount === 1 ? " demo profile" : " demo profiles");
+
+        noResults.hidden = visibleCount !== 0;
+    }
+
+    searchButton.addEventListener("click", filterOrganizations);
+    searchInput.addEventListener("input", filterOrganizations);
+    categorySelect.addEventListener("change", filterOrganizations);
+</script>
+
+</body>
+</html>

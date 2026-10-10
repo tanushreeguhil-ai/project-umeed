@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Need | UMEED Community Connect</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .post-page {
+            background: #f8f5ed;
+            color: #123b27;
+        }
+
+        .post-hero {
+            padding: 75px 7% 65px;
+            text-align: center;
+        }
+
+        .post-label {
+            display: inline-block;
+            padding: 9px 16px;
+            border-radius: 30px;
+            background: #e4eddf;
+            color: #218653;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .post-hero h1 {
+            max-width: 850px;
+            margin: 24px auto 18px;
+            font-size: clamp(38px, 5vw, 65px);
+            line-height: 1.08;
+            letter-spacing: -2px;
+        }
+
+        .post-hero h1 span {
+            color: #218653;
+        }
+
+        .post-hero p {
+            max-width: 650px;
+            margin: 0 auto;
+            color: #68756a;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .post-layout {
+            width: min(1100px, 86%);
+            margin: 0 auto 85px;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 35px;
+            align-items: start;
+        }
+
+        .post-form-card,
+        .gallery-card {
+            background: #fff;
+            border: 1px solid #e8e7dd;
+            border-radius: 24px;
+            padding: 32px;
+        }
+
+        .post-section-heading {
+            margin-bottom: 26px;
+        }
+
+        .post-section-heading span {
+            color: #218653;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.7px;
+        }
+
+        .post-section-heading h2 {
+            margin: 9px 0;
+            font-size: 27px;
+            letter-spacing: -0.7px;
+        }
+
+        .post-section-heading p {
+            color: #737c72;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .post-form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .post-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .post-field label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #254832;
+        }
+
+        .post-field input,
+        .post-field select,
+        .post-field textarea {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #dedfd6;
+            border-radius: 11px;
+            background: #fcfcf9;
+            color: #123b27;
+            font: inherit;
+            font-size: 14px;
+        }
+
+        .post-field input:focus,
+        .post-field select:focus,
+        .post-field textarea:focus {
+            outline: 2px solid #b5d5bc;
+            border-color: #218653;
+        }
+
+        .post-field textarea {
+            min-height: 115px;
+            resize: vertical;
+        }
+
+        .post-field input[type="file"] {
+            padding: 10px;
+            background: #fff;
+        }
+
+        .post-two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .post-submit {
+            width: 100%;
+            padding: 15px 20px;
+            margin-top: 5px;
+            border: 0;
+            border-radius: 12px;
+            background: #123b27;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .post-submit:hover {
+            background: #218653;
+        }
+
+        .post-note {
+            margin: 0;
+            color: #7a8177;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .post-feedback {
+            padding: 13px;
+            border-radius: 10px;
+            background: #e8f0e4;
+            color: #123b27;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .post-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .post-gallery-item {
+            overflow: hidden;
+            border-radius: 15px;
+            background: #e8f0e4;
+        }
+
+        .post-gallery-item img {
+            display: block;
+            width: 100%;
+            height: 135px;
+            object-fit: cover;
+        }
+
+        .post-gallery-caption {
+            padding: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #254832;
+        }
+
+        .post-gallery-note {
+            margin: 17px 0 0;
+            color: #737c72;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .post-upload-preview {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .post-preview-item {
+            position: relative;
+            min-width: 0;
+        }
+
+        .post-preview-item img {
+            display: block;
+            width: 100%;
+            height: 115px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .post-remove-image {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            border: 0;
+            border-radius: 8px;
+            padding: 6px 9px;
+            background: #123b27;
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .post-bottom-banner {
+            padding: 48px 7%;
+            text-align: center;
+            background: #123b27;
+            color: #fff;
+        }
+
+        .post-bottom-banner h2 {
+            margin: 0 0 12px;
+            font-size: clamp(27px, 4vw, 38px);
+        }
+
+        .post-bottom-banner p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: #d7e3d8;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        @media (max-width: 800px) {
+            .post-layout {
+                grid-template-columns: 1fr;
+                width: 90%;
+            }
+
+            .post-hero {
+                padding: 55px 6% 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .post-form-card,
+            .gallery-card {
+                padding: 22px 18px;
+            }
+
+            .post-two-columns {
+                grid-template-columns: 1fr;
+            }
+
+            .post-gallery-item img {
+                height: 115px;
+            }
+        }
+    </style>
+</head>
+
+<body class="post-page">
+
+<header class="navbar">
+    <a href="index.html" class="brand">
+        <span class="brand-mark">U</span>
+        <span>
+            <strong>UMEED</strong>
+            <small>Community Connect</small>
+        </span>
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="needs.html">Community Needs</a>
+        <a href="volunteer.html">Volunteer</a>
+        <a href="post-need.html" class="active">Post a Need</a>
+        <a href="support.html">Support</a>
+        <a href="birthday.html">Birthday Celebrations</a>
+
+    </nav>
+
+    <a href="volunteer.html" class="nav-button">Join UMEED</a>
+</header>
+
+<main>
+    <section class="post-hero">
+        <span class="post-label">LET YOUR NEED BE SEEN</span>
+
+        <h1>Every Need Deserves <span>to Be Seen.</span></h1>
+
+        <p>
+            Every community has needs that deserve attention.
+            Tell us what support is required, and help us connect
+            your community with people who care.
+        </p>
+    </section>
+
+    <section class="post-layout">
+
+        <div class="post-form-card">
+            <div class="post-section-heading">
+                <span>SHARE YOUR REQUIREMENT</span>
+                <h2>Post a Community Need</h2>
+                <p>
+                    Fill in the details below so we can understand
+                    the requirement and the support needed.
+                </p>
+            </div>
+
+            <form class="post-form" id="needForm">
+
+                <div class="post-field">
+                    <label for="organization">Person or Organization Name *</label>
+                    <input
+                        type="text"
+                        id="organization"
+                        name="organization"
+                        placeholder="Enter your name or organization"
+                        required
+                    >
+                </div>
+
+                <div class="post-two-columns">
+                    <div class="post-field">
+                        <label for="email">Email Address *</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="you@example.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="post-field">
+                        <label for="phone">Contact Number *</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Enter phone number"
+                            pattern="[0-9+() -]{7,20}"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="post-field">
+                    <label for="category">Category of Need *</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select a category</option>
+                        <option>Education & Books</option>
+                        <option>Computers & Digital Support</option>
+                        <option>Healthcare</option>
+                        <option>Clothing & Essentials</option>
+                        <option>Volunteers</option>
+                        <option>Community Development</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="post-field">
+                    <label for="title">Title of the Need *</label>
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        placeholder="e.g. Books required for students"
+                        required
+                    >
+                </div>
+
+                <div class="post-field">
+                    <label for="location">Community Location *</label>
+                    <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        placeholder="Village, town or area"
+                        required
+                    >
+                </div>
+
+                <div class="post-field">
+                    <label for="description">Describe the Need *</label>
+                    <textarea
+                        id="description"
+                        name="description"
+                        placeholder="Explain the situation and what support is required..."
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="post-field">
+                    <label for="resources">Resources Required</label>
+                    <textarea
+                        id="resources"
+                        name="resources"
+                        placeholder="List books, equipment, supplies or other support needed"
+                    ></textarea>
+                </div>
+
+                <div class="post-field">
+                    <label for="needImages">Add Photos of the Need (Optional)</label>
+                    <input
+                        type="file"
+                        id="needImages"
+                        name="needImages"
+                        accept="image/*"
+                        multiple
+                    >
+                    <p class="post-note">
+                        You can select multiple images. Only upload photos
+                        you have permission to share.
+                    </p>
+                </div>
+
+                <div id="uploadPreview" class="post-upload-preview"></div>
+
+                <button type="submit" class="post-submit">
+                    Submit Your Need →
+                </button>
+
+                <p class="post-note">
+                    This frontend demo does not permanently submit or store
+                    your information. A backend will be needed for real submissions.
+                </p>
+
+                <div id="formMessage" class="post-feedback" hidden aria-live="polite"></div>
+            </form>
+        </div>
+
+        <aside>
+            <div class="gallery-card">
+                <div class="post-section-heading">
+                    <span>COMMUNITY IN ACTION</span>
+                    <h2>Small Acts, Real Impact.</h2>
+                    <p>
+                        Every contribution tells a story.
+                        Here are examples of the kinds of community
+                        activities UMEED hopes to connect.
+                    </p>
+                </div>
+
+                <div class="post-gallery">
+
+                    <div class="post-gallery-item">
+                        <img
+                            src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80"
+                            alt="Children learning in a classroom"
+                            loading="lazy"
+                        >
+                        <div class="post-gallery-caption">Education for Everyone</div>
+                    </div>
+
+                    <div class="post-gallery-item">
+                        <img
+                            src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=600&q=80"
+                            alt="People working together on a community initiative"
+                            loading="lazy"
+                        >
+                        <div class="post-gallery-caption">People Coming Together</div>
+                    </div>
+
+                    <div class="post-gallery-item">
+                        <img
+                            src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=600&q=80"
+                            alt="Volunteers helping their community"
+                            loading="lazy"
+                        >
+                        <div class="post-gallery-caption">The Power of Volunteering</div>
+                    </div>
+
+                    <div class="post-gallery-item">
+                        <img
+                            src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80"
+                            alt="Community members supporting children"
+                            loading="lazy"
+                        >
+                        <div class="post-gallery-caption">Hope Through Support</div>
+                    </div>
+
+                </div>
+
+                <p class="post-gallery-note">
+                    These are illustrative sample images, not verified
+                    photographs of UMEED activities.
+                </p>
+            </div>
+        </aside>
+
+    </section>
+
+    <section class="post-bottom-banner">
+        <h2>Together, We Can Make a Difference.</h2>
+        <p>
+            One shared need can inspire many helping hands.
+            Thank you for helping UMEED bring community needs into focus.
+        </p>
+    </section>
+</main>
+
+<footer class="modern-footer">
+    <div class="footer-main">
+
+        <div class="footer-brand">
+            <div class="brand footer-brand-logo">
+                <span class="brand-mark">U</span>
+                <span>
+                    <strong>UMEED</strong>
+                    <small>Community Connect</small>
+                </span>
+            </div>
+            <p>No Help Should Go Unnoticed.</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="needs.html">Community Needs</a>
+            <a href="volunteer.html">Volunteer</a>
+            <a href="post-need.html">Post a Need</a>
+            <a href="support.html">Support</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>© 2026 Project UMEED</span>
+        <span>Community Engagement Field Project</span>
+    </div>
+</footer>
+
+<script>
+    const imageInput = document.getElementById("needImages");
+    const previewArea = document.getElementById("uploadPreview");
+    const needForm = document.getElementById("needForm");
+    const formMessage = document.getElementById("formMessage");
+
+    let selectedFiles = [];
+
+    imageInput.addEventListener("change", function () {
+        const newFiles = Array.from(this.files);
+        const combined = [...selectedFiles, ...newFiles];
+
+        if (combined.length > 6) {
+            formMessage.hidden = false;
+            formMessage.textContent = "You can preview up to 6 images.";
+        }
+
+        selectedFiles = combined
+            .filter(file => file.type.startsWith("image/"))
+            .slice(0, 6);
+
+        renderPreviews();
+
+        const transfer = new DataTransfer();
+        selectedFiles.forEach(file => transfer.items.add(file));
+        imageInput.files = transfer.files;
+    });
+
+    function renderPreviews() {
+        previewArea.innerHTML = "";
+
+        selectedFiles.forEach((file, index) => {
+            const wrapper = document.createElement("div");
+            wrapper.className = "post-preview-item";
+
+            const image = document.createElement("img");
+            const objectURL = URL.createObjectURL(file);
+            image.src = objectURL;
+            image.alt = "Selected community photo preview";
+
+            image.onload = () => URL.revokeObjectURL(objectURL);
+
+            const removeButton = document.createElement("button");
+            removeButton.type = "button";
+            removeButton.className = "post-remove-image";
+            removeButton.textContent = "Remove";
+            removeButton.setAttribute("aria-label", "Remove selected image");
+
+            removeButton.addEventListener("click", function () {
+                selectedFiles.splice(index, 1);
+
+                const transfer = new DataTransfer();
+                selectedFiles.forEach(selectedFile => {
+                    transfer.items.add(selectedFile);
+                });
+                imageInput.files = transfer.files;
+
+                renderPreviews();
+            });
+
+            wrapper.append(image, removeButton);
+            previewArea.appendChild(wrapper);
+        });
+    }
+
+    needForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        formMessage.hidden = false;
+        formMessage.textContent =
+            "Your form passed the browser's required-field checks. This is a frontend demo only: your need has not been sent or saved. Backend integration will enable real submissions.";
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Celebrations | UMEED Community Connect</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* BIRTHDAY PAGE - MATCHING POST A NEED */
+
+        .birthday-page {
+            background: #f8f5ed;
+            color: #123b27;
+        }
+
+        .birthday-hero {
+            padding: 75px 7% 65px;
+            text-align: center;
+        }
+
+        .birthday-label {
+            display: inline-block;
+            padding: 9px 16px;
+            border-radius: 30px;
+            background: #e4eddf;
+            color: #218653;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .birthday-hero h1 {
+            max-width: 850px;
+            margin: 24px auto 18px;
+            font-size: clamp(38px, 5vw, 65px);
+            line-height: 1.08;
+            letter-spacing: -2px;
+        }
+
+        .birthday-hero h1 span {
+            color: #218653;
+        }
+
+        .birthday-hero > p {
+            max-width: 650px;
+            margin: 0 auto;
+            color: #68756a;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .birthday-hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 27px;
+        }
+
+        .birthday-primary-button,
+        .birthday-secondary-button {
+            display: inline-block;
+            padding: 14px 21px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+
+        .birthday-primary-button {
+            background: #123b27;
+            color: #fff;
+        }
+
+        .birthday-primary-button:hover {
+            background: #218653;
+        }
+
+        .birthday-secondary-button {
+            border: 1px solid #dedfd6;
+            background: #fff;
+            color: #123b27;
+        }
+
+        .birthday-secondary-button:hover {
+            background: #e4eddf;
+        }
+
+        /* SECTION LAYOUT */
+
+        .birthday-section {
+            width: min(1100px, 86%);
+            margin: 0 auto 70px;
+        }
+
+        .birthday-section-heading {
+            margin-bottom: 26px;
+            text-align: center;
+        }
+
+        .birthday-section-heading > span {
+            color: #218653;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.7px;
+        }
+
+        .birthday-section-heading h2 {
+            margin: 9px 0;
+            font-size: clamp(27px, 3.5vw, 38px);
+            letter-spacing: -0.7px;
+        }
+
+        .birthday-section-heading p {
+            max-width: 650px;
+            margin: 0 auto;
+            color: #737c72;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        /* CONTRIBUTION CARDS */
+
+        .birthday-contribution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .birthday-contribution-card {
+            min-width: 0;
+            padding: 28px 24px;
+            text-align: center;
+            background: #fff;
+            border: 1px solid #e8e7dd;
+            border-radius: 24px;
+        }
+
+        .birthday-card-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 18px;
+            background: #e4eddf;
+            font-size: 28px;
+        }
+
+        .birthday-contribution-card h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .birthday-contribution-card p {
+            margin-bottom: 17px;
+            color: #737c72;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .birthday-text-link {
+            color: #218653;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .birthday-text-link:hover {
+            text-decoration: underline;
+        }
+
+        /* GALLERY */
+
+        .birthday-gallery-card {
+            background: #fff;
+            border: 1px solid #e8e7dd;
+            border-radius: 24px;
+            padding: 32px;
+        }
+
+        .birthday-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .birthday-gallery-item {
+            min-width: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            background: #e8f0e4;
+        }
+
+        .birthday-gallery-item img {
+            display: block;
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .birthday-gallery-caption {
+            padding: 13px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #254832;
+        }
+
+        .birthday-gallery-tag {
+            display: inline-block;
+            margin: 12px 12px 0;
+            padding: 5px 9px;
+            border-radius: 20px;
+            background: #e4eddf;
+            color: #218653;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .birthday-gallery-caption p {
+            margin-top: 7px;
+            color: #737c72;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        .birthday-gallery-note {
+            margin: 17px 0 0;
+            color: #737c72;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        /* FORM AND SIDE CARD */
+
+        .birthday-layout {
+            width: min(1100px, 86%);
+            margin: 0 auto 85px;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 35px;
+            align-items: start;
+        }
+
+        .birthday-form-card,
+        .birthday-info-card {
+            min-width: 0;
+            background: #fff;
+            border: 1px solid #e8e7dd;
+            border-radius: 24px;
+            padding: 32px;
+        }
+
+        .birthday-section-title {
+            margin-bottom: 26px;
+        }
+
+        .birthday-section-title > span {
+            color: #218653;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.7px;
+        }
+
+        .birthday-section-title h2 {
+            margin: 9px 0;
+            font-size: 27px;
+            letter-spacing: -0.7px;
+        }
+
+        .birthday-section-title p {
+            color: #737c72;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .birthday-form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .birthday-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .birthday-field label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #254832;
+        }
+
+        .birthday-field input,
+        .birthday-field select,
+        .birthday-field textarea {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #dedfd6;
+            border-radius: 11px;
+            background: #fcfcf9;
+            color: #123b27;
+            font: inherit;
+            font-size: 14px;
+        }
+
+        .birthday-field input:focus,
+        .birthday-field select:focus,
+        .birthday-field textarea:focus {
+            outline: 2px solid #b5d5bc;
+            border-color: #218653;
+        }
+
+        .birthday-field textarea {
+            min-height: 115px;
+            resize: vertical;
+        }
+
+        .birthday-field input[type="file"] {
+            padding: 10px;
+            background: #fff;
+        }
+
+        .birthday-field-note {
+            margin: 0;
+            color: #7a8177;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .birthday-submit {
+            width: 100%;
+            padding: 15px 20px;
+            margin-top: 5px;
+            border: 0;
+            border-radius: 12px;
+            background: #123b27;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .birthday-submit:hover {
+            background: #218653;
+        }
+
+        .birthday-feedback {
+            padding: 13px;
+            border-radius: 10px;
+            background: #e8f0e4;
+            color: #123b27;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .birthday-upload-preview {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .birthday-preview-item {
+            position: relative;
+            min-width: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid #e8e7dd;
+        }
+
+        .birthday-preview-item img {
+            display: block;
+            width: 100%;
+            height: 115px;
+            object-fit: cover;
+        }
+
+        .birthday-preview-name {
+            padding: 7px;
+            overflow-wrap: anywhere;
+            color: #737c72;
+            font-size: 11px;
+        }
+
+        .birthday-remove-image {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            border: 0;
+            border-radius: 8px;
+            padding: 6px 9px;
+            background: #123b27;
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        /* INFORMATION CARD */
+
+        .birthday-info-highlight {
+            padding: 18px;
+            margin: 18px 0;
+            border-radius: 14px;
+            background: #e4eddf;
+        }
+
+        .birthday-info-highlight strong {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 15px;
+        }
+
+        .birthday-info-highlight p {
+            color: #526757;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .birthday-info-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0;
+        }
+
+        .birthday-info-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            margin-bottom: 18px;
+            color: #737c72;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .birthday-info-check {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #e4eddf;
+            color: #218653;
+            font-weight: 700;
+        }
+
+        .birthday-info-list strong {
+            display: block;
+            margin-bottom: 3px;
+            color: #254832;
+            font-size: 13px;
+        }
+
+        /* BOTTOM BANNER */
+
+        .birthday-bottom-banner {
+            padding: 48px 7%;
+            text-align: center;
+            background: #123b27;
+            color: #fff;
+        }
+
+        .birthday-bottom-banner h2 {
+            margin: 0 0 12px;
+            font-size: clamp(27px, 4vw, 38px);
+        }
+
+        .birthday-bottom-banner p {
+            max-width: 600px;
+            margin: 0 auto 22px;
+            color: #d7e3d8;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .birthday-bottom-button {
+            display: inline-block;
+            padding: 13px 20px;
+            border-radius: 11px;
+            background: #fff;
+            color: #123b27;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .birthday-bottom-button:hover {
+            background: #e4eddf;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+            .birthday-layout {
+                grid-template-columns: 1fr;
+                width: 90%;
+            }
+
+            .birthday-section {
+                width: 90%;
+            }
+
+            .birthday-hero {
+                padding: 55px 6% 45px;
+            }
+
+            .birthday-contribution-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .birthday-gallery {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .birthday-form-card,
+            .birthday-info-card,
+            .birthday-gallery-card {
+                padding: 22px 18px;
+            }
+
+            .birthday-contribution-grid,
+            .birthday-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .birthday-gallery-item img {
+                height: 190px;
+            }
+
+            .birthday-hero h1 {
+                letter-spacing: -1px;
+            }
+        }
+    </style>
+</head>
+
+<body class="birthday-page">
+
+    <!-- NAVIGATION: SAME STRUCTURE AS POST A NEED -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="brand">
+            <span class="brand-mark">U</span>
+
+            <span>
+                <strong>UMEED</strong>
+                <small>Community Connect</small>
+            </span>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="needs.html">Community Needs</a>
+            <a href="volunteer.html">Volunteer</a>
+            <a href="post-need.html">Post a Need</a>
+            <a href="support.html">Support</a>
+            <a href="birthday.html" class="active">Birthday Celebrations</a>
+        </nav>
+
+        <a href="volunteer.html" class="nav-button">Join UMEED</a>
+
+    </header>
+
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="birthday-hero">
+
+            <span class="birthday-label">CELEBRATE WITH PURPOSE</span>
+
+            <h1>
+                Make Your Birthday
+                <span>Meaningful.</span>
+            </h1>
+
+            <p>
+                Turn your special day into an opportunity to spread happiness.
+                Share your birthday celebrations, contribute to a community
+                cause, and inspire others to make a difference through UMEED.
+            </p>
+
+            <div class="birthday-hero-buttons">
+                <a href="#upload-memory" class="birthday-primary-button">
+                    Share Your Celebration →
+                </a>
+
+                <a href="#birthday-gallery" class="birthday-secondary-button">
+                    Explore Memories
+                </a>
+            </div>
+
+        </section>
+
+
+        <!-- WAYS TO CONTRIBUTE -->
+
+        <section class="birthday-section">
+
+            <div class="birthday-section-heading">
+                <span>CELEBRATE DIFFERENTLY</span>
+
+                <h2>Make Someone Smile on Your Birthday</h2>
+
+                <p>
+                    Celebrate your happiness by sharing it with people who
+                    need support, care, and encouragement.
+                </p>
+            </div>
+
+            <div class="birthday-contribution-grid">
+
+                <article class="birthday-contribution-card">
+
+                    <div class="birthday-card-icon">🎁</div>
+
+                    <h3>Share a Gift</h3>
+
+                    <p>
+                        Donate useful items such as books, clothes,
+                        stationery, or other essentials to people who need them.
+                    </p>
+
+                    <a href="needs.html" class="birthday-text-link">
+                        Explore Community Needs →
+                    </a>
+
+                </article>
+
+
+                <article class="birthday-contribution-card">
+
+                    <div class="birthday-card-icon">🤝</div>
+
+                    <h3>Give Your Time</h3>
+
+                    <p>
+                        Spend your special day helping children, supporting
+                        community activities, or volunteering for a cause.
+                    </p>
+
+                    <a href="volunteer.html" class="birthday-text-link">
+                        Become a Volunteer →
+                    </a>
+
+                </article>
+
+
+                <article class="birthday-contribution-card">
+
+                    <div class="birthday-card-icon">📸</div>
+
+                    <h3>Share a Memory</h3>
+
+                    <p>
+                        Add photos and a short story about your celebration
+                        to inspire others to celebrate with kindness.
+                    </p>
+
+                    <a href="#upload-memory" class="birthday-text-link">
+                        Add Your Memory →
+                    </a>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- BIRTHDAY GALLERY -->
+
+        <section class="birthday-section" id="birthday-gallery">
+
+            <div class="birthday-gallery-card">
+
+                <div class="birthday-section-heading">
+                    <span>MOMENTS THAT MATTER</span>
+
+                    <h2>Birthday Celebration Gallery</h2>
+
+                    <p>
+                        Every act of kindness creates a memory worth sharing.
+                        Explore these illustrative examples of meaningful
+                        celebrations and community support.
+                    </p>
+                </div>
+
+                <div class="birthday-gallery" id="birthdayGallery">
+
+                    <article class="birthday-gallery-item">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=700&q=80"
+                            alt="Birthday celebration with a cake"
+                            loading="lazy"
+                        >
+
+                        <span class="birthday-gallery-tag">
+                            BIRTHDAY CELEBRATION
+                        </span>
+
+                        <div class="birthday-gallery-caption">
+                            A Day Full of Happiness
+
+                            <p>
+                                Celebrating a special day and sharing
+                                happiness with others.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <article class="birthday-gallery-item">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=700&q=80"
+                            alt="People supporting a community cause"
+                            loading="lazy"
+                        >
+
+                        <span class="birthday-gallery-tag">
+                            COMMUNITY SUPPORT
+                        </span>
+
+                        <div class="birthday-gallery-caption">
+                            Kindness in Action
+
+                            <p>
+                                Sharing resources and helping communities
+                                through thoughtful contributions.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <article class="birthday-gallery-item">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=700&q=80"
+                            alt="People spending time together"
+                            loading="lazy"
+                        >
+
+                        <span class="birthday-gallery-tag">
+                            TOGETHERNESS
+                        </span>
+
+                        <div class="birthday-gallery-caption">
+                            Creating Happy Memories
+
+                            <p>
+                                Building connections and creating
+                                meaningful moments together.
+                            </p>
+                        </div>
+
+                    </article>
+
+                </div>
+
+                <p class="birthday-gallery-note">
+                    Note: These are illustrative sample images, not verified
+                    photographs of actual UMEED events.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- SHARE A BIRTHDAY MEMORY -->
+
+        <section class="birthday-layout" id="upload-memory">
+
+            <!-- FORM CARD -->
+
+            <div class="birthday-form-card">
+
+                <div class="birthday-section-title">
+                    <span>SHARE YOUR STORY</span>
+
+                    <h2>Add Your Birthday Memory</h2>
+
+                    <p>
+                        Tell us how you celebrated your birthday and select
+                        the photographs you want to include in your preview.
+                    </p>
+                </div>
+
+                <form class="birthday-form" id="birthdayForm">
+
+                    <div class="birthday-field">
+
+                        <label for="celebrationTitle">
+                            Celebration Title *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="celebrationTitle"
+                            name="celebrationTitle"
+                            placeholder="e.g. My Birthday at an Orphanage"
+                            maxlength="100"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="birthday-field">
+
+                        <label for="celebrationCategory">
+                            Celebration Category *
+                        </label>
+
+                        <select
+                            id="celebrationCategory"
+                            name="celebrationCategory"
+                            required
+                        >
+                            <option value="">Select a category</option>
+                            <option value="Birthday Celebration">
+                                Birthday Celebration
+                            </option>
+                            <option value="Community Service">
+                                Community Service
+                            </option>
+                            <option value="Donation Drive">
+                                Donation Drive
+                            </option>
+                            <option value="Volunteering">
+                                Volunteering
+                            </option>
+                            <option value="Other">
+                                Other
+                            </option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="birthday-field">
+
+                        <label for="celebrationStory">
+                            Your Story *
+                        </label>
+
+                        <textarea
+                            id="celebrationStory"
+                            name="celebrationStory"
+                            placeholder="Tell us how you celebrated and made a difference..."
+                            maxlength="1000"
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="birthday-field">
+
+                        <label for="celebrationPhotos">
+                            Upload Your Photos *
+                        </label>
+
+                        <input
+                            type="file"
+                            id="celebrationPhotos"
+                            name="celebrationPhotos"
+                            accept="image/jpeg,image/png,image/webp,image/gif"
+                            multiple
+                            required
+                        >
+
+                        <p class="birthday-field-note">
+                            Select up to 6 images. Supported formats:
+                            JPG, PNG, WEBP, and GIF. Maximum 5 MB per image.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="birthday-upload-preview"
+                        id="birthdayUploadPreview"
+                        aria-live="polite"
+                    ></div>
+
+
+                    <button type="submit" class="birthday-submit">
+                        Preview My Celebration →
+                    </button>
+
+                    <p class="birthday-field-note">
+                        This frontend demo creates a local preview only.
+                        It does not permanently save or publish your details.
+                    </p>
+
+                    <div
+                        id="birthdayFormMessage"
+                        class="birthday-feedback"
+                        hidden
+                        aria-live="polite"
+                    ></div>
+
+                </form>
+
+            </div>
+
+
+            <!-- INFORMATION CARD -->
+
+            <aside class="birthday-info-card">
+
+                <div class="birthday-section-title">
+                    <span>CELEBRATE RESPONSIBLY</span>
+
+                    <h2>Share Happiness, Inspire Others.</h2>
+
+                    <p>
+                        Your story may encourage others to turn their
+                        celebrations into opportunities to help.
+                    </p>
+                </div>
+
+
+                <div class="birthday-info-highlight">
+
+                    <strong>
+                        💚 A small act can create a big impact.
+                    </strong>
+
+                    <p>
+                        Sharing books, donating essentials, or giving your
+                        time can make a birthday more meaningful.
+                    </p>
+
+                </div>
+
+
+                <ul class="birthday-info-list">
+
+                    <li>
+                        <span class="birthday-info-check">✓</span>
+
+                        <span>
+                            <strong>Share genuine memories</strong>
+                            Describe your real experience honestly.
+                        </span>
+                    </li>
+
+
+                    <li>
+                        <span class="birthday-info-check">✓</span>
+
+                        <span>
+                            <strong>Respect everyone's privacy</strong>
+                            Get permission before sharing identifiable
+                            photographs of other people, especially children.
+                        </span>
+                    </li>
+
+
+                    <li>
+                        <span class="birthday-info-check">✓</span>
+
+                        <span>
+                            <strong>Choose suitable photos</strong>
+                            Select clear photographs that reflect your
+                            celebration or community activity.
+                        </span>
+                    </li>
+
+
+                    <li>
+                        <span class="birthday-info-check">✓</span>
+
+                        <span>
+                            <strong>Inspire others</strong>
+                            Explain how your celebration supported someone
+                            or contributed to your community.
+                        </span>
+                    </li>
+
+                </ul>
+
+            </aside>
+
+        </section>
+
+
+        <!-- BOTTOM BANNER -->
+
+        <section class="birthday-bottom-banner">
+
+            <h2>Make Your Special Day Count.</h2>
+
+            <p>
+                Celebrate with purpose, share kindness, and help build
+                a community where every need matters. Together, we can
+                make more birthdays meaningful.
+            </p>
+
+            <a href="needs.html" class="birthday-bottom-button">
+                Explore Ways to Help →
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER: SAME STRUCTURE AS POST A NEED -->
+
+    <footer class="modern-footer">
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+
+                <div class="brand footer-brand-logo">
+
+                    <span class="brand-mark">U</span>
+
+                    <span>
+                        <strong>UMEED</strong>
+                        <small>Community Connect</small>
+                    </span>
+
+                </div>
+
+                <p>No Help Should Go Unnoticed.</p>
+
+            </div>
+
+
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="needs.html">Community Needs</a>
+                <a href="volunteer.html">Volunteer</a>
+                <a href="post-need.html">Post a Need</a>
+                <a href="support.html">Support</a>
+                <a href="birthday.html">Birthday Celebrations</a>
+                <a href="gallery.html">Community Gallery</a>
+                <a href="feedback.html">Feedback</a>
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+            <span>© 2026 Project UMEED</span>
+            <span>Community Engagement Field Project</span>
+        </div>
+
+    </footer>
+
+
+    <!-- BIRTHDAY FORM JAVASCRIPT -->
+
+    <script>
+        const birthdayForm = document.getElementById("birthdayForm");
+
+        const birthdayImageInput =
+            document.getElementById("celebrationPhotos");
+
+        const birthdayPreviewArea =
+            document.getElementById("birthdayUploadPreview");
+
+        const birthdayFormMessage =
+            document.getElementById("birthdayFormMessage");
+
+        let selectedBirthdayPhotos = [];
+        let birthdayPreviewUrls = [];
+
+        const MAX_BIRTHDAY_PHOTOS = 6;
+        const MAX_BIRTHDAY_FILE_SIZE = 5 * 1024 * 1024;
+
+        function showBirthdayMessage(message) {
+            birthdayFormMessage.hidden = false;
+            birthdayFormMessage.textContent = message;
+        }
+
+        function clearBirthdayMessage() {
+            birthdayFormMessage.hidden = true;
+            birthdayFormMessage.textContent = "";
+        }
+
+        function releaseBirthdayPreviewUrls() {
+            birthdayPreviewUrls.forEach(function (url) {
+                URL.revokeObjectURL(url);
+            });
+
+            birthdayPreviewUrls = [];
+        }
+
+        function updateBirthdayInputFiles() {
+            const transfer = new DataTransfer();
+
+            selectedBirthdayPhotos.forEach(function (file) {
+                transfer.items.add(file);
+            });
+
+            birthdayImageInput.files = transfer.files;
+        }
+
+        function renderBirthdayPreviews() {
+            releaseBirthdayPreviewUrls();
+            birthdayPreviewArea.innerHTML = "";
+
+            selectedBirthdayPhotos.forEach(function (file, index) {
+                const wrapper = document.createElement("div");
+                wrapper.className = "birthday-preview-item";
+
+                const image = document.createElement("img");
+                image.alt = "Selected birthday photo preview";
+
+                const imageUrl = URL.createObjectURL(file);
+                birthdayPreviewUrls.push(imageUrl);
+                image.src = imageUrl;
+
+                const removeButton = document.createElement("button");
+
+                removeButton.type = "button";
+                removeButton.className = "birthday-remove-image";
+                removeButton.textContent = "Remove";
+                removeButton.setAttribute(
+                    "aria-label",
+                    "Remove " + file.name
+                );
+
+                removeButton.addEventListener("click", function () {
+                    selectedBirthdayPhotos.splice(index, 1);
+
+                    updateBirthdayInputFiles();
+                    renderBirthdayPreviews();
+                    clearBirthdayMessage();
+                });
+
+                const fileName = document.createElement("div");
+                fileName.className = "birthday-preview-name";
+                fileName.textContent = file.name;
+
+                wrapper.appendChild(image);
+                wrapper.appendChild(removeButton);
+                wrapper.appendChild(fileName);
+
+                birthdayPreviewArea.appendChild(wrapper);
+            });
+        }
+
+        birthdayImageInput.addEventListener("change", function () {
+            clearBirthdayMessage();
+
+            const incomingFiles = Array.from(this.files);
+            const combinedFiles = [
+                ...selectedBirthdayPhotos,
+                ...incomingFiles
+            ];
+
+            const validFiles = [];
+            const seenFiles = new Set();
+            let warning = "";
+
+            for (const file of combinedFiles) {
+                const fileKey = [
+                    file.name,
+                    file.size,
+                    file.lastModified
+                ].join("-");
+
+                if (seenFiles.has(fileKey)) {
+                    continue;
+                }
+
+                seenFiles.add(fileKey);
+
+                if (!file.type.startsWith("image/")) {
+                    warning = "Please select image files only.";
+                    continue;
+                }
+
+                if (file.size > MAX_BIRTHDAY_FILE_SIZE) {
+                    warning =
+                        file.name +
+                        " is larger than 5 MB and was not added.";
+                    continue;
+                }
+
+                if (validFiles.length >= MAX_BIRTHDAY_PHOTOS) {
+                    warning = "You can select a maximum of 6 images.";
+                    break;
+                }
+
+                validFiles.push(file);
+            }
+
+            selectedBirthdayPhotos = validFiles;
+
+            updateBirthdayInputFiles();
+            renderBirthdayPreviews();
+
+            if (warning) {
+                showBirthdayMessage(warning);
+            }
+        });
+
+        birthdayForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            clearBirthdayMessage();
+
+            const title = document
+                .getElementById("celebrationTitle")
+                .value.trim();
+
+            const category = document
+                .getElementById("celebrationCategory")
+                .value;
+
+            const story = document
+                .getElementById("celebrationStory")
+                .value.trim();
+
+            if (!title || !category || !story) {
+                showBirthdayMessage(
+                    "Please complete all required fields."
+                );
+                return;
+            }
+
+            if (selectedBirthdayPhotos.length === 0) {
+                showBirthdayMessage(
+                    "Please select at least one photo."
+                );
+                return;
+            }
+
+            const previewWindow = window.open(
+                "",
+                "_blank",
+                "width=850,height=700"
+            );
+
+            if (!previewWindow) {
+                showBirthdayMessage(
+                    "Your browser blocked the preview window. " +
+                    "Allow pop-ups for this page and try again."
+                );
+                return;
+            }
+
+            const safeTitle = escapeBirthdayHTML(title);
+            const safeCategory = escapeBirthdayHTML(category);
+            const safeStory = escapeBirthdayHTML(story);
+
+            const photoHtml = selectedBirthdayPhotos.map(function (file) {
+                const url = URL.createObjectURL(file);
+
+                return `
+                    <figure class="memory-photo">
+                        <img src="${url}" alt="Birthday celebration photo">
+                        <figcaption>
+                            ${escapeBirthdayHTML(file.name)}
+                        </figcaption>
+                    </figure>
+                `;
+            }).join("");
+
+            previewWindow.document.open();
+
+            previewWindow.document.write(`
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+                    <title>Birthday Preview | UMEED</title>
+
+                    <style>
+                        * {
+                            box-sizing: border-box;
+                        }
+
+                        body {
+                            margin: 0;
+                            padding: 30px 18px;
+                            background: #f8f5ed;
+                            color: #26372d;
+                            font-family: Arial, Helvetica, sans-serif;
+                        }
+
+                        .preview-container {
+                            width: min(850px, 100%);
+                            margin: 0 auto;
+                        }
+
+                        .preview-heading {
+                            padding: 30px;
+                            background: #123b27;
+                            color: white;
+                            border-radius: 20px;
+                            margin-bottom: 22px;
+                        }
+
+                        .preview-heading p {
+                            color: #d4e2d7;
+                        }
+
+                        .preview-content {
+                            padding: 25px;
+                            border: 1px solid #e8e7dd;
+                            border-radius: 18px;
+                            background: white;
+                            margin-bottom: 22px;
+                        }
+
+                        h1, h2 {
+                            line-height: 1.3;
+                        }
+
+                        h1 {
+                            margin-top: 0;
+                        }
+
+                        h2 {
+                            color: #123b27;
+                        }
+
+                        .category {
+                            display: inline-block;
+                            padding: 6px 12px;
+                            border-radius: 20px;
+                            background: #e4eddf;
+                            color: #123b27;
+                            font-size: 13px;
+                        }
+
+                        .story {
+                            line-height: 1.9;
+                            white-space: pre-wrap;
+                            overflow-wrap: anywhere;
+                        }
+
+                        .memory-grid {
+                            display: grid;
+                            grid-template-columns: repeat(
+                                auto-fit,
+                                minmax(180px, 1fr)
+                            );
+                            gap: 15px;
+                        }
+
+                        .memory-photo {
+                            margin: 0;
+                            overflow: hidden;
+                            border: 1px solid #e8e7dd;
+                            border-radius: 12px;
+                            background: white;
+                        }
+
+                        .memory-photo img {
+                            display: block;
+                            width: 100%;
+                            height: 190px;
+                            object-fit: cover;
+                        }
+
+                        figcaption {
+                            padding: 10px;
+                            font-size: 12px;
+                            overflow-wrap: anywhere;
+                        }
+
+                        .notice {
+                            color: #68756a;
+                            font-size: 13px;
+                            line-height: 1.8;
+                        }
+                    </style>
+                </head>
+
+                <body>
+                    <main class="preview-container">
+
+                        <header class="preview-heading">
+                            <p>UMEED · COMMUNITY CONNECT</p>
+                            <h1>${safeTitle}</h1>
+                            <p>A birthday memory shared with purpose.</p>
+                        </header>
+
+                        <section class="preview-content">
+                            <span class="category">${safeCategory}</span>
+                            <h2>Your Story</h2>
+                            <p class="story">${safeStory}</p>
+                        </section>
+
+                        <section class="preview-content">
+                            <h2>Celebration Photos</h2>
+                            <div class="memory-grid">
+                                ${photoHtml}
+                            </div>
+                        </section>
+
+                        <p class="notice">
+                            This is a local preview only. Your celebration
+                            has not been uploaded to UMEED or shared publicly.
+                        </p>
+
+                    </main>
+                </body>
+                </html>
+            `);
+
+            previewWindow.document.close();
+
+            showBirthdayMessage(
+                "Your celebration preview has opened in a new tab. " +
+                "Your information has not been permanently saved."
+            );
+        });
+
+        function escapeBirthdayHTML(value) {
+            return String(value).replace(/[&<>"']/g, function (character) {
+                const entities = {
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#39;"
+                };
+
+                return entities[character];
+            });
+        }
+
+        window.addEventListener(
+            "beforeunload",
+            releaseBirthdayPreviewUrls
+        );
+    </script>
+
+</body>
+</html>

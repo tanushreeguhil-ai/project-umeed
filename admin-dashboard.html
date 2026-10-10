@@ -1,0 +1,882 @@
+`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | UMEED</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .dashboard-page {
+            background: #f8f5ed;
+            color: #183d2a;
+            min-height: 100vh;
+            padding: 35px 6%;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .dashboard-hero {
+            text-align: center;
+            margin: 20px 0 35px;
+        }
+
+        .dashboard-hero .eyebrow {
+            display: inline-block;
+            background: #e3f1e5;
+            color: #218653;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .dashboard-hero h1 {
+            font-size: clamp(30px, 4vw, 44px);
+            margin: 18px 0 10px;
+            color: #123b27;
+        }
+
+        .dashboard-hero p {
+            color: #65746a;
+            line-height: 1.7;
+        }
+
+        .dashboard-notice {
+            background: #fff8df;
+            border: 1px solid #f0df9b;
+            border-radius: 14px;
+            padding: 15px 18px;
+            margin-bottom: 28px;
+            color: #725b16;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .dashboard-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 32px 0 18px;
+        }
+
+        .dashboard-heading h2 {
+            color: #123b27;
+            margin: 0;
+            font-size: 23px;
+        }
+
+        .dashboard-heading p {
+            color: #718075;
+            font-size: 14px;
+            margin: 7px 0 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .stat-card {
+            background: #fff;
+            border: 1px solid #e8e9df;
+            border-radius: 20px;
+            padding: 23px;
+            box-shadow: 0 7px 22px rgba(18, 59, 39, 0.04);
+        }
+
+        .stat-icon {
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e8f4e9;
+            border-radius: 14px;
+            font-size: 23px;
+            margin-bottom: 17px;
+        }
+
+        .stat-card h3 {
+            color: #65746a;
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0 0 9px;
+        }
+
+        .stat-number {
+            color: #123b27;
+            font-size: 32px;
+            font-weight: 750;
+            margin: 0;
+        }
+
+        .stat-description {
+            color: #829087;
+            font-size: 12px;
+            margin-top: 9px;
+        }
+
+        .dashboard-card {
+            background: #fff;
+            border: 1px solid #e8e9df;
+            border-radius: 20px;
+            padding: 24px;
+            margin-top: 20px;
+            box-shadow: 0 7px 22px rgba(18, 59, 39, 0.04);
+        }
+
+        .dashboard-toolbar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-toolbar input,
+        .dashboard-toolbar select {
+            flex: 1;
+            min-width: 170px;
+            padding: 12px 14px;
+            border: 1px solid #dfe5db;
+            border-radius: 10px;
+            background: #fff;
+            color: #183d2a;
+            font: inherit;
+            outline: none;
+        }
+
+        .dashboard-toolbar input:focus,
+        .dashboard-toolbar select:focus {
+            border-color: #218653;
+        }
+
+        .table-wrap {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .dashboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 650px;
+        }
+
+        .dashboard-table th {
+            text-align: left;
+            padding: 14px 12px;
+            background: #f4f7f0;
+            color: #496451;
+            font-size: 13px;
+            font-weight: 650;
+        }
+
+        .dashboard-table td {
+            padding: 16px 12px;
+            border-bottom: 1px solid #edf0e9;
+            color: #42574a;
+            font-size: 14px;
+        }
+
+        .dashboard-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .status-badge {
+            display: inline-block;
+            border-radius: 20px;
+            padding: 6px 10px;
+            font-size: 12px;
+            font-weight: 650;
+        }
+
+        .status-pending {
+            background: #fff0cf;
+            color: #8a6210;
+        }
+
+        .status-approved {
+            background: #e0f4e5;
+            color: #1e7540;
+        }
+
+        .status-review {
+            background: #e6edff;
+            color: #3656a2;
+        }
+
+        .status-rejected {
+            background: #fde8e6;
+            color: #a63c35;
+        }
+
+        .table-action {
+            border: none;
+            border-radius: 8px;
+            padding: 8px 10px;
+            background: #e6f3e8;
+            color: #1e7540;
+            cursor: pointer;
+            font-weight: 650;
+            margin: 2px;
+        }
+
+        .table-action:hover {
+            background: #d3ead7;
+        }
+
+        .table-action.danger {
+            background: #fde8e6;
+            color: #a63c35;
+        }
+
+        .table-action.danger:hover {
+            background: #f8d6d2;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #829087;
+            padding: 28px 12px;
+        }
+
+        .management-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .management-card {
+            background: #fff;
+            border: 1px solid #e8e9df;
+            border-radius: 20px;
+            padding: 24px;
+        }
+
+        .management-card h3 {
+            margin: 0 0 8px;
+            color: #123b27;
+        }
+
+        .management-card p {
+            color: #718075;
+            font-size: 14px;
+            line-height: 1.7;
+            margin: 0 0 18px;
+        }
+
+        .dashboard-button {
+            display: inline-block;
+            border: none;
+            border-radius: 10px;
+            padding: 11px 16px;
+            background: #218653;
+            color: #fff;
+            font: inherit;
+            font-size: 14px;
+            font-weight: 650;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .dashboard-button:hover {
+            background: #176b40;
+        }
+
+        .dashboard-button.secondary {
+            background: #e8f4e9;
+            color: #1e7540;
+        }
+
+        .feedback-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .feedback-item {
+            background: #fbfcf8;
+            border: 1px solid #edf0e9;
+            border-radius: 14px;
+            padding: 18px;
+        }
+
+        .feedback-item h4 {
+            margin: 0 0 8px;
+            color: #123b27;
+        }
+
+        .feedback-item p {
+            margin: 8px 0;
+            color: #65746a;
+            font-size: 14px;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+        }
+
+        .feedback-rating {
+            color: #b78013;
+            letter-spacing: 2px;
+        }
+
+        .dashboard-footer-note {
+            text-align: center;
+            color: #718075;
+            font-size: 13px;
+            line-height: 1.7;
+            padding: 30px 0 10px;
+        }
+
+        @media (max-width: 900px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .dashboard-page {
+                padding: 25px 5%;
+            }
+
+            .stats-grid,
+            .management-grid,
+            .feedback-list {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card {
+                padding: 20px;
+            }
+
+            .dashboard-card {
+                padding: 16px;
+            }
+
+            .dashboard-hero h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="brand">
+                <span class="brand-mark">U</span>
+                <span>
+                    <strong>UMEED</strong>
+                    <small>Community Connect</small>
+                </span>
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="needs.html">Community Needs</a>
+                <a href="volunteer.html">Volunteer</a>
+                <a href="post-need.html">Post a Need</a>
+                <a href="organizations.html">Organizations</a>
+                <a href="support.html">Support</a>
+                <a href="admin-login.html">Admin Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="dashboard-page">
+        <div class="dashboard-container">
+
+            <!-- Dashboard Heading -->
+            <section class="dashboard-hero">
+                <span class="eyebrow">UMEED ADMINISTRATION</span>
+                <h1>Admin Dashboard 🌿</h1>
+                <p>
+                    Manage community needs, organizations, and feedback
+                    from one place.
+                </p>
+            </section>
+
+            <div class="dashboard-notice">
+                <strong>Prototype notice:</strong>
+                This dashboard currently uses sample data and information
+                saved in this browser. It is not connected to a secure
+                administrator login or shared database. Do not use it to
+                manage real or confidential community information yet.
+            </div>
+
+            <!-- Statistics -->
+            <section>
+                <div class="dashboard-heading">
+                    <div>
+                        <h2>Platform Overview</h2>
+                        <p>A quick summary of the dashboard's sample data.</p>
+                    </div>
+                    <button class="dashboard-button secondary"
+                            onclick="refreshDashboard()">
+                        Refresh Data
+                    </button>
+                </div>
+
+                <div class="stats-grid">
+                    <article class="stat-card">
+                        <div class="stat-icon">📋</div>
+                        <h3>Total Community Needs</h3>
+                        <p class="stat-number" id="totalNeeds">0</p>
+                        <div class="stat-description">Requests in this demo</div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-icon">⏳</div>
+                        <h3>Pending Requests</h3>
+                        <p class="stat-number" id="pendingNeeds">0</p>
+                        <div class="stat-description">Awaiting review</div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-icon">🏢</div>
+                        <h3>Organizations</h3>
+                        <p class="stat-number" id="totalOrganizations">0</p>
+                        <div class="stat-description">Sample organizations</div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-icon">💬</div>
+                        <h3>Feedback Messages</h3>
+                        <p class="stat-number" id="totalFeedback">0</p>
+                        <div class="stat-description">Saved in this browser</div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Manage Needs -->
+            <section>
+                <div class="dashboard-heading">
+                    <div>
+                        <h2>Manage Community Needs</h2>
+                        <p>Search requests and try changing their demo status.</p>
+                    </div>
+                    <a href="post-need.html" class="dashboard-button">
+                        + Post a Need
+                    </a>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="dashboard-toolbar">
+                        <input
+                            type="search"
+                            id="needSearch"
+                            placeholder="Search by title or category..."
+                            aria-label="Search community needs">
+
+                        <select id="statusFilter"
+                                aria-label="Filter requests by status">
+                            <option value="All">All statuses</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Approved">Approved</option>
+                            <option value="Under Review">Under Review</option>
+                            <option value="Rejected">Rejected</option>
+                        </select>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table class="dashboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Request</th>
+                                    <th>Category</th>
+                                    <th>Location</th>
+                                    <th>Status</th>
+                                    <th>Demo Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="needsTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Management shortcuts -->
+            <section>
+                <div class="dashboard-heading">
+                    <div>
+                        <h2>Quick Management</h2>
+                        <p>Open other areas of your UMEED project.</p>
+                    </div>
+                </div>
+
+                <div class="management-grid">
+                    <article class="management-card">
+                        <h3>🏢 Organizations</h3>
+                        <p>
+                            Explore organizations and community groups
+                            that may support local needs.
+                        </p>
+                        <a href="organizations.html"
+                           class="dashboard-button">
+                            View Organizations
+                        </a>
+                    </article>
+
+                    <article class="management-card">
+                        <h3>🌱 Volunteer Connect</h3>
+                        <p>
+                            Visit the volunteer section to explore ways
+                            people can contribute their time and skills.
+                        </p>
+                        <a href="volunteer.html"
+                           class="dashboard-button">
+                            View Volunteers
+                        </a>
+                    </article>
+
+                    <article class="management-card">
+                        <h3>📝 My Requests</h3>
+                        <p>
+                            Open the sample request tracking page and
+                            review its current functionality.
+                        </p>
+                        <a href="my-requests.html"
+                           class="dashboard-button">
+                            View My Requests
+                        </a>
+                    </article>
+
+                    <article class="management-card">
+                        <h3>⭐ Community Feedback</h3>
+                        <p>
+                            See feedback submitted through the feedback
+                            page and stored in this browser.
+                        </p>
+                        <a href="feedback.html"
+                           class="dashboard-button">
+                            Open Feedback Page
+                        </a>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Feedback -->
+            <section>
+                <div class="dashboard-heading">
+                    <div>
+                        <h2>Recent Feedback</h2>
+                        <p>Feedback available in this browser's local storage.</p>
+                    </div>
+                    <a href="feedback.html"
+                       class="dashboard-button secondary">
+                        Give Feedback
+                    </a>
+                </div>
+
+                <div class="dashboard-card">
+                    <div id="feedbackList" class="feedback-list"></div>
+                </div>
+            </section>
+
+            <div class="dashboard-footer-note">
+                Project UMEED — No Help Should Go Unnoticed.<br>
+                This is an academic frontend prototype. Secure admin access,
+                shared records, and real moderation will require a backend.
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Shared Footer -->
+    <footer class="modern-footer">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <a href="index.html" class="brand">
+                    <span class="brand-mark">U</span>
+                    <span>
+                        <strong>UMEED</strong>
+                        <small>Community Connect</small>
+                    </span>
+                </a>
+                <p>No Help Should Go Unnoticed.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <a href="index.html">Home</a>
+                <a href="needs.html">Community Needs</a>
+                <a href="organizations.html">Organizations</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Get Involved</h4>
+                <a href="volunteer.html">Volunteer</a>
+                <a href="post-need.html">Post a Need</a>
+                <a href="support.html">Support</a>
+                <a href="feedback.html">Feedback</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Project UMEED. Built with hope and care.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample data for the frontend prototype only.
+        const defaultNeeds = [
+            {
+                id: 1,
+                title: "Books for School Students",
+                category: "Education",
+                location: "Odha, Nashik",
+                status: "Pending"
+            },
+            {
+                id: 2,
+                title: "Computer Support for Students",
+                category: "Technology",
+                location: "Nashik",
+                status: "Under Review"
+            },
+            {
+                id: 3,
+                title: "Clothes for Families",
+                category: "Clothing",
+                location: "Odha, Nashik",
+                status: "Approved"
+            },
+            {
+                id: 4,
+                title: "Volunteer Support for Learning",
+                category: "Volunteers",
+                location: "Nashik",
+                status: "Pending"
+            },
+            {
+                id: 5,
+                title: "Medical Awareness Camp",
+                category: "Healthcare",
+                location: "Nashik District",
+                status: "Rejected"
+            }
+        ];
+
+        const NEEDS_KEY = "umeedAdminDemoNeeds";
+        const FEEDBACK_KEY = "umeedFeedback";
+
+        function readNeeds() {
+            try {
+                const saved = localStorage.getItem(NEEDS_KEY);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (Array.isArray(parsed)) return parsed;
+                }
+            } catch (error) {
+                console.warn("Could not read demo requests.", error);
+            }
+
+            return defaultNeeds.map(item => ({ ...item }));
+        }
+
+        function saveNeeds(needs) {
+            try {
+                localStorage.setItem(NEEDS_KEY, JSON.stringify(needs));
+            } catch (error) {
+                alert("The browser could not save the demo changes.");
+            }
+        }
+
+        function readFeedback() {
+            try {
+                const saved = JSON.parse(
+                    localStorage.getItem(FEEDBACK_KEY) || "[]"
+                );
+                return Array.isArray(saved) ? saved : [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function escapeHTML(value) {
+            return String(value ?? "").replace(/[&<>"']/g, character => ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            })[character]);
+        }
+
+        function statusClass(status) {
+            if (status === "Approved") return "status-approved";
+            if (status === "Under Review") return "status-review";
+            if (status === "Rejected") return "status-rejected";
+            return "status-pending";
+        }
+
+        function renderNeeds() {
+            const searchText = document
+                .getElementById("needSearch")
+                .value.toLowerCase()
+                .trim();
+
+            const selectedStatus =
+                document.getElementById("statusFilter").value;
+
+            const needs = readNeeds();
+
+            const filtered = needs.filter(need => {
+                const matchesSearch =
+                    String(need.title || "").toLowerCase().includes(searchText) ||
+                    String(need.category || "").toLowerCase().includes(searchText);
+
+                const matchesStatus =
+                    selectedStatus === "All" ||
+                    need.status === selectedStatus;
+
+                return matchesSearch && matchesStatus;
+            });
+
+            const body = document.getElementById("needsTableBody");
+
+            if (filtered.length === 0) {
+                body.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="empty-state">
+                            No matching requests found.
+                        </td>
+                    </tr>`;
+                return;
+            }
+
+            body.innerHTML = filtered.map(need => `
+                <tr>
+                    <td><strong>${escapeHTML(need.title)}</strong></td>
+                    <td>${escapeHTML(need.category)}</td>
+                    <td>${escapeHTML(need.location || "Not specified")}</td>
+                    <td>
+                        <span class="status-badge ${statusClass(need.status)}">
+                            ${escapeHTML(need.status)}
+                        </span>
+                    </td>
+                    <td>
+                        <button class="table-action"
+                                data-action="approve"
+                                data-id="${escapeHTML(need.id)}">
+                            Approve
+                        </button>
+                        <button class="table-action"
+                                data-action="review"
+                                data-id="${escapeHTML(need.id)}">
+                            Review
+                        </button>
+                        <button class="table-action danger"
+                                data-action="reject"
+                                data-id="${escapeHTML(need.id)}">
+                            Reject
+                        </button>
+                    </td>
+                </tr>
+            `).join("");
+        }
+
+        function renderFeedback() {
+            const feedback = readFeedback();
+            const container = document.getElementById("feedbackList");
+
+            document.getElementById("totalFeedback").textContent =
+                feedback.length;
+
+            if (feedback.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state" style="grid-column:1/-1">
+                        <p>No feedback is saved in this browser yet.</p>
+                        <a href="feedback.html" class="dashboard-button">
+                            Open Feedback Form
+                        </a>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = feedback.slice().reverse().slice(0, 6)
+                .map(item => {
+                    const rating = Math.max(
+                        0,
+                        Math.min(5, Number(item.rating) || 0)
+                    );
+
+                    return `
+                        <article class="feedback-item">
+                            <h4>${escapeHTML(item.name || "Anonymous")}</h4>
+                            <div class="feedback-rating">
+                                ${"★".repeat(rating)}${"☆".repeat(5 - rating)}
+                            </div>
+                            <p><strong>Category:</strong>
+                                ${escapeHTML(item.category || "General")}
+                            </p>
+                            <p>${escapeHTML(item.message || "No message provided.")}</p>
+                        </article>
+                    `;
+                }).join("");
+        }
+
+        function refreshDashboard() {
+            const needs = readNeeds();
+
+            document.getElementById("totalNeeds").textContent = needs.length;
+
+            document.getElementById("pendingNeeds").textContent =
+                needs.filter(need => need.status === "Pending").length;
+
+            // Demo count: this is not a live organization database.
+            document.getElementById("totalOrganizations").textContent = "3";
+
+            renderNeeds();
+            renderFeedback();
+        }
+
+        document.getElementById("needsTableBody").addEventListener(
+            "click",
+            function(event) {
+                const button = event.target.closest("button[data-action]");
+                if (!button) return;
+
+                const id = button.dataset.id;
+                const action = button.dataset.action;
+                const needs = readNeeds();
+
+                const selected = needs.find(
+                    need => String(need.id) === String(id)
+                );
+
+                if (!selected) return;
+
+                const newStatus = {
+                    approve: "Approved",
+                    review: "Under Review",
+                    reject: "Rejected"
+                }[action];
+
+                selected.status = newStatus;
+                saveNeeds(needs);
+                refreshDashboard();
+            }
+        );
+
+        document.getElementById("needSearch").addEventListener(
+            "input", renderNeeds
+        );
+
+        document.getElementById("statusFilter").addEventListener(
+            "change", renderNeeds
+        );
+
+        refreshDashboard();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | UMEED Community Connect</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .login-page {
+            background: #f8f5ed;
+            color: #123b27;
+            min-height: 100vh;
+        }
+
+        .login-hero {
+            text-align: center;
+            padding: 65px 20px 35px;
+        }
+
+        .login-label {
+            display: inline-block;
+            background: #e4eddf;
+            color: #218653;
+            padding: 9px 17px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+
+        .login-hero h1 {
+            max-width: 750px;
+            margin: 0 auto 16px;
+            font-size: clamp(38px, 5vw, 62px);
+            letter-spacing: -1.8px;
+            line-height: 1.15;
+        }
+
+        .login-hero h1 span {
+            color: #218653;
+        }
+
+        .login-hero p {
+            max-width: 550px;
+            margin: 0 auto;
+            color: #667469;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .login-wrapper {
+            width: min(480px, 90%);
+            margin: 0 auto 80px;
+        }
+
+        .login-card {
+            background: #ffffff;
+            border: 1px solid #e8e7dd;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 12px 35px rgba(18, 59, 39, 0.05);
+        }
+
+        .login-card h2 {
+            margin: 0 0 9px;
+            font-size: 27px;
+        }
+
+        .login-description {
+            color: #748075;
+            font-size: 14px;
+            line-height: 1.8;
+            margin: 0 0 27px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .login-field label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .login-field input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 14px 15px;
+            border: 1px solid #dedfd5;
+            border-radius: 12px;
+            background: #ffffff;
+            color: #123b27;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .login-field input:focus {
+            border-color: #218653;
+            box-shadow: 0 0 0 3px rgba(33, 134, 83, 0.10);
+        }
+
+        .login-field input::placeholder {
+            color: #a1aaa1;
+        }
+
+        .login-password-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .login-password-row label {
+            margin-bottom: 0;
+        }
+
+        .login-password-row button {
+            border: none;
+            background: none;
+            color: #218653;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            font-size: 13px;
+            color: #68766b;
+        }
+
+        .login-remember {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .login-remember input {
+            accent-color: #218653;
+        }
+
+        .login-submit {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 13px;
+            background: #123b27;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .login-submit:hover {
+            background: #218653;
+            transform: translateY(-1px);
+        }
+
+        .login-register {
+            margin: 24px 0 0;
+            text-align: center;
+            font-size: 14px;
+            color: #748075;
+            line-height: 1.8;
+        }
+
+        .login-register a {
+            color: #218653;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .login-register a:hover {
+            text-decoration: underline;
+        }
+
+        .login-message {
+            display: none;
+            padding: 13px 15px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .login-message.error {
+            display: block;
+            background: #fff0ee;
+            color: #a52a20;
+            border: 1px solid #f3d0cb;
+        }
+
+        .login-message.success {
+            display: block;
+            background: #e9f5e9;
+            color: #17643a;
+            border: 1px solid #c9e6cf;
+        }
+
+        .login-note {
+            background: #f5f7f1;
+            color: #6b776c;
+            padding: 13px 15px;
+            margin-top: 23px;
+            border-radius: 12px;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .login-bottom-banner {
+            background: #123b27;
+            color: #ffffff;
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        .login-bottom-banner h2 {
+            font-size: clamp(24px, 3vw, 34px);
+            margin: 0 0 12px;
+        }
+
+        .login-bottom-banner p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: #dce9df;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 600px) {
+            .login-hero {
+                padding-top: 40px;
+            }
+
+            .login-card {
+                padding: 25px 20px;
+                border-radius: 20px;
+            }
+
+            .login-card h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body class="login-page">
+
+    <!-- Navigation -->
+    <header class="navbar">
+
+        <a href="index.html" class="brand">
+            <span class="brand-mark">U</span>
+            <span>
+                <strong>UMEED</strong>
+                <small>Community Connect</small>
+            </span>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="needs.html">Community Needs</a>
+            <a href="volunteer.html">Volunteer</a>
+            <a href="post-need.html">Post a Need</a>
+            <a href="support.html">Support</a>
+            <a href="birthday.html">Birthday Celebrations</a>
+            <a href="register.html">Register</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Hero -->
+    <section class="login-hero">
+
+        <div class="login-label">WELCOME BACK</div>
+
+        <h1>
+            Good to Have You
+            <span>Back.</span>
+        </h1>
+
+        <p>
+            Log in to reconnect with your community, explore opportunities
+            to help, and continue making a difference with UMEED.
+        </p>
+
+    </section>
+
+
+    <!-- Login Form -->
+    <main class="login-wrapper">
+
+        <section class="login-card">
+
+            <h2>Welcome Back 🌱</h2>
+
+            <p class="login-description">
+                Enter your registered email address and password to continue.
+            </p>
+
+            <div
+                id="loginMessage"
+                class="login-message"
+                role="status"
+                aria-live="polite">
+            </div>
+
+            <form id="loginForm" class="login-form">
+
+                <div class="login-field">
+                    <label for="email">Email Address *</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="username"
+                        required>
+                </div>
+
+                <div class="login-field">
+
+                    <div class="login-password-row">
+                        <label for="password">Password *</label>
+
+                        <button
+                            type="button"
+                            id="togglePassword"
+                            aria-label="Show password">
+                            Show password
+                        </button>
+                    </div>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required>
+
+                </div>
+
+                <div class="login-options">
+
+                    <label class="login-remember">
+                        <input type="checkbox" id="rememberMe">
+                        <span>Remember me on this device</span>
+                    </label>
+
+                </div>
+
+                <button type="submit" class="login-submit">
+                    Log In →
+                </button>
+
+            </form>
+
+            <p class="login-register">
+                New to UMEED?
+                <a href="register.html">Create an account</a>
+            </p>
+
+            <div class="login-note">
+                <strong>Prototype notice:</strong> This page is a frontend
+                demonstration. Secure login, password verification, and
+                account sessions require backend authentication.
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Bottom Banner -->
+    <section class="login-bottom-banner">
+
+        <h2>No Help Should Go Unnoticed. 💚</h2>
+
+        <p>
+            Together, we can connect people, share resources, and create
+            stronger communities.
+        </p>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="modern-footer">
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+
+                <a href="index.html" class="brand">
+                    <span class="brand-mark">U</span>
+                    <span>
+                        <strong>UMEED</strong>
+                        <small>Community Connect</small>
+                    </span>
+                </a>
+
+                <p>No Help Should Go Unnoticed.</p>
+
+            </div>
+
+            <div class="footer-links">
+                <h3>Explore</h3>
+                <a href="index.html">Home</a>
+                <a href="needs.html">Community Needs</a>
+                <a href="organizations.html">Organizations</a>
+                <a href="volunteer.html">Volunteer</a>
+            </div>
+
+            <div class="footer-links">
+                <h3>Get Involved</h3>
+                <a href="post-need.html">Post a Need</a>
+                <a href="birthday.html">Birthday Celebrations</a>
+                <a href="feedback.html">Feedback</a>
+                <a href="support.html">Support</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                © 2026 Project UMEED | Community Engagement Field Project
+            </p>
+        </div>
+
+    </footer>
+
+
+    <!-- Login Demo -->
+    <script>
+        const loginForm = document.getElementById("loginForm");
+        const loginMessage = document.getElementById("loginMessage");
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
+
+        function showLoginMessage(message, type) {
+            loginMessage.textContent = message;
+            loginMessage.className = "login-message " + type;
+        }
+
+        togglePassword.addEventListener("click", function () {
+            const isPassword = passwordInput.type === "password";
+
+            passwordInput.type = isPassword ? "text" : "password";
+            togglePassword.textContent = isPassword
+                ? "Hide password"
+                : "Show password";
+
+            togglePassword.setAttribute(
+                "aria-label",
+                isPassword ? "Hide password" : "Show password"
+            );
+        });
+
+        loginForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const email = document.getElementById("email")
+                .value.trim().toLowerCase();
+
+            const password = passwordInput.value;
+
+            let users = [];
+
+            try {
+                users = JSON.parse(localStorage.getItem("umeedUsers") || "[]");
+            } catch (error) {
+                showLoginMessage(
+                    "Unable to read demo account data in this browser.",
+                    "error"
+                );
+                return;
+            }
+
+            /*
+              The current registration prototype deliberately does not
+              save passwords. Therefore, real password verification
+              cannot work until backend authentication is implemented.
+            */
+
+            const userExists = Array.isArray(users) && users.some(function (user) {
+                return user.email === email;
+            });
+
+            if (userExists) {
+                showLoginMessage(
+                    "Your account was found, but password verification is not yet available. Backend authentication is needed to log in securely.",
+                    "error"
+                );
+                return;
+            }
+
+            showLoginMessage(
+                "No registered demo account was found for this email. Register first or use the email from your demo registration.",
+                "error"
+            );
+        });
+    </script>
+
+</body>
+</html>
